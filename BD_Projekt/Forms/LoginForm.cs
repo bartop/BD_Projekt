@@ -15,31 +15,7 @@ namespace BD_Projekt
         {
             InitializeComponent();
             initializeMapper();
-
-            using (var db = new ModelContainer())
-            {
-                var admin = new Role();
-                admin.Name = "Administrator";
-                var asistant = new Role();
-                asistant.Name = "Asistant";
-                var recruiter = new Role();
-                recruiter.Name = "Recruiter";
-                var supervisior = new Role();
-                supervisior.Name = "Supervisor";
-
-                db.RoleSet.Add(admin);
-                db.RoleSet.Add(asistant);
-                db.RoleSet.Add(recruiter);
-                db.RoleSet.Add(supervisior);
-                db.SaveChanges();
-                
-                var root = new Worker();
-                root.Name = "root";
-                root.PasswordHash = SecurePasswordHasher.Hash("root");
-                root.Roles = db.RoleSet.Where(r => r.Name == "Administrator").First();
-                db.WorkerSet.Add(root);
-                db.SaveChanges();
-            }
+            Console.Write(SecurePasswordHasher.Hash("root"));
         }
 
         private void initializeMapper()
