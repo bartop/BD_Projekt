@@ -1,0 +1,117 @@
+﻿<#
+/*
+Copyright (c) Pawel Kadluczka. All rights reserved.
+
+AS IS, NO WARRANTY, USE ON YOUR OWN RISK
+
+T4 template for creating pre-generated views for Entity Framework 5 Database/Model First applications
+
+Usage: 
+1. Add this template to your project - make sure that the name contains the name of your .edmx file (e.g. MyModel.Views.tt for MyModel.edmx file)
+2. If you did not follow 1) rename this template so that its name contains the name of your .edmx file (e.g. MyModel.Views.tt for MyModel.edmx file)
+3. Right-click the template file in the Solution Explorer and select "Run Custom Tool"
+4. If you have more than one .edmx file in your project you need to add a separate template for each
+   file you want to create pre-generated views for. 
+*/
+#>
+<#@ template language="C#" hostspecific="true"#>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.Entity" #>
+<#@ assembly name="System.Data.Entity.Design" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data.Entity.Design" #>
+<#@ import namespace="System.Data.Metadata.Edm" #>
+<#@ import namespace="System.Data.Mapping" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Xml.Linq" #>
+<# 
+	// Find the edmx file - MyModel.Views.tt generates views for MyModel.EDMX
+	var edmxFileName = Path.GetFileNameWithoutExtension(Host.TemplateFile).Split('.')[0] + ".edmx";
+	var edmxFilePath = Path.Combine(Path.GetDirectoryName(Host.TemplateFile), edmxFileName);
+
+	if (!File.Exists(edmxFilePath))
+	{
+		Error(string.Format("Could not find file {0}. Make sure the template name is using convention '{{EdmxFileName}}.Views.tt'", edmxFilePath));
+	}
+	else
+	{
+		var mappingItemCollection = GetMappingItemCollection(edmxFilePath);
+		WriteLine(GenerateViews(mappingItemCollection));
+	}
+#>
+
+<#+
+	private string GenerateViews(StorageMappingItemCollection mappingItemCollection)
+	{
+		using (var memoryStream = new MemoryStream())
+		{
+			using (var writer = new StreamWriter(memoryStream))
+			{
+				// Initialize the view generator to generate views in C#
+				var viewGenerator = new EntityViewGenerator() { LanguageOption = LanguageOption.GenerateCSharpCode };
+				var errors = viewGenerator.GenerateViews(mappingItemCollection, writer, GetTargetEntityFrameworkVersion(mappingItemCollection));
+
+				if(errors.Any())
+				{
+					foreach (var e in errors)
+					{
+						Error(e.Message);
+					}
+					
+					return string.Empty;
+				}
+
+				memoryStream.Position = 0;
+				using(var reader = new StreamReader(memoryStream))
+				{
+					return reader.ReadToEnd();
+				}
+			}
+		}
+	}
+
+	private static StorageMappingItemCollection GetMappingItemCollection(string edmxFilePath)
+	{
+		XmlReader csdlReader, ssdlReader, mslReader;
+		SplitEdmx(edmxFilePath, out csdlReader, out ssdlReader, out mslReader);
+		return CreateMappingItemCollection(csdlReader, ssdlReader, mslReader);
+	}
+
+	private static void SplitEdmx(string edmxFilePath, out XmlReader csdlReader, out XmlReader ssdlReader, out XmlReader mslReader)
+	{
+		var edmx = XDocument.Load(edmxFilePath);
+		// xml namespace agnostic to make it work with any version of Entity Framework
+        var edmxNs = edmx.Root.Name.Namespace;
+
+        var storageModels = edmx.Descendants(edmxNs + "StorageModels").Single();
+        var conceptualModels = edmx.Descendants(edmxNs + "ConceptualModels").Single();
+        var mappings = edmx.Descendants(edmxNs + "Mappings").Single();
+
+        ssdlReader = storageModels.Elements().Single(e => e.Name.LocalName == "Schema").CreateReader();
+        csdlReader = conceptualModels.Elements().Single(e => e.Name.LocalName == "Schema").CreateReader();
+        mslReader = mappings.Elements().Single(e => e.Name.LocalName == "Mapping").CreateReader();
+	}
+
+	private static StorageMappingItemCollection CreateMappingItemCollection(XmlReader csdlReader, XmlReader ssdlReader, XmlReader mslReader)
+	{
+		var edmItemCollection = new EdmItemCollection(new XmlReader[] { csdlReader });
+		var storeItemCollection = new StoreItemCollection(new XmlReader[] { ssdlReader });
+		return new StorageMappingItemCollection(edmItemCollection, storeItemCollection, new XmlReader[] { mslReader });
+	}
+
+	private static Version GetTargetEntityFrameworkVersion(StorageMappingItemCollection mappingItemCollection)
+	{
+		var v = Version.Parse(mappingItemCollection.MappingVersion.ToString("F1", CultureInfo.InvariantCulture));
+        return new Version(v.Major, v.Minor, 0, 0);
+	}
+#>

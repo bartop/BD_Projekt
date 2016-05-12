@@ -1,0 +1,917 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="RecruitedSet" EntityType="Model.Store.RecruitedSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SkillsSet" EntityType="Model.Store.SkillsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DocumentsSet" EntityType="Model.Store.DocumentsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PosessesSet" EntityType="Model.Store.PosessesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="JobsSet" EntityType="Model.Store.JobsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RequiresSet" EntityType="Model.Store.RequiresSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ApplicationsSet" EntityType="Model.Store.ApplicationsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StageSet" EntityType="Model.Store.StageSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StageGradesSet" EntityType="Model.Store.StageGradesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkersSet" EntityType="Model.Store.WorkersSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RolesSet" EntityType="Model.Store.RolesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SkillsDocuments" EntityType="Model.Store.SkillsDocuments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="JobsStage" EntityType="Model.Store.JobsStage" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SkillsPosesses" Association="Model.Store.SkillsPosesses">
+      <End Role="Skills" EntitySet="SkillsSet" />
+      <End Role="Posesses" EntitySet="PosessesSet" />
+    </AssociationSet>
+    <AssociationSet Name="PosessesRecruited" Association="Model.Store.PosessesRecruited">
+      <End Role="Posesses" EntitySet="PosessesSet" />
+      <End Role="Recruited" EntitySet="RecruitedSet" />
+    </AssociationSet>
+    <AssociationSet Name="DocumentsRecruited" Association="Model.Store.DocumentsRecruited">
+      <End Role="Documents" EntitySet="DocumentsSet" />
+      <End Role="Recruited" EntitySet="RecruitedSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SkillsDocuments_Skills" Association="Model.Store.FK_SkillsDocuments_Skills">
+      <End Role="Skills" EntitySet="SkillsSet" />
+      <End Role="SkillsDocuments" EntitySet="SkillsDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SkillsDocuments_Documents" Association="Model.Store.FK_SkillsDocuments_Documents">
+      <End Role="Documents" EntitySet="DocumentsSet" />
+      <End Role="SkillsDocuments" EntitySet="SkillsDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="SkillsRequires" Association="Model.Store.SkillsRequires">
+      <End Role="Skills" EntitySet="SkillsSet" />
+      <End Role="Requires" EntitySet="RequiresSet" />
+    </AssociationSet>
+    <AssociationSet Name="JobsRequires" Association="Model.Store.JobsRequires">
+      <End Role="Jobs" EntitySet="JobsSet" />
+      <End Role="Requires" EntitySet="RequiresSet" />
+    </AssociationSet>
+    <AssociationSet Name="RecruitedApplications" Association="Model.Store.RecruitedApplications">
+      <End Role="Recruited" EntitySet="RecruitedSet" />
+      <End Role="Applications" EntitySet="ApplicationsSet" />
+    </AssociationSet>
+    <AssociationSet Name="JobsApplications" Association="Model.Store.JobsApplications">
+      <End Role="Jobs" EntitySet="JobsSet" />
+      <End Role="Applications" EntitySet="ApplicationsSet" />
+    </AssociationSet>
+    <AssociationSet Name="StageStageGrades" Association="Model.Store.StageStageGrades">
+      <End Role="Stage" EntitySet="StageSet" />
+      <End Role="StageGrades" EntitySet="StageGradesSet" />
+    </AssociationSet>
+    <AssociationSet Name="ApplicationsStageGrades" Association="Model.Store.ApplicationsStageGrades">
+      <End Role="Applications" EntitySet="ApplicationsSet" />
+      <End Role="StageGrades" EntitySet="StageGradesSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobsStage_Jobs" Association="Model.Store.FK_JobsStage_Jobs">
+      <End Role="Jobs" EntitySet="JobsSet" />
+      <End Role="JobsStage" EntitySet="JobsStage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobsStage_Stage" Association="Model.Store.FK_JobsStage_Stage">
+      <End Role="Stage" EntitySet="StageSet" />
+      <End Role="JobsStage" EntitySet="JobsStage" />
+    </AssociationSet>
+    <AssociationSet Name="RolesWorkers" Association="Model.Store.RolesWorkers">
+      <End Role="Roles" EntitySet="RolesSet" />
+      <End Role="Workers" EntitySet="WorkersSet" />
+    </AssociationSet>
+    <AssociationSet Name="ApplicationsWorkers" Association="Model.Store.ApplicationsWorkers">
+      <End Role="Applications" EntitySet="ApplicationsSet" />
+      <End Role="Workers" EntitySet="WorkersSet" />
+    </AssociationSet>
+    <AssociationSet Name="WorkersApplications" Association="Model.Store.WorkersApplications">
+      <End Role="Workers" EntitySet="WorkersSet" />
+      <End Role="Applications" EntitySet="ApplicationsSet" />
+    </AssociationSet>
+    <AssociationSet Name="StageWorkers" Association="Model.Store.StageWorkers">
+      <End Role="Stage" EntitySet="StageSet" />
+      <End Role="Workers" EntitySet="WorkersSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="RecruitedSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfBirth" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Education" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nationality" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FathersName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SkillsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="File" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Recruited_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PosessesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Level" Type="tinyint" Nullable="false" />
+    <Property Name="Skills_Id" Type="int" Nullable="false" />
+    <Property Name="Recruited_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RequiresSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Weight" Type="float" Nullable="false" />
+    <Property Name="Skills_Id" Type="int" Nullable="false" />
+    <Property Name="Jobs_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApplicationsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Explenation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="YearsOfExpirience" Type="tinyint" Nullable="false" />
+    <Property Name="Employed" Type="bit" Nullable="false" />
+    <Property Name="Resigned" Type="bit" Nullable="false" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+    <Property Name="Recruited_Id" Type="int" Nullable="false" />
+    <Property Name="Jobs_Id" Type="int" Nullable="false" />
+    <Property Name="Workers_Id" Type="int" Nullable="false" />
+    <Property Name="Workers1_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StageSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StageGradesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Grade" Type="tinyint" Nullable="true" />
+    <Property Name="Stage_Id" Type="int" Nullable="false" />
+    <Property Name="Applications_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkersSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PrehashString" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Roles_Id" Type="int" Nullable="false" />
+    <Property Name="Stage_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SkillsDocuments">
+    <Key>
+      <PropertyRef Name="Skills_Id" />
+      <PropertyRef Name="Documents_Id" />
+    </Key>
+    <Property Name="Skills_Id" Type="int" Nullable="false" />
+    <Property Name="Documents_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobsStage">
+    <Key>
+      <PropertyRef Name="Jobs_Id" />
+      <PropertyRef Name="Stage_Id" />
+    </Key>
+    <Property Name="Jobs_Id" Type="int" Nullable="false" />
+    <Property Name="Stage_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="SkillsPosesses">
+    <End Role="Skills" Type="Model.Store.SkillsSet" Multiplicity="1" />
+    <End Role="Posesses" Type="Model.Store.PosessesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skills">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Posesses">
+        <PropertyRef Name="Skills_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PosessesRecruited">
+    <End Role="Posesses" Type="Model.Store.PosessesSet" Multiplicity="*" />
+    <End Role="Recruited" Type="Model.Store.RecruitedSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Recruited">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Posesses">
+        <PropertyRef Name="Recruited_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DocumentsRecruited">
+    <End Role="Documents" Type="Model.Store.DocumentsSet" Multiplicity="*" />
+    <End Role="Recruited" Type="Model.Store.RecruitedSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Recruited">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="Recruited_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SkillsRequires">
+    <End Role="Skills" Type="Model.Store.SkillsSet" Multiplicity="1" />
+    <End Role="Requires" Type="Model.Store.RequiresSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skills">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requires">
+        <PropertyRef Name="Skills_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JobsRequires">
+    <End Role="Jobs" Type="Model.Store.JobsSet" Multiplicity="1" />
+    <End Role="Requires" Type="Model.Store.RequiresSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jobs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requires">
+        <PropertyRef Name="Jobs_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RecruitedApplications">
+    <End Role="Recruited" Type="Model.Store.RecruitedSet" Multiplicity="1" />
+    <End Role="Applications" Type="Model.Store.ApplicationsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recruited">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="Recruited_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JobsApplications">
+    <End Role="Jobs" Type="Model.Store.JobsSet" Multiplicity="1" />
+    <End Role="Applications" Type="Model.Store.ApplicationsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jobs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="Jobs_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StageStageGrades">
+    <End Role="Stage" Type="Model.Store.StageSet" Multiplicity="1" />
+    <End Role="StageGrades" Type="Model.Store.StageGradesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StageGrades">
+        <PropertyRef Name="Stage_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ApplicationsStageGrades">
+    <End Role="Applications" Type="Model.Store.ApplicationsSet" Multiplicity="1" />
+    <End Role="StageGrades" Type="Model.Store.StageGradesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StageGrades">
+        <PropertyRef Name="Applications_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RolesWorkers">
+    <End Role="Roles" Type="Model.Store.RolesSet" Multiplicity="1" />
+    <End Role="Workers" Type="Model.Store.WorkersSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="Roles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ApplicationsWorkers">
+    <End Role="Applications" Type="Model.Store.ApplicationsSet" Multiplicity="*" />
+    <End Role="Workers" Type="Model.Store.WorkersSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="Workers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WorkersApplications">
+    <End Role="Workers" Type="Model.Store.WorkersSet" Multiplicity="1" />
+    <End Role="Applications" Type="Model.Store.ApplicationsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="Workers1_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StageWorkers">
+    <End Role="Stage" Type="Model.Store.StageSet" Multiplicity="1" />
+    <End Role="Workers" Type="Model.Store.WorkersSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="Stage_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SkillsDocuments_Skills">
+    <End Role="Skills" Type="Model.Store.SkillsSet" Multiplicity="1" />
+    <End Role="SkillsDocuments" Type="Model.Store.SkillsDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skills">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SkillsDocuments">
+        <PropertyRef Name="Skills_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SkillsDocuments_Documents">
+    <End Role="SkillsDocuments" Type="Model.Store.SkillsDocuments" Multiplicity="*" />
+    <End Role="Documents" Type="Model.Store.DocumentsSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Documents">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SkillsDocuments">
+        <PropertyRef Name="Documents_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobsStage_Jobs">
+    <End Role="Jobs" Type="Model.Store.JobsSet" Multiplicity="1" />
+    <End Role="JobsStage" Type="Model.Store.JobsStage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jobs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobsStage">
+        <PropertyRef Name="Jobs_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobsStage_Stage">
+    <End Role="JobsStage" Type="Model.Store.JobsStage" Multiplicity="*" />
+    <End Role="Stage" Type="Model.Store.StageSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobsStage">
+        <PropertyRef Name="Stage_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RecruitedSet" EntityType="Model.Recruited" />
+          <EntitySet Name="SkillsSet" EntityType="Model.Skills" />
+          <EntitySet Name="DocumentsSet" EntityType="Model.Documents" />
+          <EntitySet Name="PosessesSet" EntityType="Model.Posesses" />
+          <AssociationSet Name="SkillsPosesses" Association="Model.SkillsPosesses">
+            <End Role="Skills" EntitySet="SkillsSet" />
+            <End Role="Posesses" EntitySet="PosessesSet" />
+          </AssociationSet>
+          <AssociationSet Name="PosessesRecruited" Association="Model.PosessesRecruited">
+            <End Role="Posesses" EntitySet="PosessesSet" />
+            <End Role="Recruited" EntitySet="RecruitedSet" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentsRecruited" Association="Model.DocumentsRecruited">
+            <End Role="Documents" EntitySet="DocumentsSet" />
+            <End Role="Recruited" EntitySet="RecruitedSet" />
+          </AssociationSet>
+          <AssociationSet Name="SkillsDocuments" Association="Model.SkillsDocuments">
+            <End Role="Skills" EntitySet="SkillsSet" />
+            <End Role="Documents" EntitySet="DocumentsSet" />
+          </AssociationSet>
+          <EntitySet Name="JobsSet" EntityType="Model.Jobs" />
+          <EntitySet Name="RequiresSet" EntityType="Model.Requires" />
+          <AssociationSet Name="SkillsRequires" Association="Model.SkillsRequires">
+            <End Role="Skills" EntitySet="SkillsSet" />
+            <End Role="Requires" EntitySet="RequiresSet" />
+          </AssociationSet>
+          <AssociationSet Name="JobsRequires" Association="Model.JobsRequires">
+            <End Role="Jobs" EntitySet="JobsSet" />
+            <End Role="Requires" EntitySet="RequiresSet" />
+          </AssociationSet>
+          <EntitySet Name="ApplicationsSet" EntityType="Model.Applications" />
+          <AssociationSet Name="RecruitedApplications" Association="Model.RecruitedApplications">
+            <End Role="Recruited" EntitySet="RecruitedSet" />
+            <End Role="Applications" EntitySet="ApplicationsSet" />
+          </AssociationSet>
+          <AssociationSet Name="JobsApplications" Association="Model.JobsApplications">
+            <End Role="Jobs" EntitySet="JobsSet" />
+            <End Role="Applications" EntitySet="ApplicationsSet" />
+          </AssociationSet>
+          <EntitySet Name="StageSet" EntityType="Model.Stage" />
+          <EntitySet Name="StageGradesSet" EntityType="Model.StageGrades" />
+          <AssociationSet Name="StageStageGrades" Association="Model.StageStageGrades">
+            <End Role="Stage" EntitySet="StageSet" />
+            <End Role="StageGrades" EntitySet="StageGradesSet" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationsStageGrades" Association="Model.ApplicationsStageGrades">
+            <End Role="Applications" EntitySet="ApplicationsSet" />
+            <End Role="StageGrades" EntitySet="StageGradesSet" />
+          </AssociationSet>
+          <AssociationSet Name="JobsStage" Association="Model.JobsStage">
+            <End Role="Jobs" EntitySet="JobsSet" />
+            <End Role="Stage" EntitySet="StageSet" />
+          </AssociationSet>
+          <EntitySet Name="WorkersSet" EntityType="Model.Workers" />
+          <EntitySet Name="RolesSet" EntityType="Model.Roles" />
+          <AssociationSet Name="RolesWorkers" Association="Model.RolesWorkers">
+            <End Role="Roles" EntitySet="RolesSet" />
+            <End Role="Workers" EntitySet="WorkersSet" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationsWorkers" Association="Model.ApplicationsWorkers">
+            <End Role="Applications" EntitySet="ApplicationsSet" />
+            <End Role="Workers" EntitySet="WorkersSet" />
+          </AssociationSet>
+          <AssociationSet Name="WorkersApplications" Association="Model.WorkersApplications">
+            <End Role="Workers" EntitySet="WorkersSet" />
+            <End Role="Applications" EntitySet="ApplicationsSet" />
+          </AssociationSet>
+          <AssociationSet Name="StageWorkers" Association="Model.StageWorkers">
+            <End Role="Stage" EntitySet="StageSet" />
+            <End Role="Workers" EntitySet="WorkersSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Recruited">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="DateOfBirth" Type="String" Nullable="false" />
+          <Property Name="Education" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" />
+          <Property Name="Nationality" Type="String" Nullable="false" />
+          <Property Name="FathersName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Posesses" Relationship="Model.PosessesRecruited" FromRole="Recruited" ToRole="Posesses" />
+          <NavigationProperty Name="Documents" Relationship="Model.DocumentsRecruited" FromRole="Recruited" ToRole="Documents" />
+          <NavigationProperty Name="Applications" Relationship="Model.RecruitedApplications" FromRole="Recruited" ToRole="Applications" />
+        </EntityType>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Posesses" Relationship="Model.SkillsPosesses" FromRole="Skills" ToRole="Posesses" />
+          <NavigationProperty Name="Documents" Relationship="Model.SkillsDocuments" FromRole="Skills" ToRole="Documents" />
+          <NavigationProperty Name="Requires" Relationship="Model.SkillsRequires" FromRole="Skills" ToRole="Requires" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Recruited" Relationship="Model.DocumentsRecruited" FromRole="Documents" ToRole="Recruited" />
+          <NavigationProperty Name="Skills" Relationship="Model.SkillsDocuments" FromRole="Documents" ToRole="Skills" />
+          <Property Name="File" Type="Binary" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posesses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Skills" Relationship="Model.SkillsPosesses" FromRole="Posesses" ToRole="Skills" />
+          <NavigationProperty Name="Recruited" Relationship="Model.PosessesRecruited" FromRole="Posesses" ToRole="Recruited" />
+        </EntityType>
+        <Association Name="SkillsPosesses">
+          <End Type="Model.Skills" Role="Skills" Multiplicity="1" />
+          <End Type="Model.Posesses" Role="Posesses" Multiplicity="*" />
+        </Association>
+        <Association Name="PosessesRecruited">
+          <End Type="Model.Posesses" Role="Posesses" Multiplicity="*" />
+          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" />
+        </Association>
+        <Association Name="DocumentsRecruited">
+          <End Type="Model.Documents" Role="Documents" Multiplicity="*" />
+          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" />
+        </Association>
+        <Association Name="SkillsDocuments">
+          <End Type="Model.Skills" Role="Skills" Multiplicity="*" />
+          <End Type="Model.Documents" Role="Documents" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Requires" Relationship="Model.JobsRequires" FromRole="Jobs" ToRole="Requires" />
+          <NavigationProperty Name="Applications" Relationship="Model.JobsApplications" FromRole="Jobs" ToRole="Applications" />
+          <NavigationProperty Name="Stage" Relationship="Model.JobsStage" FromRole="Jobs" ToRole="Stage" />
+        </EntityType>
+        <EntityType Name="Requires">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Skills" Relationship="Model.SkillsRequires" FromRole="Requires" ToRole="Skills" />
+          <NavigationProperty Name="Jobs" Relationship="Model.JobsRequires" FromRole="Requires" ToRole="Jobs" />
+        </EntityType>
+        <Association Name="SkillsRequires">
+          <End Type="Model.Skills" Role="Skills" Multiplicity="1" />
+          <End Type="Model.Requires" Role="Requires" Multiplicity="*" />
+        </Association>
+        <Association Name="JobsRequires">
+          <End Type="Model.Jobs" Role="Jobs" Multiplicity="1" />
+          <End Type="Model.Requires" Role="Requires" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Explenation" Type="String" Nullable="false" Unicode="true" />
+          <Property Name="YearsOfExpirience" Type="Byte" Nullable="false" />
+          <Property Name="Employed" Type="Boolean" Nullable="false" />
+          <Property Name="Resigned" Type="Boolean" Nullable="false" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Recruited" Relationship="Model.RecruitedApplications" FromRole="Applications" ToRole="Recruited" />
+          <NavigationProperty Name="Jobs" Relationship="Model.JobsApplications" FromRole="Applications" ToRole="Jobs" />
+          <NavigationProperty Name="StageGrades" Relationship="Model.ApplicationsStageGrades" FromRole="Applications" ToRole="StageGrades" />
+          <NavigationProperty Name="Workers" Relationship="Model.ApplicationsWorkers" FromRole="Applications" ToRole="Workers" />
+          <NavigationProperty Name="Workers1" Relationship="Model.WorkersApplications" FromRole="Applications" ToRole="Workers" />
+        </EntityType>
+        <Association Name="RecruitedApplications">
+          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" />
+          <End Type="Model.Applications" Role="Applications" Multiplicity="*" />
+        </Association>
+        <Association Name="JobsApplications">
+          <End Type="Model.Jobs" Role="Jobs" Multiplicity="1" />
+          <End Type="Model.Applications" Role="Applications" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Stage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="StageGrades" Relationship="Model.StageStageGrades" FromRole="Stage" ToRole="StageGrades" />
+          <NavigationProperty Name="Jobs" Relationship="Model.JobsStage" FromRole="Stage" ToRole="Jobs" />
+          <NavigationProperty Name="Workers" Relationship="Model.StageWorkers" FromRole="Stage" ToRole="Workers" />
+        </EntityType>
+        <EntityType Name="StageGrades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grade" Type="Byte" Nullable="true" />
+          <NavigationProperty Name="Stage" Relationship="Model.StageStageGrades" FromRole="StageGrades" ToRole="Stage" />
+          <NavigationProperty Name="Applications" Relationship="Model.ApplicationsStageGrades" FromRole="StageGrades" ToRole="Applications" />
+        </EntityType>
+        <Association Name="StageStageGrades">
+          <End Type="Model.Stage" Role="Stage" Multiplicity="1" />
+          <End Type="Model.StageGrades" Role="StageGrades" Multiplicity="*" />
+        </Association>
+        <Association Name="ApplicationsStageGrades">
+          <End Type="Model.Applications" Role="Applications" Multiplicity="1" />
+          <End Type="Model.StageGrades" Role="StageGrades" Multiplicity="*" />
+        </Association>
+        <Association Name="JobsStage">
+          <End Type="Model.Jobs" Role="Jobs" Multiplicity="*" />
+          <End Type="Model.Stage" Role="Stage" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Roles" Relationship="Model.RolesWorkers" FromRole="Workers" ToRole="Roles" />
+          <NavigationProperty Name="Applications" Relationship="Model.ApplicationsWorkers" FromRole="Workers" ToRole="Applications" />
+          <NavigationProperty Name="Applications1" Relationship="Model.WorkersApplications" FromRole="Workers" ToRole="Applications" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" />
+          <Property Name="PrehashString" Type="String" Nullable="false" />
+          <NavigationProperty Name="Stage" Relationship="Model.StageWorkers" FromRole="Workers" ToRole="Stage" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Workers" Relationship="Model.RolesWorkers" FromRole="Roles" ToRole="Workers" />
+        </EntityType>
+        <Association Name="RolesWorkers">
+          <End Type="Model.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="Model.Workers" Role="Workers" Multiplicity="*" />
+        </Association>
+        <Association Name="ApplicationsWorkers">
+          <End Type="Model.Applications" Role="Applications" Multiplicity="*" />
+          <End Type="Model.Workers" Role="Workers" Multiplicity="1" />
+        </Association>
+        <Association Name="WorkersApplications">
+          <End Type="Model.Workers" Role="Workers" Multiplicity="1" />
+          <End Type="Model.Applications" Role="Applications" Multiplicity="*" />
+        </Association>
+        <Association Name="StageWorkers">
+          <End Type="Model.Stage" Role="Stage" Multiplicity="1" />
+          <End Type="Model.Workers" Role="Workers" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelContainer">
+    <EntitySetMapping Name="RecruitedSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Recruited)">
+        <MappingFragment StoreEntitySet="RecruitedSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="FathersName" ColumnName="FathersName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SkillsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Skills)">
+        <MappingFragment StoreEntitySet="SkillsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Documents)">
+        <MappingFragment StoreEntitySet="DocumentsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="File" ColumnName="File" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PosessesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Posesses)">
+        <MappingFragment StoreEntitySet="PosessesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Jobs)">
+        <MappingFragment StoreEntitySet="JobsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequiresSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Requires)">
+        <MappingFragment StoreEntitySet="RequiresSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Applications)">
+        <MappingFragment StoreEntitySet="ApplicationsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Explenation" ColumnName="Explenation" />
+          <ScalarProperty Name="YearsOfExpirience" ColumnName="YearsOfExpirience" />
+          <ScalarProperty Name="Employed" ColumnName="Employed" />
+          <ScalarProperty Name="Resigned" ColumnName="Resigned" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StageSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Stage)">
+        <MappingFragment StoreEntitySet="StageSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StageGradesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.StageGrades)">
+        <MappingFragment StoreEntitySet="StageGradesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkersSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Workers)">
+        <MappingFragment StoreEntitySet="WorkersSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="PrehashString" ColumnName="PrehashString" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Roles)">
+        <MappingFragment StoreEntitySet="RolesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SkillsPosesses" TypeName="Model.SkillsPosesses" StoreEntitySet="PosessesSet">
+      <EndProperty Name="Skills">
+        <ScalarProperty Name="Id" ColumnName="Skills_Id" />
+      </EndProperty>
+      <EndProperty Name="Posesses">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PosessesRecruited" TypeName="Model.PosessesRecruited" StoreEntitySet="PosessesSet">
+      <EndProperty Name="Recruited">
+        <ScalarProperty Name="Id" ColumnName="Recruited_Id" />
+      </EndProperty>
+      <EndProperty Name="Posesses">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DocumentsRecruited" TypeName="Model.DocumentsRecruited" StoreEntitySet="DocumentsSet">
+      <EndProperty Name="Recruited">
+        <ScalarProperty Name="Id" ColumnName="Recruited_Id" />
+      </EndProperty>
+      <EndProperty Name="Documents">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SkillsDocuments" TypeName="Model.SkillsDocuments" StoreEntitySet="SkillsDocuments">
+      <EndProperty Name="Skills">
+        <ScalarProperty Name="Id" ColumnName="Skills_Id" />
+      </EndProperty>
+      <EndProperty Name="Documents">
+        <ScalarProperty Name="Id" ColumnName="Documents_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SkillsRequires" TypeName="Model.SkillsRequires" StoreEntitySet="RequiresSet">
+      <EndProperty Name="Skills">
+        <ScalarProperty Name="Id" ColumnName="Skills_Id" />
+      </EndProperty>
+      <EndProperty Name="Requires">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JobsRequires" TypeName="Model.JobsRequires" StoreEntitySet="RequiresSet">
+      <EndProperty Name="Jobs">
+        <ScalarProperty Name="Id" ColumnName="Jobs_Id" />
+      </EndProperty>
+      <EndProperty Name="Requires">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RecruitedApplications" TypeName="Model.RecruitedApplications" StoreEntitySet="ApplicationsSet">
+      <EndProperty Name="Recruited">
+        <ScalarProperty Name="Id" ColumnName="Recruited_Id" />
+      </EndProperty>
+      <EndProperty Name="Applications">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JobsApplications" TypeName="Model.JobsApplications" StoreEntitySet="ApplicationsSet">
+      <EndProperty Name="Jobs">
+        <ScalarProperty Name="Id" ColumnName="Jobs_Id" />
+      </EndProperty>
+      <EndProperty Name="Applications">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StageStageGrades" TypeName="Model.StageStageGrades" StoreEntitySet="StageGradesSet">
+      <EndProperty Name="Stage">
+        <ScalarProperty Name="Id" ColumnName="Stage_Id" />
+      </EndProperty>
+      <EndProperty Name="StageGrades">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ApplicationsStageGrades" TypeName="Model.ApplicationsStageGrades" StoreEntitySet="StageGradesSet">
+      <EndProperty Name="Applications">
+        <ScalarProperty Name="Id" ColumnName="Applications_Id" />
+      </EndProperty>
+      <EndProperty Name="StageGrades">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JobsStage" TypeName="Model.JobsStage" StoreEntitySet="JobsStage">
+      <EndProperty Name="Jobs">
+        <ScalarProperty Name="Id" ColumnName="Jobs_Id" />
+      </EndProperty>
+      <EndProperty Name="Stage">
+        <ScalarProperty Name="Id" ColumnName="Stage_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RolesWorkers" TypeName="Model.RolesWorkers" StoreEntitySet="WorkersSet">
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="Id" ColumnName="Roles_Id" />
+      </EndProperty>
+      <EndProperty Name="Workers">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ApplicationsWorkers" TypeName="Model.ApplicationsWorkers" StoreEntitySet="ApplicationsSet">
+      <EndProperty Name="Workers">
+        <ScalarProperty Name="Id" ColumnName="Workers_Id" />
+      </EndProperty>
+      <EndProperty Name="Applications">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WorkersApplications" TypeName="Model.WorkersApplications" StoreEntitySet="ApplicationsSet">
+      <EndProperty Name="Workers">
+        <ScalarProperty Name="Id" ColumnName="Workers1_Id" />
+      </EndProperty>
+      <EndProperty Name="Applications">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StageWorkers" TypeName="Model.StageWorkers" StoreEntitySet="WorkersSet">
+      <EndProperty Name="Stage">
+        <ScalarProperty Name="Id" ColumnName="Stage_Id" />
+      </EndProperty>
+      <EndProperty Name="Workers">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

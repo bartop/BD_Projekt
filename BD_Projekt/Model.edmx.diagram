@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b267c23e0592455ca0dee59859094b10" Name="Diagram1" ZoomLevel="74" >
+        <EntityTypeShape EntityType="Model.Recruited" Width="1.5" PointX="11.375" PointY="6.625" />
+        <EntityTypeShape EntityType="Model.Skill" Width="1.5" PointX="11.375" PointY="0.875" />
+        <EntityTypeShape EntityType="Model.Document" Width="1.5" PointX="8" PointY="3.625" />
+        <EntityTypeShape EntityType="Model.Posesses" Width="1.5" PointX="11.25" PointY="3.875" />
+        <AssociationConnector Association="Model.SkillsPosesses" />
+        <AssociationConnector Association="Model.PosessesRecruited" />
+        <AssociationConnector Association="Model.DocumentsRecruited" />
+        <AssociationConnector Association="Model.SkillsDocuments" ></AssociationConnector>
+        <EntityTypeShape EntityType="Model.Job" Width="1.5" PointX="5.125" PointY="1" />
+        <EntityTypeShape EntityType="Model.Requires" Width="1.5" PointX="8.25" PointY="1" />
+        <AssociationConnector Association="Model.SkillsRequires" />
+        <AssociationConnector Association="Model.JobsRequires" />
+        <EntityTypeShape EntityType="Model.Application" Width="1.5" PointX="5.25" PointY="6.375" />
+        <AssociationConnector Association="Model.RecruitedApplications" />
+        <AssociationConnector Association="Model.JobsApplications" />
+        <EntityTypeShape EntityType="Model.Stage" Width="1.5" PointX="2.75" PointY="7.125" />
+        <EntityTypeShape EntityType="Model.StageGrade" Width="1.5" PointX="5.25" PointY="10.125" />
+        <AssociationConnector Association="Model.StageStageGrades" />
+        <AssociationConnector Association="Model.ApplicationsStageGrades" />
+        <AssociationConnector Association="Model.JobsStage" />
+        <EntityTypeShape EntityType="Model.Worker" Width="1.5" PointX="10.5" PointY="11" />
+        <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="14.25" PointY="10.75" />
+        <AssociationConnector Association="Model.RolesWorkers" />
+        <AssociationConnector Association="Model.ApplicationsWorkers" />
+        <AssociationConnector Association="Model.WorkersApplications" ManuallyRouted="true" >
+          <ConnectorPoint PointX="10.90625" PointY="11.000000000000032" />
+          <ConnectorPoint PointX="10.90625" PointY="9.7654843165951668" />
+          <ConnectorPoint PointX="10.755205833333333" PointY="9.7654843165951668" />
+          <ConnectorPoint PointX="10.588539166666665" PointY="9.7654843165951668" />
+          <ConnectorPoint PointX="8.1215625" PointY="9.7654843165951668" />
+          <ConnectorPoint PointX="8.1215625" PointY="78.12440909984177" />
+          <ConnectorPoint PointX="6.75" PointY="9.5090950520833335" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.StageWorkers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
