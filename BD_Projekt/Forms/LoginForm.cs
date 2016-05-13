@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BD_Projekt
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : BD_Projekt.Forms.MainForm
     {
         private Dictionary<string, Form> roleMapper;
 
@@ -15,7 +15,6 @@ namespace BD_Projekt
         {
             InitializeComponent();
             initializeMapper();
-            Console.Write(SecurePasswordHasher.Hash("root"));
         }
 
         private void initializeMapper()
@@ -34,7 +33,6 @@ namespace BD_Projekt
             using (var db = new ModelContainer())
             {
                 var name = loginTextBox.Text;
-
                 try
                 {
                     var worker = db.WorkerSet.Where(w => w.Name == name).First();
@@ -55,14 +53,6 @@ namespace BD_Projekt
 
                 }
             }
-            
-            
-
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
