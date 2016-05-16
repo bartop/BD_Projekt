@@ -6,17 +6,10 @@ using System.ComponentModel;
 using BD_Projekt.Forms;
 using System.Linq;
 
-namespace BD_Projekt
+namespace BD_Projekt.Forms
 {
     public partial class JobRequirementsPanel : Form
     {
-        private class SkillRequirements
-        {
-            public String Name { get; set; }
-            public int Weight { get; set; }
-        }
-        List<Requires> requirementsList;
-        BindingList<SkillRequirements> displayedData;
         Job referencedJob;
 
         public JobRequirementsPanel(Job job)
@@ -24,14 +17,11 @@ namespace BD_Projekt
             InitializeComponent();
             jobNameTextBox.Text = job.Name;
             referencedJob = job;
-            requirementsList = new List<Requires>();
-            displayedData = new BindingList<SkillRequirements>();
-            var source = new BindingSource(displayedData, null);
-            skillsTable.DataSource = source;
-            reloadSkillBox();
+            refreshSkillBox();
+            refreshRequirementsList();
         }
 
-        private void reloadSkillBox()
+        private void refreshSkillBox()
         {
             List<string> skillsNames;
             using(var db = new ModelContainer())
@@ -45,46 +35,89 @@ namespace BD_Projekt
             }
         }
 
-        private void addSkillClick(object sender, EventArgs e)
+        private void refreshRequirementsList()
         {
-            Skill skill;
-            using(var db = new ModelContainer())
+            using (var db = new ModelContainer())
             {
-                skill = db.SkillSet.Where(s => s.Name == skillsComboBox.Text).First();
-            }
-            var requirement = new Requires();
-            requirement.Weight = int.Parse(skillWeightTextBox.Text);
-            requirement.Skills = skill;
-            requirementsList.Add(requirement);
+                var requirements = db.RequiresSet.AsEnumerable().Where(r => r.Jobs.Equals(referencedJob)).ToList();
 
-            var toDisplay = new SkillRequirements();
-            toDisplay.Weight = int.Parse(skillWeightTextBox.Text);
-            toDisplay.Name = skillsComboBox.Text;
-            displayedData.Add(toDisplay);
+                requirementsListView.Items.Clear();
+                foreach (var req in requirements)
+                {
+                    requirementsListView.Items.Add(new ListViewItem(
+                        new string[] { req.Id.ToString(), req.Skills.Name.ToString(), req.Weight.ToString() }));
+                }
+            }
         }
 
-        private void addJobButtonClick(object sender, EventArgs e)
+
+        private void skillsAdministrationButtonClick(object sender, EventArgs e)
         {
-            using(var db = new ModelContainer())
+            using (var dialog = new SkillsAdministrationPanel())
             {
-                foreach (var requirement in requirementsList)
+                dialog.ShowDialog();
+            }
+            refreshSkillBox();
+        }
+
+        private void removeRequirementButtonClick(object sender, EventArgs e)
+        {
+            foreach (ListViewItem reqItem in requirementsListView.SelectedItems)
+            {
+                var req = new Requires();
+                req.Id = int.Parse(reqItem.SubItems[0].Text);
+                req.Weight = int.Parse(reqItem.SubItems[2].Text);
+                using (var db = new ModelContainer())
                 {
-                    requirement.Jobs = referencedJob;
-                    db.RequiresSet.Add(requirement);
+                    db.RequiresSet.Remove(db.RequiresSet.Where(r => r.Id == req.Id && r.Weight == req.Weight)
+                        .First());
+                    db.SaveChanges();
                 }
+            }
+            refreshRequirementsList();
+        }
+
+        private void changeWeightButtonClick(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in requirementsListView.SelectedItems) {
+                Requires req;
+                using (var db = new ModelContainer())
+                {
+                    req = db.RequiresSet.Where(r => r.Id == int.Parse(item.SubItems[0].Text)
+                        && int.Parse(item.SubItems[2].Text) == r.Weight).First();
+                }
+                using (var dialog = new EditSkillWeightPanel(req))
+                {
+                    dialog.ShowDialog();
+                }
+            }
+        }
+
+        private void addNewRequirementButtonClick(object sender, EventArgs e)
+        {
+            var req = new Requires();
+            req.Weight = int.Parse(skillWeightTextBox.Text);
+            using (var db = new ModelContainer())
+            {
+                var job = db.JobSet.AsEnumerable().Where(j => j.Equals(referencedJob)).First();
+                var skill = db.SkillSet.Where(s => s.Name == skillsComboBox.Text).First();
+                req.Skills = skill;
+                req.Jobs = job;
+                db.RequiresSet.Add(req);
                 db.SaveChanges();
             }
+            refreshRequirementsList();
+            skillWeightTextBox.Text = "";
         }
 
- 
-        private void newSkillButtonClick(object sender, EventArgs e)
+        private void refreshRequirementsLinkClick(object sender, EventArgs e)
         {
-            new SkillsAdministrationPanel().Show();
+            refreshRequirementsList();
         }
 
-        private void refreshTimerTick(object sender, EventArgs e)
+        private void refershSkillsLinkClick(object sender, EventArgs e)
         {
-            reloadSkillBox();
+            refreshSkillBox();
         }
     }
 }

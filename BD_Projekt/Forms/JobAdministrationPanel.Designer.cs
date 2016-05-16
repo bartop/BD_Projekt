@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.closeButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.addJobButton = new System.Windows.Forms.Button();
             this.jobNameTextBox = new System.Windows.Forms.TextBox();
             this.listBoxLabel = new System.Windows.Forms.Label();
             this.jobsListView = new System.Windows.Forms.ListView();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.deleteJobButton = new System.Windows.Forms.Button();
             this.changeJobNameButton = new System.Windows.Forms.Button();
             this.jobDetailsButton = new System.Windows.Forms.Button();
+            this.refreshLabel = new System.Windows.Forms.LinkLabel();
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Skills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // closeButton
@@ -68,6 +70,7 @@
             this.addJobButton.TabIndex = 11;
             this.addJobButton.Text = "Dodaj do listy stanowisk";
             this.addJobButton.UseVisualStyleBackColor = true;
+            this.addJobButton.Click += new System.EventHandler(this.addJobButtonClick);
             // 
             // jobNameTextBox
             // 
@@ -88,19 +91,17 @@
             // jobsListView
             // 
             this.jobsListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.jobsListView.HoverSelection = true;
+            this.jobsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Id,
+            this.Name,
+            this.Skills});
+            this.jobsListView.FullRowSelect = true;
             this.jobsListView.Location = new System.Drawing.Point(12, 64);
             this.jobsListView.Name = "jobsListView";
             this.jobsListView.Size = new System.Drawing.Size(425, 161);
             this.jobsListView.TabIndex = 8;
             this.jobsListView.UseCompatibleStateImageBehavior = false;
-            this.jobsListView.View = System.Windows.Forms.View.List;
-            // 
-            // refreshTimer
-            // 
-            this.refreshTimer.Enabled = true;
-            this.refreshTimer.Interval = 20000;
-            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimerTick);
+            this.jobsListView.View = System.Windows.Forms.View.Details;
             // 
             // deleteJobButton
             // 
@@ -132,11 +133,38 @@
             this.jobDetailsButton.UseVisualStyleBackColor = true;
             this.jobDetailsButton.Click += new System.EventHandler(this.detailsButtonClick);
             // 
+            // refreshLabel
+            // 
+            this.refreshLabel.AutoSize = true;
+            this.refreshLabel.Location = new System.Drawing.Point(266, 48);
+            this.refreshLabel.Name = "refreshLabel";
+            this.refreshLabel.Size = new System.Drawing.Size(171, 13);
+            this.refreshLabel.TabIndex = 17;
+            this.refreshLabel.TabStop = true;
+            this.refreshLabel.Text = "Kliknij by odświeżyć listę stanowisk";
+            this.refreshLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLabelLinkCliked);
+            // 
+            // Id
+            // 
+            this.Id.Text = "Nr";
+            this.Id.Width = 56;
+            // 
+            // Name
+            // 
+            this.Name.Text = "Nazwa stanowiska";
+            this.Name.Width = 167;
+            // 
+            // Skills
+            // 
+            this.Skills.Text = "Wymagane umiejętności";
+            this.Skills.Width = 192;
+            // 
             // JobAdministrationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(449, 296);
+            this.Controls.Add(this.refreshLabel);
             this.Controls.Add(this.jobDetailsButton);
             this.Controls.Add(this.changeJobNameButton);
             this.Controls.Add(this.closeButton);
@@ -146,7 +174,6 @@
             this.Controls.Add(this.listBoxLabel);
             this.Controls.Add(this.jobsListView);
             this.Controls.Add(this.deleteJobButton);
-            this.Name = "JobAdministrationPanel";
             this.Text = "JobAdministrationPanel";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -161,9 +188,12 @@
         private System.Windows.Forms.TextBox jobNameTextBox;
         private System.Windows.Forms.Label listBoxLabel;
         private System.Windows.Forms.ListView jobsListView;
-        private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.Button deleteJobButton;
         private System.Windows.Forms.Button changeJobNameButton;
         private System.Windows.Forms.Button jobDetailsButton;
+        private System.Windows.Forms.LinkLabel refreshLabel;
+        private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ColumnHeader Name;
+        private System.Windows.Forms.ColumnHeader Skills;
     }
 }

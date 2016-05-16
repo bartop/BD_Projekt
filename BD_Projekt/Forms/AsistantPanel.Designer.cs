@@ -1,4 +1,4 @@
-﻿namespace BD_Projekt
+﻿namespace BD_Projekt.Forms
 {
     partial class AsistantPanel
     {

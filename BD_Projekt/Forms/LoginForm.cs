@@ -4,8 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-
-namespace BD_Projekt
+namespace BD_Projekt.Forms
 {
     public partial class LoginForm : BD_Projekt.Forms.MainForm
     {
