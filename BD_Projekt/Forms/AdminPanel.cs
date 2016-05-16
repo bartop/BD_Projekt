@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BD_Projekt
+namespace BD_Projekt.Forms
 {
-    public partial class AdminPanel : Form
+    public partial class AdminPanel : MainForm
     {
         public AdminPanel()
         {

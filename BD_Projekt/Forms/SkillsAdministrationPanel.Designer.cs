@@ -28,27 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.skillListView = new System.Windows.Forms.ListView();
+            this.skillName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listBoxLabel = new System.Windows.Forms.Label();
             this.skillNameTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.deleteSkillButton = new System.Windows.Forms.Button();
+            this.refreshLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // skillListView
             // 
-            this.skillListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.skillListView.HoverSelection = true;
+            this.skillListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.skillName});
             this.skillListView.Location = new System.Drawing.Point(12, 66);
             this.skillListView.Name = "skillListView";
             this.skillListView.Size = new System.Drawing.Size(425, 161);
             this.skillListView.TabIndex = 0;
             this.skillListView.UseCompatibleStateImageBehavior = false;
-            this.skillListView.View = System.Windows.Forms.View.List;
+            this.skillListView.View = System.Windows.Forms.View.Details;
+            // 
+            // skillName
+            // 
+            this.skillName.Text = "Nazwa umiejętności";
+            this.skillName.Width = 300;
             // 
             // listBoxLabel
             // 
@@ -95,12 +100,6 @@
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButtonClick);
             // 
-            // refreshTimer
-            // 
-            this.refreshTimer.Enabled = true;
-            this.refreshTimer.Interval = 20000;
-            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimerTick);
-            // 
             // deleteSkillButton
             // 
             this.deleteSkillButton.Location = new System.Drawing.Point(12, 233);
@@ -111,11 +110,23 @@
             this.deleteSkillButton.UseVisualStyleBackColor = true;
             this.deleteSkillButton.Click += new System.EventHandler(this.deleteSkillButtonClick);
             // 
+            // refreshLabel
+            // 
+            this.refreshLabel.AutoSize = true;
+            this.refreshLabel.Location = new System.Drawing.Point(255, 50);
+            this.refreshLabel.Name = "refreshLabel";
+            this.refreshLabel.Size = new System.Drawing.Size(182, 13);
+            this.refreshLabel.TabIndex = 8;
+            this.refreshLabel.TabStop = true;
+            this.refreshLabel.Text = "Kliknij by odświeżyć listę umiejętności";
+            this.refreshLabel.Click += new System.EventHandler(this.refreshLabelClick);
+            // 
             // SkillsAdministrationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(449, 269);
+            this.Controls.Add(this.refreshLabel);
             this.Controls.Add(this.deleteSkillButton);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.label1);
@@ -138,7 +149,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.Button deleteSkillButton;
+        private System.Windows.Forms.LinkLabel refreshLabel;
+        private System.Windows.Forms.ColumnHeader skillName;
     }
 }

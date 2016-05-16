@@ -20,27 +20,40 @@ namespace BD_Projekt.Forms
 
         private void refreshJobsList()
         {
-            List<string> jobsList;
+            List<Job> jobsList;
             using (var db = new ModelContainer())
             {
-                jobsList = db.JobSet.Select(s => s.Name).ToList();
-            }
-            jobsListView.Items.Clear();
-            foreach (var skillName in jobsList)
-            {
-                jobsListView.Items.Add(skillName);
-            }
-        }
+                jobsList = db.JobSet.ToList();
 
-        private void refreshTimerTick(object sender, EventArgs e)
-        {
-            refreshJobsList();
+                jobsListView.Items.Clear();
+                foreach (var job in jobsList)
+                {
+                    string skillsString = "";
+                    foreach (var requirement in job.Requires)
+                    {
+                        skillsString += requirement.Skills.Name + " ";
+                    }
+                    var viewItem = new ListViewItem(new string[] { job.Id.ToString(), job.Name, skillsString });
+                    jobsListView.Items.Add(viewItem);
+                }
+            }
         }
 
         private void detailsButtonClick(object sender, EventArgs e)
         {
             foreach (ListViewItem item in jobsListView.SelectedItems)
             {
+                Job job;
+                using(var db = new ModelContainer())
+                {
+                    int jid = int.Parse(item.SubItems[0].Text);
+                    job = db.JobSet.Where(j => j.Id == jid).First();
+                }
+                using (var requirementsDialog = new JobRequirementsPanel(job))
+                {
+                    requirementsDialog.ShowDialog();
+                }
+                refreshJobsList();
             }
         }
 
@@ -48,7 +61,17 @@ namespace BD_Projekt.Forms
         {
             foreach (ListViewItem item in jobsListView.SelectedItems)
             {
-
+                Job job;
+                using(var db = new ModelContainer())
+                {
+                    int jobId = int.Parse(item.SubItems[0].Text);
+                    job = db.JobSet.Where(j => j.Id == jobId).First();
+                }
+                using (var dialog = new ChangeJobNameForm(job))
+                {
+                    dialog.ShowDialog();
+                }
+                refreshJobsList();
             }
         }
 
@@ -63,7 +86,8 @@ namespace BD_Projekt.Forms
             {
                 foreach (ListViewItem item in jobsListView.SelectedItems)
                 {
-                    db.JobSet.RemoveRange(db.JobSet.Where(j => j.Name == item.Text).ToList());
+                    int jid = int.Parse(item.SubItems[0].Text);
+                    db.JobSet.Remove(db.JobSet.Where(j => j.Id == jid).First());
                     try
                     {
                         db.SaveChanges();
@@ -74,6 +98,24 @@ namespace BD_Projekt.Forms
                     }
                 }
             }
+            refreshJobsList();
+        }
+
+        private void addJobButtonClick(object sender, EventArgs e)
+        {
+            using(var db = new ModelContainer())
+            {
+                var job = new Job();
+                job.Name = jobNameTextBox.Text;
+                db.JobSet.Add(job);
+                db.SaveChanges();
+            }
+            refreshJobsList();
+            jobNameTextBox.Text = "";
+        }
+
+        private void refreshLabelLinkCliked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
             refreshJobsList();
         }
     }

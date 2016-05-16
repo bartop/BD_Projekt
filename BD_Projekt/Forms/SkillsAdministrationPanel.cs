@@ -16,10 +16,10 @@ namespace BD_Projekt.Forms
         public SkillsAdministrationPanel()
         {
             InitializeComponent();
-            reloadSkillList();
+            refreshSkillList();
         }
 
-        private void reloadSkillList()
+        private void refreshSkillList()
         {
             List<string> skillList;
             using (var db = new ModelContainer())
@@ -50,17 +50,12 @@ namespace BD_Projekt.Forms
                     ModelContainer.handleValidationException(exception);
                 }
             }
-            reloadSkillList();
+            refreshSkillList();
         }
 
         private void closeButtonClick(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void refreshTimerTick(object sender, EventArgs e)
-        {
-            reloadSkillList();
         }
 
         private void deleteSkillButtonClick(object sender, EventArgs e)
@@ -80,7 +75,12 @@ namespace BD_Projekt.Forms
                     }                  
                 }
             }
-            reloadSkillList();
+            refreshSkillList();
+        }
+
+        private void refreshLabelClick(object sender, EventArgs e)
+        {
+            refreshSkillList();
         }
     }
 }
