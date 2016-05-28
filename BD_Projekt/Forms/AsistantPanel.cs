@@ -187,7 +187,7 @@ namespace BD_Projekt
                 comboBox2.Text == String.Empty || comboBox3.Text == String.Empty)
             {
                 MessageBox.Show("Formaularz posiada puste pola", "Error-TextBoxes",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                return false;         
             }
             else
             {
