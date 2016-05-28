@@ -81,15 +81,20 @@ namespace BD_Projekt.Forms
         {
             foreach (ListViewItem item in requirementsListView.SelectedItems) {
                 Requires req;
+                string skillName, jobName;
                 using (var db = new ModelContainer())
                 {
-                    req = db.RequiresSet.Where(r => r.Id == int.Parse(item.SubItems[0].Text)
-                        && int.Parse(item.SubItems[2].Text) == r.Weight).First();
+                    var reqId = int.Parse(item.SubItems[0].Text);
+                    var weight = int.Parse(item.SubItems[2].Text);
+                    req = db.RequiresSet.Where(r => r.Id == reqId && weight == r.Weight).First();
+                    skillName = req.Skills.Name;
+                    jobName = req.Jobs.Name;
                 }
-                using (var dialog = new EditSkillWeightPanel(req))
+                using (var dialog = new EditSkillWeightPanel(req, jobName, skillName))
                 {
                     dialog.ShowDialog();
                 }
+                refreshRequirementsList();
             }
         }
 

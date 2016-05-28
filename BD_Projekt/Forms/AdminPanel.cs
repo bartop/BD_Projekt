@@ -25,7 +25,7 @@ namespace BD_Projekt.Forms
 
         private void createNewUserButtonClick(object sender, EventArgs e)
         {
-            new NewUserPanel().Show();
+            new UserAdministrationPanel().Show();
         }
     }
 }

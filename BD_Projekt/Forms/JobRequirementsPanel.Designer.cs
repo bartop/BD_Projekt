@@ -106,6 +106,7 @@
             // 
             // skillsComboBox
             // 
+            this.skillsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.skillsComboBox.Location = new System.Drawing.Point(116, 45);
             this.skillsComboBox.Name = "skillsComboBox";
             this.skillsComboBox.Size = new System.Drawing.Size(193, 21);
