@@ -13,4 +13,40 @@ namespace BD_Projekt
             else return base.Equals(obj);
         }
     }
+
+    public partial class Decision
+    {
+        public override string ToString()
+        {
+            string representation;
+            if (Accepted)
+            {
+                representation = "Przyjęty";
+            } else
+            {
+                representation = "Odrzucony";
+            }
+
+            if (Resigned)
+            {
+                representation += ", zrezygnował";
+            }
+
+            return representation;
+        }
+    }
+
+    public partial class Approval
+    {
+        public override string ToString()
+        {
+            if (Approved)
+            {
+                return "Zaakceptowana";
+            } else
+            {
+                return "Niezaakceptowana";
+            }
+        }
+    }
 }

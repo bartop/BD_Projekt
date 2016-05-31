@@ -2,13 +2,12 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BD_Projekt.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="databaseConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="ModelContainer" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\database.mdf;Integrated Security=True;Connect Timeout=30&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+  &lt;ConnectionString&gt;metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string='data source=(LocalDB)\MSSQLLocalDB;attachdbfilename="D:\Dokumenty\Visual Studio 2015\Databases\database.mdf";integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework'&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\database.mdf;Integrated Security=True;Connect Timeout=30</Value>
+      <Value Profile="(Default)">metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string='data source=(LocalDB)\MSSQLLocalDB;attachdbfilename="D:\Dokumenty\Visual Studio 2015\Databases\database.mdf";integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework'</Value>
     </Setting>
   </Settings>
 </SettingsFile>

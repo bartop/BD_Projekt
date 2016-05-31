@@ -15,6 +15,19 @@ namespace BD_Projekt.Forms
         public RecruiterPanel()
         {
             InitializeComponent();
+            RefreshApplications();
+        }
+
+        private void RefreshApplications()
+        {
+            using (var db = new ModelContainer())
+            {
+                applicationsListBox.Items.Clear();
+                foreach (var application in db.ApplicationSet)
+                {
+                    applicationsListBox.Items.Add(application);
+                }
+            }
         }
     }
 }

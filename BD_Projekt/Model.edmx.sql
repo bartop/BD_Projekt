@@ -2,13 +2,11 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/30/2016 19:13:36
+-- Date Created: 05/30/2016 22:23:54
 -- Generated from EDMX file: D:\Dokumenty\Visual Studio 2015\Projects\BD_Projekt\BD_Projekt\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
-GO
-USE [database];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -62,11 +60,20 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ApplicationsWorkers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ApplicationSet] DROP CONSTRAINT [FK_ApplicationsWorkers];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WorkersApplications]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ApplicationSet] DROP CONSTRAINT [FK_WorkersApplications];
-GO
 IF OBJECT_ID(N'[dbo].[FK_StageWorkers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WorkerSet] DROP CONSTRAINT [FK_StageWorkers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DecisionApplication]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DecisionSet] DROP CONSTRAINT [FK_DecisionApplication];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DecisionWorker]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DecisionSet] DROP CONSTRAINT [FK_DecisionWorker];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ApprovalWorker]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ApprovalSet] DROP CONSTRAINT [FK_ApprovalWorker];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ApprovalDecision]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ApprovalSet] DROP CONSTRAINT [FK_ApprovalDecision];
 GO
 
 -- --------------------------------------------------
@@ -106,6 +113,12 @@ GO
 IF OBJECT_ID(N'[dbo].[RoleSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[RoleSet];
 GO
+IF OBJECT_ID(N'[dbo].[DecisionSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DecisionSet];
+GO
+IF OBJECT_ID(N'[dbo].[ApprovalSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ApprovalSet];
+GO
 IF OBJECT_ID(N'[dbo].[SkillsDocuments]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SkillsDocuments];
 GO
@@ -121,12 +134,12 @@ GO
 CREATE TABLE [dbo].[RecruitedSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [DateOfBirth] nvarchar(max)  NOT NULL,
+    [DateOfBirth] datetime  NOT NULL,
     [Education] nvarchar(max)  NOT NULL,
-    [email] nvarchar(max)  NOT NULL,
+    [Email] nvarchar(max)  NOT NULL,
     [PhoneNumber] nvarchar(max)  NOT NULL,
     [Nationality] nvarchar(max)  NOT NULL,
-    [FathersName] nvarchar(max)  NOT NULL
+    [Surname] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -173,15 +186,10 @@ GO
 -- Creating table 'ApplicationSet'
 CREATE TABLE [dbo].[ApplicationSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Explenation] nvarchar(max)  NOT NULL,
     [YearsOfExpirience] tinyint  NOT NULL,
-    [Employed] bit  NOT NULL,
-    [Resigned] bit  NOT NULL,
-    [Approved] bit  NOT NULL,
     [Recruited_Id] int  NOT NULL,
-    [Jobs_Id] int  NOT NULL,
-    [Workers_Id] int  NOT NULL,
-    [Workers1_Id] int  NOT NULL
+    [Job_Id] int  NOT NULL,
+    [Assistant_Id] int  NOT NULL
 );
 GO
 
@@ -215,6 +223,27 @@ GO
 CREATE TABLE [dbo].[RoleSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'DecisionSet'
+CREATE TABLE [dbo].[DecisionSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Explanation] nvarchar(max)  NOT NULL,
+    [Empolyed] bit  NOT NULL,
+    [Resigned] bit  NOT NULL,
+    [Accepted] bit  NOT NULL,
+    [Application_Id] int  NOT NULL,
+    [Worker_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'ApprovalSet'
+CREATE TABLE [dbo].[ApprovalSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Approved] bit  NOT NULL,
+    [Worker_Id] int  NOT NULL,
+    [Decision_Id] int  NOT NULL
 );
 GO
 
@@ -299,6 +328,18 @@ GO
 -- Creating primary key on [Id] in table 'RoleSet'
 ALTER TABLE [dbo].[RoleSet]
 ADD CONSTRAINT [PK_RoleSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'DecisionSet'
+ALTER TABLE [dbo].[DecisionSet]
+ADD CONSTRAINT [PK_DecisionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ApprovalSet'
+ALTER TABLE [dbo].[ApprovalSet]
+ADD CONSTRAINT [PK_ApprovalSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -432,10 +473,10 @@ ON [dbo].[ApplicationSet]
     ([Recruited_Id]);
 GO
 
--- Creating foreign key on [Jobs_Id] in table 'ApplicationSet'
+-- Creating foreign key on [Job_Id] in table 'ApplicationSet'
 ALTER TABLE [dbo].[ApplicationSet]
 ADD CONSTRAINT [FK_JobsApplications]
-    FOREIGN KEY ([Jobs_Id])
+    FOREIGN KEY ([Job_Id])
     REFERENCES [dbo].[JobSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -444,7 +485,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_JobsApplications'
 CREATE INDEX [IX_FK_JobsApplications]
 ON [dbo].[ApplicationSet]
-    ([Jobs_Id]);
+    ([Job_Id]);
 GO
 
 -- Creating foreign key on [Stage_Id] in table 'StageGradeSet'
@@ -516,10 +557,10 @@ ON [dbo].[WorkerSet]
     ([Roles_Id]);
 GO
 
--- Creating foreign key on [Workers_Id] in table 'ApplicationSet'
+-- Creating foreign key on [Assistant_Id] in table 'ApplicationSet'
 ALTER TABLE [dbo].[ApplicationSet]
 ADD CONSTRAINT [FK_ApplicationsWorkers]
-    FOREIGN KEY ([Workers_Id])
+    FOREIGN KEY ([Assistant_Id])
     REFERENCES [dbo].[WorkerSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -528,22 +569,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_ApplicationsWorkers'
 CREATE INDEX [IX_FK_ApplicationsWorkers]
 ON [dbo].[ApplicationSet]
-    ([Workers_Id]);
-GO
-
--- Creating foreign key on [Workers1_Id] in table 'ApplicationSet'
-ALTER TABLE [dbo].[ApplicationSet]
-ADD CONSTRAINT [FK_WorkersApplications]
-    FOREIGN KEY ([Workers1_Id])
-    REFERENCES [dbo].[WorkerSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_WorkersApplications'
-CREATE INDEX [IX_FK_WorkersApplications]
-ON [dbo].[ApplicationSet]
-    ([Workers1_Id]);
+    ([Assistant_Id]);
 GO
 
 -- Creating foreign key on [Stage_Id] in table 'WorkerSet'
@@ -559,6 +585,66 @@ GO
 CREATE INDEX [IX_FK_StageWorkers]
 ON [dbo].[WorkerSet]
     ([Stage_Id]);
+GO
+
+-- Creating foreign key on [Application_Id] in table 'DecisionSet'
+ALTER TABLE [dbo].[DecisionSet]
+ADD CONSTRAINT [FK_DecisionApplication]
+    FOREIGN KEY ([Application_Id])
+    REFERENCES [dbo].[ApplicationSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DecisionApplication'
+CREATE INDEX [IX_FK_DecisionApplication]
+ON [dbo].[DecisionSet]
+    ([Application_Id]);
+GO
+
+-- Creating foreign key on [Worker_Id] in table 'DecisionSet'
+ALTER TABLE [dbo].[DecisionSet]
+ADD CONSTRAINT [FK_DecisionWorker]
+    FOREIGN KEY ([Worker_Id])
+    REFERENCES [dbo].[WorkerSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DecisionWorker'
+CREATE INDEX [IX_FK_DecisionWorker]
+ON [dbo].[DecisionSet]
+    ([Worker_Id]);
+GO
+
+-- Creating foreign key on [Worker_Id] in table 'ApprovalSet'
+ALTER TABLE [dbo].[ApprovalSet]
+ADD CONSTRAINT [FK_ApprovalWorker]
+    FOREIGN KEY ([Worker_Id])
+    REFERENCES [dbo].[WorkerSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ApprovalWorker'
+CREATE INDEX [IX_FK_ApprovalWorker]
+ON [dbo].[ApprovalSet]
+    ([Worker_Id]);
+GO
+
+-- Creating foreign key on [Decision_Id] in table 'ApprovalSet'
+ALTER TABLE [dbo].[ApprovalSet]
+ADD CONSTRAINT [FK_ApprovalDecision]
+    FOREIGN KEY ([Decision_Id])
+    REFERENCES [dbo].[DecisionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ApprovalDecision'
+CREATE INDEX [IX_FK_ApprovalDecision]
+ON [dbo].[ApprovalSet]
+    ([Decision_Id]);
 GO
 
 -- --------------------------------------------------

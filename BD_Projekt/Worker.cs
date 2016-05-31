@@ -18,7 +18,8 @@ namespace BD_Projekt
         public Worker()
         {
             this.Applications = new HashSet<Application>();
-            this.Applications1 = new HashSet<Application>();
+            this.Decision = new HashSet<Decision>();
+            this.Approvals = new HashSet<Approval>();
         }
     
         public int Id { get; set; }
@@ -28,8 +29,10 @@ namespace BD_Projekt
         public virtual Role Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application> Applications1 { get; set; }
         public virtual Stage Stage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Decision> Decision { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Approval> Approvals { get; set; }
     }
 }
