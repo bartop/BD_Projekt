@@ -13,19 +13,8 @@ namespace BD_Projekt.Forms
         public LoginForm()
         {
             InitializeComponent();
-            initializeMapper();
         }
 
-        private void initializeMapper()
-        {
-            roleMapper = new Dictionary<string, Type>
-            {
-                { "Administrator",  typeof(AdminPanel) },
-                { "Asistant",       typeof(AsistantPanel) },
-                { "Recruiter",      typeof(RecruiterPanel) },
-                { "Supervisor",      typeof(SupervisorPanel) },
-            };
-        }
 
         private void loginButton_Click(object sender, EventArgs e)
         {

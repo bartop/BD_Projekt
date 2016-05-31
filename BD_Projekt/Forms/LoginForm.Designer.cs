@@ -37,9 +37,9 @@
             // 
             // loginTextBox
             // 
-            this.loginTextBox.Location = new System.Drawing.Point(41, 6);
+            this.loginTextBox.Location = new System.Drawing.Point(44, 6);
             this.loginTextBox.Name = "loginTextBox";
-            this.loginTextBox.Size = new System.Drawing.Size(204, 20);
+            this.loginTextBox.Size = new System.Drawing.Size(201, 20);
             this.loginTextBox.TabIndex = 0;
             this.loginTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordTextBox_KeyPress);
             // 

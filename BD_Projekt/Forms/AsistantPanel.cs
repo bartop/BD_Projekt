@@ -33,13 +33,15 @@ namespace BD_Projekt.Forms
                 var recruited = new Recruited();
                 recruited.Name = textBox1.Text + " " + textBox3.Text ;
                 recruited.PhoneNumber = textBox14.Text;
-                recruited.FathersName = textBox9.Text;
-                recruited.DateOfBirth = textBox12.Text;
-                recruited.email = textBox13.Text;
+                recruited.Surname = textBox9.Text;
+                recruited.DateOfBirth = new DateTime(1994, 12, 13);//textBox12.Text;
+                recruited.Email = textBox13.Text;
                 recruited.Nationality = comboBox2.Text;
                 recruited.Education = comboBox3.Text;
 
-                db.RecruitedSet.Add(recruited);
+                //db.RecruitedSet.Add(recruited);
+                var application = new Application();
+                application.Recruited = recruited;
                 db.SaveChanges();
 
             }
