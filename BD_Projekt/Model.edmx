@@ -204,7 +204,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Explanation" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Empolyed" Type="bit" Nullable="true" />
+    <Property Name="Empolyed" Type="bit" Nullable="false" />
     <Property Name="Resigned" Type="bit" Nullable="false" />
     <Property Name="Accepted" Type="bit" Nullable="false" />
     <Property Name="Application_Id" Type="int" Nullable="false" />

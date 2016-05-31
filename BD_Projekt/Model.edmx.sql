@@ -2,13 +2,12 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/23/2016 18:39:38
--- Generated from EDMX file: C:\Users\Rafal\Desktop\BD_Projekt\BD_Projekt\Model.edmx
+-- Date Created: 05/30/2016 22:23:54
+-- Generated from EDMX file: D:\Dokumenty\Visual Studio 2015\Projects\BD_Projekt\BD_Projekt\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
 
@@ -70,6 +69,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DecisionWorker]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DecisionSet] DROP CONSTRAINT [FK_DecisionWorker];
 GO
+IF OBJECT_ID(N'[dbo].[FK_ApprovalWorker]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ApprovalSet] DROP CONSTRAINT [FK_ApprovalWorker];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ApprovalDecision]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ApprovalSet] DROP CONSTRAINT [FK_ApprovalDecision];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -110,6 +115,9 @@ IF OBJECT_ID(N'[dbo].[RoleSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[DecisionSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DecisionSet];
+GO
+IF OBJECT_ID(N'[dbo].[ApprovalSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ApprovalSet];
 GO
 IF OBJECT_ID(N'[dbo].[SkillsDocuments]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SkillsDocuments];
@@ -222,7 +230,7 @@ GO
 CREATE TABLE [dbo].[DecisionSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Explanation] nvarchar(max)  NOT NULL,
-    [Empolyed] bit  NULL,
+    [Empolyed] bit  NOT NULL,
     [Resigned] bit  NOT NULL,
     [Accepted] bit  NOT NULL,
     [Application_Id] int  NOT NULL,

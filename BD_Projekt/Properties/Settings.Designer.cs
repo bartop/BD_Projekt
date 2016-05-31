@@ -26,11 +26,10 @@ namespace BD_Projekt.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\database.mdf;" +
-            "Integrated Security=True;Connect Timeout=30")]
-        public string databaseConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute(@"metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string='data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=""D:\Dokumenty\Visual Studio 2015\Databases\database.mdf"";integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework'")]
+        public string ModelContainer {
             get {
-                return ((string)(this["databaseConnectionString"]));
+                return ((string)(this["ModelContainer"]));
             }
         }
     }
