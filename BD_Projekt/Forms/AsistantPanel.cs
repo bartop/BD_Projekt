@@ -52,7 +52,7 @@ namespace BD_Projekt
                     var application = new Application();
                     application.Recruited = recruited;
                     application.YearsOfExpirience = Byte.Parse(textBox9.Text);
-                    application.Assistant = db.WorkerSet.Where(n => n.Name.Equals("a")).First(); /// do poprawy !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    application.Assistant = db.WorkerSet.Where(n => n.Name.Equals("a")).First(); /// do poprawy !!!!!!!!!
                     application.Job = db.JobSet.Where(n => n.Name.Equals(comboBox1.Text)).First();
                     db.ApplicationSet.Add(application);
                     db.SaveChanges();

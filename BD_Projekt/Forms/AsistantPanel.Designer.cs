@@ -325,6 +325,7 @@
             this.Load += new System.EventHandler(this.positionChoose);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
