@@ -36,5 +36,7 @@ namespace BD_Projekt
         public virtual DbSet<StageGrade> StageGradeSet { get; set; }
         public virtual DbSet<Worker> WorkerSet { get; set; }
         public virtual DbSet<Role> RoleSet { get; set; }
+        public virtual DbSet<Decision> DecisionSet { get; set; }
+        public virtual DbSet<Approval> ApprovalSet { get; set; }
     }
 }

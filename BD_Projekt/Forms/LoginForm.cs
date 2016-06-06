@@ -4,29 +4,17 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-
-namespace BD_Projekt
+namespace BD_Projekt.Forms
 {
     public partial class LoginForm : BD_Projekt.Forms.MainForm
     {
-        private Dictionary<string, Form> roleMapper;
+        private Dictionary<string, Type> roleMapper;
 
         public LoginForm()
         {
             InitializeComponent();
-            initializeMapper();
         }
 
-        private void initializeMapper()
-        {
-            roleMapper = new Dictionary<string, Form>
-            {
-                { "Administrator",  new AdminPanel() },
-                { "Asistant",       new AsistantPanel() },
-                { "Recruiter",      new RecruiterPanel() },
-                { "Supervisor",       new SupervisorPanel() },
-            };
-        }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
@@ -41,17 +29,42 @@ namespace BD_Projekt
                     {
                         if (SecurePasswordHasher.Verify(passwordTextBox.Text, worker.PasswordHash))
                         {
-                            //wyswietl odpowiednie okno
-                            var form = roleMapper[worker.Roles.Name];
+                            Form form = null;
+                            if (worker.Roles.Name.Equals("Administrator"))
+                            {
+                                form = new AdminPanel();
+                            }  else if (worker.Roles.Name.Equals("Asistant"))
+                            {
+                                form = new AsistantPanel();
+                            }
+                            else if (worker.Roles.Name.Equals("Recruiter"))
+                            {
+                                form = new RecruiterPanel();
+                            }
+                            else if (worker.Roles.Name.Equals("Supervisor"))
+                            {
+                                form = new SupervisorPanel(worker);
+                            }
+
                             form.Show();
-                            form.Activate();
                             this.Hide();
+                        } else
+                        {
+                            MessageBox.Show("Wpisałeś nieprawidłowe hasło!", "Nieprawidłowe hasło");
                         }
                     }
                 } catch (InvalidOperationException)
                 {
-
+                    MessageBox.Show("Wpisałeś niepoprawny login!", "Nieprawidłowy login");
                 }
+            }
+        }
+
+        private void passwordTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                loginButton.PerformClick();
             }
         }
     }

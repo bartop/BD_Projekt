@@ -21,17 +21,13 @@ namespace BD_Projekt
         }
     
         public int Id { get; set; }
-        public string Explenation { get; set; }
         public byte YearsOfExpirience { get; set; }
-        public bool Employed { get; set; }
-        public bool Resigned { get; set; }
-        public bool Approved { get; set; }
     
         public virtual Recruited Recruited { get; set; }
-        public virtual Job Jobs { get; set; }
+        public virtual Job Job { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StageGrade> StageGrades { get; set; }
-        public virtual Worker Workers { get; set; }
-        public virtual Worker Workers1 { get; set; }
+        public virtual Worker Assistant { get; set; }
+        public virtual Decision Decision { get; set; }
     }
 }

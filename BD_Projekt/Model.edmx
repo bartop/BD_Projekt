@@ -17,6 +17,8 @@
     <EntitySet Name="StageGradeSet" EntityType="Model.Store.StageGradeSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WorkerSet" EntityType="Model.Store.WorkerSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RoleSet" EntityType="Model.Store.RoleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DecisionSet" EntityType="Model.Store.DecisionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ApprovalSet" EntityType="Model.Store.ApprovalSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SkillsDocuments" EntityType="Model.Store.SkillsDocuments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="JobsStage" EntityType="Model.Store.JobsStage" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="SkillsPosesses" Association="Model.Store.SkillsPosesses">
@@ -79,13 +81,25 @@
       <End Role="Applications" EntitySet="ApplicationSet" />
       <End Role="Workers" EntitySet="WorkerSet" />
     </AssociationSet>
-    <AssociationSet Name="WorkersApplications" Association="Model.Store.WorkersApplications">
-      <End Role="Workers" EntitySet="WorkerSet" />
-      <End Role="Applications" EntitySet="ApplicationSet" />
-    </AssociationSet>
     <AssociationSet Name="StageWorkers" Association="Model.Store.StageWorkers">
       <End Role="Stage" EntitySet="StageSet" />
       <End Role="Workers" EntitySet="WorkerSet" />
+    </AssociationSet>
+    <AssociationSet Name="DecisionApplication" Association="Model.Store.DecisionApplication">
+      <End Role="Decision" EntitySet="DecisionSet" />
+      <End Role="Application" EntitySet="ApplicationSet" />
+    </AssociationSet>
+    <AssociationSet Name="DecisionWorker" Association="Model.Store.DecisionWorker">
+      <End Role="Decision" EntitySet="DecisionSet" />
+      <End Role="Worker" EntitySet="WorkerSet" />
+    </AssociationSet>
+    <AssociationSet Name="ApprovalWorker" Association="Model.Store.ApprovalWorker">
+      <End Role="Approval" EntitySet="ApprovalSet" />
+      <End Role="Worker" EntitySet="WorkerSet" />
+    </AssociationSet>
+    <AssociationSet Name="ApprovalDecision" Association="Model.Store.ApprovalDecision">
+      <End Role="Approval" EntitySet="ApprovalSet" />
+      <End Role="Decision" EntitySet="DecisionSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="RecruitedSet">
@@ -94,12 +108,12 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DateOfBirth" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
     <Property Name="Education" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Nationality" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FathersName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="SkillSet">
     <Key>
@@ -146,15 +160,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Explenation" Type="nvarchar(max)" Nullable="false" />
     <Property Name="YearsOfExpirience" Type="tinyint" Nullable="false" />
-    <Property Name="Employed" Type="bit" Nullable="false" />
-    <Property Name="Resigned" Type="bit" Nullable="false" />
-    <Property Name="Approved" Type="bit" Nullable="false" />
     <Property Name="Recruited_Id" Type="int" Nullable="false" />
-    <Property Name="Jobs_Id" Type="int" Nullable="false" />
-    <Property Name="Workers_Id" Type="int" Nullable="false" />
-    <Property Name="Workers1_Id" Type="int" Nullable="false" />
+    <Property Name="Job_Id" Type="int" Nullable="false" />
+    <Property Name="Assistant_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="StageSet">
     <Key>
@@ -188,6 +197,27 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DecisionSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Explanation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empolyed" Type="bit" Nullable="false" />
+    <Property Name="Resigned" Type="bit" Nullable="false" />
+    <Property Name="Accepted" Type="bit" Nullable="false" />
+    <Property Name="Application_Id" Type="int" Nullable="false" />
+    <Property Name="Worker_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApprovalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+    <Property Name="Worker_Id" Type="int" Nullable="false" />
+    <Property Name="Decision_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SkillsDocuments">
     <Key>
@@ -285,7 +315,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Applications">
-        <PropertyRef Name="Jobs_Id" />
+        <PropertyRef Name="Job_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -333,19 +363,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Applications">
-        <PropertyRef Name="Workers_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="WorkersApplications">
-    <End Role="Workers" Type="Model.Store.WorkerSet" Multiplicity="1" />
-    <End Role="Applications" Type="Model.Store.ApplicationSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Workers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Applications">
-        <PropertyRef Name="Workers1_Id" />
+        <PropertyRef Name="Assistant_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -358,6 +376,54 @@
       </Principal>
       <Dependent Role="Workers">
         <PropertyRef Name="Stage_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DecisionApplication">
+    <End Role="Decision" Type="Model.Store.DecisionSet" Multiplicity="*" />
+    <End Role="Application" Type="Model.Store.ApplicationSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Application">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Decision">
+        <PropertyRef Name="Application_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DecisionWorker">
+    <End Role="Decision" Type="Model.Store.DecisionSet" Multiplicity="*" />
+    <End Role="Worker" Type="Model.Store.WorkerSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Decision">
+        <PropertyRef Name="Worker_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ApprovalWorker">
+    <End Role="Approval" Type="Model.Store.ApprovalSet" Multiplicity="*" />
+    <End Role="Worker" Type="Model.Store.WorkerSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Approval">
+        <PropertyRef Name="Worker_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ApprovalDecision">
+    <End Role="Approval" Type="Model.Store.ApprovalSet" Multiplicity="*" />
+    <End Role="Decision" Type="Model.Store.DecisionSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Decision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Approval">
+        <PropertyRef Name="Decision_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -477,13 +543,27 @@
             <End Role="Applications" EntitySet="ApplicationSet" />
             <End Role="Workers" EntitySet="WorkerSet" />
           </AssociationSet>
-          <AssociationSet Name="WorkersApplications" Association="Model.WorkersApplications">
-            <End Role="Workers" EntitySet="WorkerSet" />
-            <End Role="Applications" EntitySet="ApplicationSet" />
-          </AssociationSet>
           <AssociationSet Name="StageWorkers" Association="Model.StageWorkers">
             <End Role="Stage" EntitySet="StageSet" />
             <End Role="Workers" EntitySet="WorkerSet" />
+          </AssociationSet>
+          <EntitySet Name="DecisionSet" EntityType="Model.Decision" />
+          <AssociationSet Name="DecisionApplication" Association="Model.DecisionApplication">
+            <End Role="Decision" EntitySet="DecisionSet" />
+            <End Role="Application" EntitySet="ApplicationSet" />
+          </AssociationSet>
+          <AssociationSet Name="DecisionWorker" Association="Model.DecisionWorker">
+            <End Role="Decision" EntitySet="DecisionSet" />
+            <End Role="Worker" EntitySet="WorkerSet" />
+          </AssociationSet>
+          <EntitySet Name="ApprovalSet" EntityType="Model.Approval" />
+          <AssociationSet Name="ApprovalWorker" Association="Model.ApprovalWorker">
+            <End Role="Approval" EntitySet="ApprovalSet" />
+            <End Role="Worker" EntitySet="WorkerSet" />
+          </AssociationSet>
+          <AssociationSet Name="ApprovalDecision" Association="Model.ApprovalDecision">
+            <End Role="Approval" EntitySet="ApprovalSet" />
+            <End Role="Decision" EntitySet="DecisionSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Recruited">
@@ -492,15 +572,15 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="DateOfBirth" Type="String" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" />
           <Property Name="Education" Type="String" Nullable="false" />
-          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" Nullable="false" />
           <Property Name="Nationality" Type="String" Nullable="false" />
-          <Property Name="FathersName" Type="String" Nullable="false" />
           <NavigationProperty Name="Posesses" Relationship="Model.PosessesRecruited" FromRole="Recruited" ToRole="Posesses" />
           <NavigationProperty Name="Documents" Relationship="Model.DocumentsRecruited" FromRole="Recruited" ToRole="Documents" />
           <NavigationProperty Name="Applications" Relationship="Model.RecruitedApplications" FromRole="Recruited" ToRole="Applications" />
+          <Property Name="Surname" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
@@ -578,16 +658,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Explenation" Type="String" Nullable="false" Unicode="true" />
           <Property Name="YearsOfExpirience" Type="Byte" Nullable="false" />
-          <Property Name="Employed" Type="Boolean" Nullable="false" />
-          <Property Name="Resigned" Type="Boolean" Nullable="false" />
-          <Property Name="Approved" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Recruited" Relationship="Model.RecruitedApplications" FromRole="Applications" ToRole="Recruited" />
-          <NavigationProperty Name="Jobs" Relationship="Model.JobsApplications" FromRole="Applications" ToRole="Jobs" />
+          <NavigationProperty Name="Job" Relationship="Model.JobsApplications" FromRole="Applications" ToRole="Jobs" />
           <NavigationProperty Name="StageGrades" Relationship="Model.ApplicationsStageGrades" FromRole="Applications" ToRole="StageGrades" />
-          <NavigationProperty Name="Workers" Relationship="Model.ApplicationsWorkers" FromRole="Applications" ToRole="Workers" />
-          <NavigationProperty Name="Workers1" Relationship="Model.WorkersApplications" FromRole="Applications" ToRole="Workers" />
+          <NavigationProperty Name="Assistant" Relationship="Model.ApplicationsWorkers" FromRole="Applications" ToRole="Workers" />
+          <NavigationProperty Name="Decision" Relationship="Model.DecisionApplication" FromRole="Application" ToRole="Decision" />
         </EntityType>
         <Association Name="RecruitedApplications">
           <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" />
@@ -635,10 +711,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Roles" Relationship="Model.RolesWorkers" FromRole="Workers" ToRole="Roles" />
           <NavigationProperty Name="Applications" Relationship="Model.ApplicationsWorkers" FromRole="Workers" ToRole="Applications" />
-          <NavigationProperty Name="Applications1" Relationship="Model.WorkersApplications" FromRole="Workers" ToRole="Applications" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="PasswordHash" Type="String" Nullable="false" />
           <NavigationProperty Name="Stage" Relationship="Model.StageWorkers" FromRole="Workers" ToRole="Stage" />
+          <NavigationProperty Name="Decision" Relationship="Model.DecisionWorker" FromRole="Worker" ToRole="Decision" />
+          <NavigationProperty Name="Approvals" Relationship="Model.ApprovalWorker" FromRole="Worker" ToRole="Approval" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -656,13 +733,47 @@
           <End Type="Model.Application" Role="Applications" Multiplicity="*" />
           <End Type="Model.Worker" Role="Workers" Multiplicity="1" />
         </Association>
-        <Association Name="WorkersApplications">
-          <End Type="Model.Worker" Role="Workers" Multiplicity="1" />
-          <End Type="Model.Application" Role="Applications" Multiplicity="*" />
-        </Association>
         <Association Name="StageWorkers">
           <End Type="Model.Stage" Role="Stage" Multiplicity="0..1" />
           <End Type="Model.Worker" Role="Workers" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Decision">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Explanation" Type="String" Nullable="false" />
+          <Property Name="Empolyed" Type="Boolean" Nullable="false" />
+          <Property Name="Resigned" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="Model.DecisionApplication" FromRole="Decision" ToRole="Application" />
+          <NavigationProperty Name="Worker" Relationship="Model.DecisionWorker" FromRole="Decision" ToRole="Worker" />
+          <Property Name="Accepted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Approval" Relationship="Model.ApprovalDecision" FromRole="Decision" ToRole="Approval" />
+        </EntityType>
+        <Association Name="DecisionApplication">
+          <End Type="Model.Decision" Role="Decision" Multiplicity="0..1" />
+          <End Type="Model.Application" Role="Application" Multiplicity="1" />
+        </Association>
+        <Association Name="DecisionWorker">
+          <End Type="Model.Decision" Role="Decision" Multiplicity="*" />
+          <End Type="Model.Worker" Role="Worker" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Approval">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Model.ApprovalWorker" FromRole="Approval" ToRole="Worker" />
+          <NavigationProperty Name="Decision" Relationship="Model.ApprovalDecision" FromRole="Approval" ToRole="Decision" />
+        </EntityType>
+        <Association Name="ApprovalWorker">
+          <End Type="Model.Approval" Role="Approval" Multiplicity="*" />
+          <End Type="Model.Worker" Role="Worker" Multiplicity="1" />
+        </Association>
+        <Association Name="ApprovalDecision">
+          <End Type="Model.Approval" Role="Approval" Multiplicity="0..1" />
+          <End Type="Model.Decision" Role="Decision" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -677,10 +788,10 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
           <ScalarProperty Name="Education" ColumnName="Education" />
-          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Nationality" ColumnName="Nationality" />
-          <ScalarProperty Name="FathersName" ColumnName="FathersName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -728,11 +839,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Model.Application)">
         <MappingFragment StoreEntitySet="ApplicationSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Explenation" ColumnName="Explenation" />
           <ScalarProperty Name="YearsOfExpirience" ColumnName="YearsOfExpirience" />
-          <ScalarProperty Name="Employed" ColumnName="Employed" />
-          <ScalarProperty Name="Resigned" ColumnName="Resigned" />
-          <ScalarProperty Name="Approved" ColumnName="Approved" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -766,6 +873,25 @@
         <MappingFragment StoreEntitySet="RoleSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DecisionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Decision)">
+        <MappingFragment StoreEntitySet="DecisionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+          <ScalarProperty Name="Empolyed" ColumnName="Empolyed" />
+          <ScalarProperty Name="Resigned" ColumnName="Resigned" />
+          <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApprovalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Approval)">
+        <MappingFragment StoreEntitySet="ApprovalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -827,7 +953,7 @@
     </AssociationSetMapping>
     <AssociationSetMapping Name="JobsApplications" TypeName="Model.JobsApplications" StoreEntitySet="ApplicationSet">
       <EndProperty Name="Jobs">
-        <ScalarProperty Name="Id" ColumnName="Jobs_Id" />
+        <ScalarProperty Name="Id" ColumnName="Job_Id" />
       </EndProperty>
       <EndProperty Name="Applications">
         <ScalarProperty Name="Id" ColumnName="Id" />
@@ -867,15 +993,7 @@
     </AssociationSetMapping>
     <AssociationSetMapping Name="ApplicationsWorkers" TypeName="Model.ApplicationsWorkers" StoreEntitySet="ApplicationSet">
       <EndProperty Name="Workers">
-        <ScalarProperty Name="Id" ColumnName="Workers_Id" />
-      </EndProperty>
-      <EndProperty Name="Applications">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="WorkersApplications" TypeName="Model.WorkersApplications" StoreEntitySet="ApplicationSet">
-      <EndProperty Name="Workers">
-        <ScalarProperty Name="Id" ColumnName="Workers1_Id" />
+        <ScalarProperty Name="Id" ColumnName="Assistant_Id" />
       </EndProperty>
       <EndProperty Name="Applications">
         <ScalarProperty Name="Id" ColumnName="Id" />
@@ -889,6 +1007,38 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="Stage_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DecisionApplication" TypeName="Model.DecisionApplication" StoreEntitySet="DecisionSet">
+      <EndProperty Name="Application">
+        <ScalarProperty Name="Id" ColumnName="Application_Id" />
+      </EndProperty>
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DecisionWorker" TypeName="Model.DecisionWorker" StoreEntitySet="DecisionSet">
+      <EndProperty Name="Worker">
+        <ScalarProperty Name="Id" ColumnName="Worker_Id" />
+      </EndProperty>
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ApprovalWorker" TypeName="Model.ApprovalWorker" StoreEntitySet="ApprovalSet">
+      <EndProperty Name="Worker">
+        <ScalarProperty Name="Id" ColumnName="Worker_Id" />
+      </EndProperty>
+      <EndProperty Name="Approval">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ApprovalDecision" TypeName="Model.ApprovalDecision" StoreEntitySet="ApprovalSet">
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Decision_Id" />
+      </EndProperty>
+      <EndProperty Name="Approval">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

@@ -26,7 +26,8 @@ namespace BD_Projekt
             {
                 var job = entityEntry.Entity as Job;
                 int copies = JobSet.Where(p => p.Name == job.Name).Count();
-                if ((entityEntry.State == EntityState.Added) && copies > 0)
+                if ((entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified) 
+                    && copies > 0)
                 {
                     result.ValidationErrors.Add(new
                         DbValidationError("Name", "Nazwy stanowisk muszą być unikalne!"));
