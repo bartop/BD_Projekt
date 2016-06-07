@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxPosition = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxSurname = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxNationality = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBoxExp = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBoxMail = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.textBoxPhone = new System.Windows.Forms.TextBox();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonInclude = new System.Windows.Forms.Button();
+            this.buttonConfirm = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBoxEducation = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBoxSkills = new System.Windows.Forms.ComboBox();
+            this.comboBoxLavel = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -65,15 +65,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Stanowisko";
             // 
-            // comboBox1
+            // comboBoxPosition
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(80, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.positionChoose);
+            this.comboBoxPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPosition.FormattingEnabled = true;
+            this.comboBoxPosition.Location = new System.Drawing.Point(80, 6);
+            this.comboBoxPosition.Name = "comboBoxPosition";
+            this.comboBoxPosition.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxPosition.TabIndex = 1;
+            this.comboBoxPosition.SelectedIndexChanged += new System.EventHandler(this.positionChoose);
             // 
             // label2
             // 
@@ -84,12 +84,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Imię";
             // 
-            // textBox1
+            // textBoxName
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 3;
+            this.textBoxName.Location = new System.Drawing.Point(80, 33);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(121, 20);
+            this.textBoxName.TabIndex = 3;
             // 
             // label4
             // 
@@ -100,12 +100,12 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Nazwisko";
             // 
-            // textBox3
+            // textBoxSurname
             // 
-            this.textBox3.Location = new System.Drawing.Point(80, 59);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 20);
-            this.textBox3.TabIndex = 7;
+            this.textBoxSurname.Location = new System.Drawing.Point(80, 59);
+            this.textBoxSurname.Name = "textBoxSurname";
+            this.textBoxSurname.Size = new System.Drawing.Size(121, 20);
+            this.textBoxSurname.TabIndex = 7;
             // 
             // label10
             // 
@@ -116,15 +116,15 @@
             this.label10.TabIndex = 18;
             this.label10.Text = "Obywatelstwo";
             // 
-            // comboBox2
+            // comboBoxNationality
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(315, 6);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 19;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.nationalityChoose);
+            this.comboBoxNationality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNationality.FormattingEnabled = true;
+            this.comboBoxNationality.Location = new System.Drawing.Point(315, 6);
+            this.comboBoxNationality.Name = "comboBoxNationality";
+            this.comboBoxNationality.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxNationality.TabIndex = 19;
+            this.comboBoxNationality.SelectedIndexChanged += new System.EventHandler(this.nationalityChoose);
             // 
             // label11
             // 
@@ -135,12 +135,12 @@
             this.label11.TabIndex = 20;
             this.label11.Text = "Doświadczenie (lata)";
             // 
-            // textBox9
+            // textBoxExp
             // 
-            this.textBox9.Location = new System.Drawing.Point(315, 33);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(121, 20);
-            this.textBox9.TabIndex = 21;
+            this.textBoxExp.Location = new System.Drawing.Point(315, 33);
+            this.textBoxExp.Name = "textBoxExp";
+            this.textBoxExp.Size = new System.Drawing.Size(121, 20);
+            this.textBoxExp.TabIndex = 21;
             // 
             // label14
             // 
@@ -160,12 +160,12 @@
             this.label15.TabIndex = 28;
             this.label15.Text = "Adres e-mail";
             // 
-            // textBox13
+            // textBoxMail
             // 
-            this.textBox13.Location = new System.Drawing.Point(315, 85);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(121, 20);
-            this.textBox13.TabIndex = 29;
+            this.textBoxMail.Location = new System.Drawing.Point(315, 85);
+            this.textBoxMail.Name = "textBoxMail";
+            this.textBoxMail.Size = new System.Drawing.Size(121, 20);
+            this.textBoxMail.TabIndex = 29;
             // 
             // label16
             // 
@@ -176,52 +176,52 @@
             this.label16.TabIndex = 30;
             this.label16.Text = "Telefon";
             // 
-            // textBox14
+            // textBoxPhone
             // 
-            this.textBox14.Location = new System.Drawing.Point(80, 85);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(121, 20);
-            this.textBox14.TabIndex = 31;
+            this.textBoxPhone.Location = new System.Drawing.Point(80, 85);
+            this.textBoxPhone.Name = "textBoxPhone";
+            this.textBoxPhone.Size = new System.Drawing.Size(121, 20);
+            this.textBoxPhone.TabIndex = 31;
             // 
-            // button3
+            // buttonAdd
             // 
-            this.button3.Location = new System.Drawing.Point(15, 203);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(421, 23);
-            this.button3.TabIndex = 34;
-            this.button3.Text = "Dodaj umiejętność";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.skillsFormClick);
+            this.buttonAdd.Location = new System.Drawing.Point(15, 203);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(421, 23);
+            this.buttonAdd.TabIndex = 34;
+            this.buttonAdd.Text = "Dodaj umiejętność";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.skillsFormClick);
             // 
-            // button4
+            // buttonInclude
             // 
-            this.button4.Location = new System.Drawing.Point(15, 234);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(421, 23);
-            this.button4.TabIndex = 35;
-            this.button4.Text = "Załączanie dokumentów";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.documentsAddClick);
+            this.buttonInclude.Location = new System.Drawing.Point(15, 234);
+            this.buttonInclude.Name = "buttonInclude";
+            this.buttonInclude.Size = new System.Drawing.Size(421, 23);
+            this.buttonInclude.TabIndex = 35;
+            this.buttonInclude.Text = "Załączanie dokumentów";
+            this.buttonInclude.UseVisualStyleBackColor = true;
+            this.buttonInclude.Click += new System.EventHandler(this.documentsAddClick);
             // 
-            // button5
+            // buttonConfirm
             // 
-            this.button5.Location = new System.Drawing.Point(15, 140);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(421, 23);
-            this.button5.TabIndex = 36;
-            this.button5.Text = "Potwierdź informacje i dodaj do bazy";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.confirmClick);
+            this.buttonConfirm.Location = new System.Drawing.Point(15, 140);
+            this.buttonConfirm.Name = "buttonConfirm";
+            this.buttonConfirm.Size = new System.Drawing.Size(421, 23);
+            this.buttonConfirm.TabIndex = 36;
+            this.buttonConfirm.Text = "Potwierdź informacje i dodaj do bazy";
+            this.buttonConfirm.UseVisualStyleBackColor = true;
+            this.buttonConfirm.Click += new System.EventHandler(this.confirmClick);
             // 
-            // button6
+            // buttonClear
             // 
-            this.button6.Location = new System.Drawing.Point(15, 263);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(421, 23);
-            this.button6.TabIndex = 37;
-            this.button6.Text = "Wyczyść informacje";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.clearClick);
+            this.buttonClear.Location = new System.Drawing.Point(15, 263);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(421, 23);
+            this.buttonClear.TabIndex = 37;
+            this.buttonClear.Text = "Wyczyść informacje";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.clearClick);
             // 
             // label3
             // 
@@ -232,15 +232,15 @@
             this.label3.TabIndex = 38;
             this.label3.Text = "Wykształcenie\r\n";
             // 
-            // comboBox3
+            // comboBoxEducation
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(315, 113);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 39;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.educationChoose);
+            this.comboBoxEducation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEducation.FormattingEnabled = true;
+            this.comboBoxEducation.Location = new System.Drawing.Point(315, 113);
+            this.comboBoxEducation.Name = "comboBoxEducation";
+            this.comboBoxEducation.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxEducation.TabIndex = 39;
+            this.comboBoxEducation.SelectedIndexChanged += new System.EventHandler(this.educationChoose);
             // 
             // dateTimePicker1
             // 
@@ -258,23 +258,24 @@
             this.label5.TabIndex = 41;
             this.label5.Text = "Umiejetności";
             // 
-            // comboBox4
+            // comboBoxSkills
             // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(89, 174);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(227, 21);
-            this.comboBox4.TabIndex = 42;
+            this.comboBoxSkills.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSkills.FormattingEnabled = true;
+            this.comboBoxSkills.Location = new System.Drawing.Point(89, 174);
+            this.comboBoxSkills.Name = "comboBoxSkills";
+            this.comboBoxSkills.Size = new System.Drawing.Size(227, 21);
+            this.comboBoxSkills.TabIndex = 42;
             // 
-            // comboBox5
+            // comboBoxLavel
             // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(384, 174);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(52, 21);
-            this.comboBox5.TabIndex = 43;
+            this.comboBoxLavel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLavel.FormattingEnabled = true;
+            this.comboBoxLavel.Location = new System.Drawing.Point(384, 174);
+            this.comboBoxLavel.Name = "comboBoxLavel";
+            this.comboBoxLavel.Size = new System.Drawing.Size(52, 21);
+            this.comboBoxLavel.TabIndex = 43;
+            this.comboBoxLavel.SelectedIndexChanged += new System.EventHandler(this.comboBoxLavel_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -289,39 +290,38 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(448, 298);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox5);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.comboBoxLavel);
+            this.Controls.Add(this.comboBoxSkills);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBoxEducation);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox14);
+            this.Controls.Add(this.buttonClear);
+            this.Controls.Add(this.buttonConfirm);
+            this.Controls.Add(this.buttonInclude);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.textBox13);
+            this.Controls.Add(this.textBoxMail);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.textBoxExp);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBoxNationality);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBoxSurname);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxPosition);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "AsistantPanel";
+            this.ShowIcon = false;
             this.Text = "Panel asystentki - rejestracja";
-            this.Load += new System.EventHandler(this.skillChoose);
-            this.Load += new System.EventHandler(this.nationalityChoose);
-            this.Load += new System.EventHandler(this.levelChoose);
-            this.Load += new System.EventHandler(this.educationChoose);
             this.Load += new System.EventHandler(this.positionChoose);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -330,30 +330,30 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxPosition;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxSurname;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxNationality;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBoxExp;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox textBoxMail;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox textBoxPhone;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonInclude;
+        private System.Windows.Forms.Button buttonConfirm;
+        private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBoxEducation;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox comboBoxSkills;
+        private System.Windows.Forms.ComboBox comboBoxLavel;
         private System.Windows.Forms.Label label6;
     }
 }

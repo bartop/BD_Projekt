@@ -20,15 +20,20 @@ namespace BD_Projekt
         string[] education = new string[] { "Podstawowe", "Zasadnicze zawodowe", "Średnie", "Wyższe" };
         byte[] levels = new byte[] { 1, 2, 3, 4, 5};
         public AddFilePanel new_recruitment_documents_Pane;
-         
+        string loginAsistant; 
 
         public AsistantPanel()
         {
+
+        }
+        public AsistantPanel(string login)
+        {
             InitializeComponent();
-            button3.Enabled = false;
-            button4.Enabled = false;
-            comboBox4.Enabled = false;
-            comboBox5.Enabled = false;
+            buttonAdd.Enabled = false;
+            buttonInclude.Enabled = false;
+            comboBoxSkills.Enabled = false;
+            comboBoxLavel.Enabled = false;
+            loginAsistant = login;
         }           
       
         private void confirmClick(object sender, EventArgs e)
@@ -38,50 +43,50 @@ namespace BD_Projekt
                 if (chceckBoxes())
                 {
                     var recruited = new Recruited();
-                    recruited.Name = textBox1.Text;
-                    recruited.Surname = textBox3.Text;
-                    recruited.PhoneNumber = textBox14.Text;
-                    recruited.Name = textBox1.Text;
+                    recruited.Name = textBoxName.Text;
+                    recruited.Surname = textBoxSurname.Text;
+                    recruited.PhoneNumber = textBoxPhone.Text;
+                    recruited.Name = textBoxName.Text;
                     recruited.DateOfBirth = dateTimePicker1.Value;
-                    recruited.Email = textBox13.Text;
-                    recruited.Nationality = comboBox2.Text;
-                    recruited.Education = comboBox3.Text;
+                    recruited.Email = textBoxMail.Text;
+                    recruited.Nationality = comboBoxNationality.Text;
+                    recruited.Education = comboBoxEducation.Text;
                     db.RecruitedSet.Add(recruited);
                     db.SaveChanges();
 
                     var application = new Application();
                     application.Recruited = recruited;
-                    application.YearsOfExpirience = Byte.Parse(textBox9.Text);
-                    application.Assistant = db.WorkerSet.Where(n => n.Name.Equals("a")).First(); /// do poprawy !!!!!!!!!
-                    application.Job = db.JobSet.Where(n => n.Name.Equals(comboBox1.Text)).First();
+                    application.YearsOfExpirience = Byte.Parse(textBoxExp.Text);                 
+                    application.Assistant = db.WorkerSet.Where(w => w.Name == loginAsistant).First();
+                    application.Job = db.JobSet.Where(n => n.Name ==comboBoxPosition.Text).First();
                     db.ApplicationSet.Add(application);
                     db.SaveChanges();
-                    button5.Enabled = false;
-                    button3.Enabled = true;
-                    comboBox4.Enabled = true;
-                    comboBox5.Enabled = true;
-                    button4.Enabled = true;
+                    buttonConfirm.Enabled = false;
+                    buttonAdd.Enabled = true;
+                    comboBoxSkills.Enabled = true;
+                    comboBoxLavel.Enabled = true;
+                    buttonInclude.Enabled = true;
                 }
             }
         }
         private void clearClick(object sender, EventArgs e)
         {
-            comboBox4.ResetText();
-            comboBox5.ResetText();
-            textBox1.Clear();
-            textBox3.Clear();
-            textBox9.Clear();
+            comboBoxSkills.ResetText();
+            comboBoxLavel.ResetText();
+            textBoxName.Clear();
+            textBoxSurname.Clear();
+            textBoxExp.Clear();
             dateTimePicker1.ResetText();
-            textBox13.Clear();
-            textBox14.Clear();
-            comboBox1.ResetText();
-            comboBox2.ResetText();
-            comboBox3.ResetText();       
-            button5.Enabled = true;
-            button3.Enabled = false;
-            button4.Enabled = false;
-            comboBox4.Enabled = false;
-            comboBox5.Enabled = false;
+            textBoxMail.Clear();
+            textBoxPhone.Clear();
+           comboBoxPosition.ResetText();
+            comboBoxNationality.ResetText();
+            comboBoxEducation.ResetText();       
+            buttonConfirm.Enabled = true;
+            buttonAdd.Enabled = false;
+            buttonInclude.Enabled = false;
+            comboBoxSkills.Enabled = false;
+            comboBoxLavel.Enabled = false;
         }
 
         private void documentsAddClick(object sender, EventArgs e)
@@ -93,14 +98,14 @@ namespace BD_Projekt
 
         private void positionChoose(object sender, EventArgs e)
         {
-            if (comboBox1.Items.Count == 0)
+            if (comboBoxPosition.Items.Count == 0)
             {
                 using (var db = new ModelContainer())
                 {
                     var positions = db.JobSet.ToList();
                     foreach (var position in positions)
                     {
-                        comboBox1.Items.Add(position.Name);
+                       comboBoxPosition.Items.Add(position.Name);
                     }
                 }
             }
@@ -108,22 +113,22 @@ namespace BD_Projekt
 
         private void nationalityChoose(object sender, EventArgs e)
         {
-            if (comboBox2.Items.Count == 0)
+            if (comboBoxNationality.Items.Count == 0)
             {
                 foreach (string nat in nationality)
                 {
-                    comboBox2.Items.Add(nat);
+                    comboBoxNationality.Items.Add(nat);
                 }
             }
         }
 
         private void educationChoose(object sender, EventArgs e)
         {
-            if (comboBox3.Items.Count == 0)
+            if (comboBoxEducation.Items.Count == 0)
             {
                 foreach (string edu in education)
                 {
-                    comboBox3.Items.Add(edu);
+                    comboBoxEducation.Items.Add(edu);
                 }
             }
         }
@@ -138,7 +143,7 @@ namespace BD_Projekt
             using (var db = new ModelContainer())
             {
                 byte levelB;
-                if (comboBox4.Text == String.Empty || comboBox5.Text == String.Empty || Byte.TryParse(comboBox5.Text, out levelB) == false)
+                if (comboBoxSkills.Text == String.Empty || comboBoxLavel.Text == String.Empty || Byte.TryParse(comboBoxLavel.Text, out levelB) == false)
                 {
                     MessageBox.Show("Formaularz posiada puste pola", "Error-comboBoxes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -147,7 +152,7 @@ namespace BD_Projekt
                     var possess = new Posesses();
                     possess.Level = levelB;
                     possess.Recruited = db.RecruitedSet.ToList().Last();
-                    possess.Skills = db.SkillSet.Where(s => s.Name.Equals(comboBox4.Text)).First();
+                    possess.Skills = db.SkillSet.Where(s => s.Name == comboBoxSkills.Text).First();
                     db.PosessesSet.Add(possess);
                     db.SaveChanges(); 
                 }
@@ -156,25 +161,25 @@ namespace BD_Projekt
 
         private void levelChoose(object sender, EventArgs e)
         {
-            if (comboBox5.Items.Count == 0)
+            if (comboBoxLavel.Items.Count == 0)
             {
                 foreach (byte level in levels)
                 {
-                    comboBox5.Items.Add(level);
+                    comboBoxLavel.Items.Add(level);
                 }
             }
         }
 
         private void skillChoose(object sender, EventArgs e)
         {
-            if (comboBox4.Items.Count == 0)
+            if (comboBoxSkills.Items.Count == 0)
             {
                 using (var db = new ModelContainer())
                 {
                     var skills = db.SkillSet.ToList();
                     foreach (var skill in skills)
                     {
-                        comboBox4.Items.Add(skill.Name);
+                        comboBoxSkills.Items.Add(skill.Name);
                     }
                 }
             }
@@ -182,9 +187,9 @@ namespace BD_Projekt
 
         private bool chceckBoxes()
         {
-            if(textBox1.Text == String.Empty || textBox13.Text == String.Empty || textBox14.Text == String.Empty || 
-                textBox3.Text == String.Empty || textBox9.Text == String.Empty || comboBox1.Text == String.Empty || 
-                comboBox2.Text == String.Empty || comboBox3.Text == String.Empty)
+            if(textBoxName.Text == String.Empty || textBoxMail.Text == String.Empty || textBoxPhone.Text == String.Empty || 
+                textBoxSurname.Text == String.Empty || textBoxExp.Text == String.Empty ||comboBoxPosition.Text == String.Empty || 
+                comboBoxNationality.Text == String.Empty || comboBoxEducation.Text == String.Empty)
             {
                 MessageBox.Show("Formaularz posiada puste pola", "Error-TextBoxes",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;         
@@ -192,7 +197,7 @@ namespace BD_Projekt
             else
             {
                 byte temp;
-                if (textBox13.Text.IndexOf("@") == -1 || Byte.TryParse(textBox9.Text, out temp) == false)
+                if (textBoxMail.Text.IndexOf("@") == -1 || Byte.TryParse(textBoxExp.Text, out temp) == false)
                 {
                     MessageBox.Show("Błędny adres e-mail lub liczba lat doświadczenia!!!", "Error-TextBoxes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -200,6 +205,11 @@ namespace BD_Projekt
                 else
                     return true;
             }            
+        }
+
+        private void comboBoxLavel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
