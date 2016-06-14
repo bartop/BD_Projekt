@@ -43,10 +43,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.jobLabel = new System.Windows.Forms.Label();
-            this.gradesList = new System.Windows.Forms.ListView();
             this.decisionPreview = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.skillsList = new System.Windows.Forms.ListView();
+            this.skillColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.leveColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gradesPreviewButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -77,7 +84,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(246, 84);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(255, 84);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // phoneLabel
@@ -194,7 +201,7 @@
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(6, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(261, 116);
+            this.groupBox1.Size = new System.Drawing.Size(270, 116);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dane osobowe";
@@ -209,35 +216,91 @@
             this.jobLabel.TabIndex = 2;
             this.jobLabel.Text = "stanowisko";
             // 
-            // gradesList
-            // 
-            this.gradesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gradesList.Location = new System.Drawing.Point(6, 164);
-            this.gradesList.Name = "gradesList";
-            this.gradesList.Size = new System.Drawing.Size(261, 108);
-            this.gradesList.TabIndex = 3;
-            this.gradesList.UseCompatibleStateImageBehavior = false;
-            // 
             // decisionPreview
             // 
-            this.decisionPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.decisionPreview.Location = new System.Drawing.Point(144, 278);
+            this.decisionPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.decisionPreview.Location = new System.Drawing.Point(118, 6);
             this.decisionPreview.Name = "decisionPreview";
-            this.decisionPreview.Size = new System.Drawing.Size(123, 23);
+            this.decisionPreview.Size = new System.Drawing.Size(110, 23);
             this.decisionPreview.TabIndex = 4;
             this.decisionPreview.Text = "Podgląd decyzji";
             this.decisionPreview.UseVisualStyleBackColor = true;
             this.decisionPreview.Click += new System.EventHandler(this.decisionPreview_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.skillsList);
+            this.groupBox2.Location = new System.Drawing.Point(6, 162);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(270, 222);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Umiejętności";
+            // 
+            // skillsList
+            // 
+            this.skillsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.skillsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.skillColumn,
+            this.leveColumn});
+            this.skillsList.FullRowSelect = true;
+            this.skillsList.Location = new System.Drawing.Point(6, 19);
+            this.skillsList.Name = "skillsList";
+            this.skillsList.Size = new System.Drawing.Size(255, 197);
+            this.skillsList.TabIndex = 7;
+            this.skillsList.UseCompatibleStateImageBehavior = false;
+            this.skillsList.View = System.Windows.Forms.View.Details;
+            // 
+            // skillColumn
+            // 
+            this.skillColumn.Text = "Umiejętność";
+            this.skillColumn.Width = 164;
+            // 
+            // leveColumn
+            // 
+            this.leveColumn.Text = "Stopień";
+            this.leveColumn.Width = 87;
+            // 
+            // gradesPreviewButton
+            // 
+            this.gradesPreviewButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gradesPreviewButton.Location = new System.Drawing.Point(3, 6);
+            this.gradesPreviewButton.Name = "gradesPreviewButton";
+            this.gradesPreviewButton.Size = new System.Drawing.Size(109, 23);
+            this.gradesPreviewButton.TabIndex = 5;
+            this.gradesPreviewButton.Text = "Podgląd ocen";
+            this.gradesPreviewButton.UseVisualStyleBackColor = true;
+            this.gradesPreviewButton.Click += new System.EventHandler(this.gradesPreviewButton_Click);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.gradesPreviewButton, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.decisionPreview, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(27, 384);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(231, 32);
+            this.tableLayoutPanel2.TabIndex = 6;
+            // 
             // ApplicationPreviewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(271, 304);
-            this.Controls.Add(this.decisionPreview);
-            this.Controls.Add(this.gradesList);
+            this.ClientSize = new System.Drawing.Size(280, 428);
+            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.jobLabel);
             this.Controls.Add(this.groupBox1);
             this.Name = "ApplicationPreviewForm";
@@ -246,6 +309,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,7 +333,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label jobLabel;
-        private System.Windows.Forms.ListView gradesList;
         private System.Windows.Forms.Button decisionPreview;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListView skillsList;
+        private System.Windows.Forms.ColumnHeader skillColumn;
+        private System.Windows.Forms.ColumnHeader leveColumn;
+        private System.Windows.Forms.Button gradesPreviewButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }

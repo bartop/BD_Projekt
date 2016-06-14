@@ -27,5 +27,10 @@ namespace BD_Projekt.Forms
         {
             new UserAdministrationPanel().Show();
         }
+
+        private void manageStagesButton_Click(object sender, EventArgs e)
+        {
+            new StagesAdministrationPanel().Show();
+        }
     }
 }

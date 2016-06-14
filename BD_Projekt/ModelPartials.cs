@@ -49,4 +49,12 @@ namespace BD_Projekt
             }
         }
     }
+
+    public partial class Stage
+    {
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
 }
