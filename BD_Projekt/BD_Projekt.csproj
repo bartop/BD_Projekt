@@ -177,6 +177,9 @@
     <Compile Include="Posesses.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProfessionalExperience.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Recruited.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

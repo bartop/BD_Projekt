@@ -20,6 +20,7 @@ namespace BD_Projekt
             this.Posesses = new HashSet<Posesses>();
             this.Documents = new HashSet<Document>();
             this.Applications = new HashSet<Application>();
+            this.ProfessionalExperience = new HashSet<ProfessionalExperience>();
         }
     
         public int Id { get; set; }
@@ -37,5 +38,7 @@ namespace BD_Projekt
         public virtual ICollection<Document> Documents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProfessionalExperience> ProfessionalExperience { get; set; }
     }
 }

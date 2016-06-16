@@ -20,28 +20,28 @@ namespace BD_Projekt.Forms
         {
             using (var db = new ModelContainer())
             {
-                var name = loginTextBox.Text;
+                var login = loginTextBox.Text;
                 try
                 {
-                    var worker = db.WorkerSet.Where(w => w.Name == name).First();
+                    var worker = db.WorkerSet.Where(w => w.Login == login).First();
 
                     if (worker != null)
                     {
                         if (SecurePasswordHasher.Verify(passwordTextBox.Text, worker.PasswordHash))
                         {
                             Form form = null;
-                            if (worker.Roles.Name.Equals("Administrator"))
+                            if (worker.Roles.Id == Role.Administrator)
                             {
                                 form = new AdminPanel();
-                            }  else if (worker.Roles.Name.Equals("Asistant"))
+                            }  else if (worker.Roles.Id == Role.Asistant)
                             {
                                 form = new AsistantPanel();
                             }
-                            else if (worker.Roles.Name.Equals("Recruiter"))
+                            else if (worker.Roles.Id == Role.Recruiter)
                             {
                                 form = new RecruiterPanel();
                             }
-                            else if (worker.Roles.Name.Equals("Supervisor"))
+                            else if (worker.Roles.Id == Role.Supervisor)
                             {
                                 form = new SupervisorPanel(worker);
                             }

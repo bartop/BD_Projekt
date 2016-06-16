@@ -21,7 +21,7 @@ namespace BD_Projekt.Forms
                 var users = db.WorkerSet.ToList();
                 foreach (var user in users)
                 {
-                    var listItem = new ListViewItem(new string[] { user.Id.ToString(), user.Name, user.Roles.Name });
+                    var listItem = new ListViewItem(new string[] { user.Id.ToString(), user.Login, user.Name, user.Surname, user.Roles.Name });
                     usersListView.Items.Add(listItem);
                 }
             }
@@ -48,21 +48,26 @@ namespace BD_Projekt.Forms
             using (var db = new ModelContainer())
             {
                 var login = loginTextBox.Text;
+                // TODO: wtf is this Bartek?
                 var passwordHash = SecurePasswordHasher.Hash(passwordTextBox.Text);
                 if (passwordHash != SecurePasswordHasher.Hash(repeatPasswordTextBox.Text))
                 {
 
                 }
                 var worker = new Worker();
-                worker.Name = login;
+                worker.Login = login;
                 worker.PasswordHash = passwordHash;
+                worker.Name = nameTextBox.Text;
+                worker.Surname = surnameTextBox.Text;
                 worker.Roles = db.RoleSet.Where(role => role.Name == roleChooser.Text).First();
                 db.WorkerSet.Add(worker);
                 db.SaveChanges();
             }
-            loginTextBox.Text = "";
-            passwordTextBox.Text = "";
-            repeatPasswordTextBox.Text = "";
+            loginTextBox.Clear();
+            nameTextBox.Clear();
+            surnameTextBox.Clear();
+            passwordTextBox.Clear();
+            repeatPasswordTextBox.Clear();
             refreshUserList();
         }
 
@@ -74,7 +79,7 @@ namespace BD_Projekt.Forms
                 {
                     int id = int.Parse(listItem.SubItems[0].Text);
                     string name = listItem.SubItems[1].Text;
-                    db.WorkerSet.Remove(db.WorkerSet.Where(w => w.Id == id && w.Name == name).First());
+                    db.WorkerSet.Remove(db.WorkerSet.Where(w => w.Id == id).First());
                     try
                     {
                         db.SaveChanges();

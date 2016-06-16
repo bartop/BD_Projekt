@@ -19,6 +19,7 @@
     <EntitySet Name="RoleSet" EntityType="Model.Store.RoleSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DecisionSet" EntityType="Model.Store.DecisionSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ApprovalSet" EntityType="Model.Store.ApprovalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfessionalExperienceSet" EntityType="Model.Store.ProfessionalExperienceSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SkillsDocuments" EntityType="Model.Store.SkillsDocuments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="JobsStage" EntityType="Model.Store.JobsStage" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="SkillsPosesses" Association="Model.Store.SkillsPosesses">
@@ -81,10 +82,6 @@
       <End Role="Applications" EntitySet="ApplicationSet" />
       <End Role="Workers" EntitySet="WorkerSet" />
     </AssociationSet>
-    <AssociationSet Name="StageWorkers" Association="Model.Store.StageWorkers">
-      <End Role="Stage" EntitySet="StageSet" />
-      <End Role="Workers" EntitySet="WorkerSet" />
-    </AssociationSet>
     <AssociationSet Name="DecisionApplication" Association="Model.Store.DecisionApplication">
       <End Role="Decision" EntitySet="DecisionSet" />
       <End Role="Application" EntitySet="ApplicationSet" />
@@ -100,6 +97,14 @@
     <AssociationSet Name="ApprovalDecision" Association="Model.Store.ApprovalDecision">
       <End Role="Approval" EntitySet="ApprovalSet" />
       <End Role="Decision" EntitySet="DecisionSet" />
+    </AssociationSet>
+    <AssociationSet Name="StageGradeWorker" Association="Model.Store.StageGradeWorker">
+      <End Role="StageGrade" EntitySet="StageGradeSet" />
+      <End Role="Worker" EntitySet="WorkerSet" />
+    </AssociationSet>
+    <AssociationSet Name="RecruitedProfessionalExperience" Association="Model.Store.RecruitedProfessionalExperience">
+      <End Role="Recruited" EntitySet="RecruitedSet" />
+      <End Role="ProfessionalExperience" EntitySet="ProfessionalExperienceSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="RecruitedSet">
@@ -180,22 +185,24 @@
     <Property Name="Grade" Type="tinyint" Nullable="true" />
     <Property Name="Stage_Id" Type="int" Nullable="false" />
     <Property Name="Applications_Id" Type="int" Nullable="false" />
+    <Property Name="Worker_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="WorkerSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Roles_Id" Type="int" Nullable="false" />
-    <Property Name="Stage_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="RoleSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="DecisionSet">
@@ -218,6 +225,17 @@
     <Property Name="Approved" Type="bit" Nullable="false" />
     <Property Name="Worker_Id" Type="int" Nullable="false" />
     <Property Name="Decision_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfessionalExperienceSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Job" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Company" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="From" Type="datetime" Nullable="false" />
+    <Property Name="To" Type="datetime" Nullable="false" />
+    <Property Name="RecruitedId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SkillsDocuments">
     <Key>
@@ -249,7 +267,9 @@
   </Association>
   <Association Name="PosessesRecruited">
     <End Role="Posesses" Type="Model.Store.PosessesSet" Multiplicity="*" />
-    <End Role="Recruited" Type="Model.Store.RecruitedSet" Multiplicity="1" />
+    <End Role="Recruited" Type="Model.Store.RecruitedSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Recruited">
         <PropertyRef Name="Id" />
@@ -284,7 +304,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="JobsRequires">
-    <End Role="Jobs" Type="Model.Store.JobSet" Multiplicity="1" />
+    <End Role="Jobs" Type="Model.Store.JobSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Requires" Type="Model.Store.RequiresSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Jobs">
@@ -296,7 +318,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="RecruitedApplications">
-    <End Role="Recruited" Type="Model.Store.RecruitedSet" Multiplicity="1" />
+    <End Role="Recruited" Type="Model.Store.RecruitedSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Applications" Type="Model.Store.ApplicationSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Recruited">
@@ -320,7 +344,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="StageStageGrades">
-    <End Role="Stage" Type="Model.Store.StageSet" Multiplicity="1" />
+    <End Role="Stage" Type="Model.Store.StageSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="StageGrades" Type="Model.Store.StageGradeSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Stage">
@@ -332,7 +358,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ApplicationsStageGrades">
-    <End Role="Applications" Type="Model.Store.ApplicationSet" Multiplicity="1" />
+    <End Role="Applications" Type="Model.Store.ApplicationSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="StageGrades" Type="Model.Store.StageGradeSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Applications">
@@ -367,21 +395,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="StageWorkers">
-    <End Role="Stage" Type="Model.Store.StageSet" Multiplicity="0..1" />
-    <End Role="Workers" Type="Model.Store.WorkerSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Stage">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Workers">
-        <PropertyRef Name="Stage_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="DecisionApplication">
     <End Role="Decision" Type="Model.Store.DecisionSet" Multiplicity="*" />
-    <End Role="Application" Type="Model.Store.ApplicationSet" Multiplicity="1" />
+    <End Role="Application" Type="Model.Store.ApplicationSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Application">
         <PropertyRef Name="Id" />
@@ -417,13 +435,41 @@
   </Association>
   <Association Name="ApprovalDecision">
     <End Role="Approval" Type="Model.Store.ApprovalSet" Multiplicity="*" />
-    <End Role="Decision" Type="Model.Store.DecisionSet" Multiplicity="1" />
+    <End Role="Decision" Type="Model.Store.DecisionSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Decision">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Approval">
         <PropertyRef Name="Decision_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StageGradeWorker">
+    <End Role="StageGrade" Type="Model.Store.StageGradeSet" Multiplicity="*" />
+    <End Role="Worker" Type="Model.Store.WorkerSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StageGrade">
+        <PropertyRef Name="Worker_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RecruitedProfessionalExperience">
+    <End Role="Recruited" Type="Model.Store.RecruitedSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProfessionalExperience" Type="Model.Store.ProfessionalExperienceSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recruited">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfessionalExperience">
+        <PropertyRef Name="RecruitedId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -543,10 +589,6 @@
             <End Role="Applications" EntitySet="ApplicationSet" />
             <End Role="Workers" EntitySet="WorkerSet" />
           </AssociationSet>
-          <AssociationSet Name="StageWorkers" Association="Model.StageWorkers">
-            <End Role="Stage" EntitySet="StageSet" />
-            <End Role="Workers" EntitySet="WorkerSet" />
-          </AssociationSet>
           <EntitySet Name="DecisionSet" EntityType="Model.Decision" />
           <AssociationSet Name="DecisionApplication" Association="Model.DecisionApplication">
             <End Role="Decision" EntitySet="DecisionSet" />
@@ -565,6 +607,15 @@
             <End Role="Approval" EntitySet="ApprovalSet" />
             <End Role="Decision" EntitySet="DecisionSet" />
           </AssociationSet>
+          <AssociationSet Name="StageGradeWorker" Association="Model.StageGradeWorker">
+            <End Role="StageGrade" EntitySet="StageGradeSet" />
+            <End Role="Worker" EntitySet="WorkerSet" />
+          </AssociationSet>
+          <EntitySet Name="ProfessionalExperienceSet" EntityType="Model.ProfessionalExperience" />
+          <AssociationSet Name="RecruitedProfessionalExperience" Association="Model.RecruitedProfessionalExperience">
+            <End Role="Recruited" EntitySet="RecruitedSet" />
+            <End Role="ProfessionalExperience" EntitySet="ProfessionalExperienceSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Recruited">
           <Key>
@@ -581,6 +632,7 @@
           <NavigationProperty Name="Documents" Relationship="Model.DocumentsRecruited" FromRole="Recruited" ToRole="Documents" />
           <NavigationProperty Name="Applications" Relationship="Model.RecruitedApplications" FromRole="Recruited" ToRole="Applications" />
           <Property Name="Surname" Type="String" Nullable="false" />
+          <NavigationProperty Name="ProfessionalExperience" Relationship="Model.RecruitedProfessionalExperience" FromRole="Recruited" ToRole="ProfessionalExperience" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
@@ -616,11 +668,15 @@
         </Association>
         <Association Name="PosessesRecruited">
           <End Type="Model.Posesses" Role="Posesses" Multiplicity="*" />
-          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" />
+          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
         </Association>
         <Association Name="DocumentsRecruited">
-          <End Type="Model.Document" Role="Documents" Multiplicity="*" />
-          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" />
+          <End Type="Model.Document" Role="Documents" Multiplicity="*" >
+          </End>
+          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" >
+          </End>
         </Association>
         <Association Name="SkillsDocuments">
           <End Type="Model.Skill" Role="Skills" Multiplicity="*" />
@@ -650,8 +706,11 @@
           <End Type="Model.Requires" Role="Requires" Multiplicity="*" />
         </Association>
         <Association Name="JobsRequires">
-          <End Type="Model.Job" Role="Jobs" Multiplicity="1" />
-          <End Type="Model.Requires" Role="Requires" Multiplicity="*" />
+          <End Type="Model.Job" Role="Jobs" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Requires" Role="Requires" Multiplicity="*" >
+          </End>
         </Association>
         <EntityType Name="Application">
           <Key>
@@ -666,8 +725,11 @@
           <NavigationProperty Name="Decision" Relationship="Model.DecisionApplication" FromRole="Application" ToRole="Decision" />
         </EntityType>
         <Association Name="RecruitedApplications">
-          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" />
-          <End Type="Model.Application" Role="Applications" Multiplicity="*" />
+          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Application" Role="Applications" Multiplicity="*" >
+          </End>
         </Association>
         <Association Name="JobsApplications">
           <End Type="Model.Job" Role="Jobs" Multiplicity="1" />
@@ -681,7 +743,6 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="StageGrades" Relationship="Model.StageStageGrades" FromRole="Stage" ToRole="StageGrades" />
           <NavigationProperty Name="Jobs" Relationship="Model.JobsStage" FromRole="Stage" ToRole="Jobs" />
-          <NavigationProperty Name="Workers" Relationship="Model.StageWorkers" FromRole="Stage" ToRole="Workers" />
         </EntityType>
         <EntityType Name="StageGrade">
           <Key>
@@ -691,13 +752,19 @@
           <Property Name="Grade" Type="Byte" Nullable="true" />
           <NavigationProperty Name="Stage" Relationship="Model.StageStageGrades" FromRole="StageGrades" ToRole="Stage" />
           <NavigationProperty Name="Applications" Relationship="Model.ApplicationsStageGrades" FromRole="StageGrades" ToRole="Applications" />
+          <NavigationProperty Name="Worker" Relationship="Model.StageGradeWorker" FromRole="StageGrade" ToRole="Worker" />
         </EntityType>
         <Association Name="StageStageGrades">
-          <End Type="Model.Stage" Role="Stage" Multiplicity="1" />
-          <End Type="Model.StageGrade" Role="StageGrades" Multiplicity="*" />
+          <End Type="Model.Stage" Role="Stage" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.StageGrade" Role="StageGrades" Multiplicity="*" >
+          </End>
         </Association>
         <Association Name="ApplicationsStageGrades">
-          <End Type="Model.Application" Role="Applications" Multiplicity="1" />
+          <End Type="Model.Application" Role="Applications" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.StageGrade" Role="StageGrades" Multiplicity="*" />
         </Association>
         <Association Name="JobsStage">
@@ -711,17 +778,19 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Roles" Relationship="Model.RolesWorkers" FromRole="Workers" ToRole="Roles" />
           <NavigationProperty Name="Applications" Relationship="Model.ApplicationsWorkers" FromRole="Workers" ToRole="Applications" />
-          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" />
           <Property Name="PasswordHash" Type="String" Nullable="false" />
-          <NavigationProperty Name="Stage" Relationship="Model.StageWorkers" FromRole="Workers" ToRole="Stage" />
           <NavigationProperty Name="Decision" Relationship="Model.DecisionWorker" FromRole="Worker" ToRole="Decision" />
           <NavigationProperty Name="Approvals" Relationship="Model.ApprovalWorker" FromRole="Worker" ToRole="Approval" />
+          <Property Name="Surname" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="StageGrade" Relationship="Model.StageGradeWorker" FromRole="Worker" ToRole="StageGrade" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Workers" Relationship="Model.RolesWorkers" FromRole="Roles" ToRole="Workers" />
         </EntityType>
@@ -732,10 +801,6 @@
         <Association Name="ApplicationsWorkers">
           <End Type="Model.Application" Role="Applications" Multiplicity="*" />
           <End Type="Model.Worker" Role="Workers" Multiplicity="1" />
-        </Association>
-        <Association Name="StageWorkers">
-          <End Type="Model.Stage" Role="Stage" Multiplicity="0..1" />
-          <End Type="Model.Worker" Role="Workers" Multiplicity="*" />
         </Association>
         <EntityType Name="Decision">
           <Key>
@@ -751,8 +816,11 @@
           <NavigationProperty Name="Approval" Relationship="Model.ApprovalDecision" FromRole="Decision" ToRole="Approval" />
         </EntityType>
         <Association Name="DecisionApplication">
-          <End Type="Model.Decision" Role="Decision" Multiplicity="0..1" />
-          <End Type="Model.Application" Role="Application" Multiplicity="1" />
+          <End Type="Model.Decision" Role="Decision" Multiplicity="0..1" >
+          </End>
+          <End Type="Model.Application" Role="Application" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
         </Association>
         <Association Name="DecisionWorker">
           <End Type="Model.Decision" Role="Decision" Multiplicity="*" />
@@ -772,8 +840,42 @@
           <End Type="Model.Worker" Role="Worker" Multiplicity="1" />
         </Association>
         <Association Name="ApprovalDecision">
-          <End Type="Model.Approval" Role="Approval" Multiplicity="0..1" />
-          <End Type="Model.Decision" Role="Decision" Multiplicity="1" />
+          <End Type="Model.Approval" Role="Approval" Multiplicity="0..1" >
+          </End>
+          <End Type="Model.Decision" Role="Decision" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+        </Association>
+        <Association Name="StageGradeWorker">
+          <End Type="Model.StageGrade" Role="StageGrade" Multiplicity="*" />
+          <End Type="Model.Worker" Role="Worker" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ProfessionalExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Job" Type="String" Nullable="false" />
+          <Property Name="Company" Type="String" Nullable="false" />
+          <Property Name="From" Type="DateTime" Nullable="false" />
+          <Property Name="To" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Recruited" Relationship="Model.RecruitedProfessionalExperience" FromRole="ProfessionalExperience" ToRole="Recruited" />
+          <Property Name="RecruitedId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="RecruitedProfessionalExperience">
+          <End Type="Model.Recruited" Role="Recruited" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.ProfessionalExperience" Role="ProfessionalExperience" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Recruited">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfessionalExperience">
+              <PropertyRef Name="RecruitedId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -863,8 +965,10 @@
       <EntityTypeMapping TypeName="IsTypeOf(Model.Worker)">
         <MappingFragment StoreEntitySet="WorkerSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -892,6 +996,18 @@
         <MappingFragment StoreEntitySet="ApprovalSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Approved" ColumnName="Approved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfessionalExperienceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ProfessionalExperience)">
+        <MappingFragment StoreEntitySet="ProfessionalExperienceSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Job" ColumnName="Job" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="RecruitedId" ColumnName="RecruitedId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -999,15 +1115,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="StageWorkers" TypeName="Model.StageWorkers" StoreEntitySet="WorkerSet">
-      <EndProperty Name="Stage">
-        <ScalarProperty Name="Id" ColumnName="Stage_Id" />
-      </EndProperty>
-      <EndProperty Name="Workers">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-      <Condition ColumnName="Stage_Id" IsNull="false" />
-    </AssociationSetMapping>
     <AssociationSetMapping Name="DecisionApplication" TypeName="Model.DecisionApplication" StoreEntitySet="DecisionSet">
       <EndProperty Name="Application">
         <ScalarProperty Name="Id" ColumnName="Application_Id" />
@@ -1037,6 +1144,14 @@
         <ScalarProperty Name="Id" ColumnName="Decision_Id" />
       </EndProperty>
       <EndProperty Name="Approval">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StageGradeWorker" TypeName="Model.StageGradeWorker" StoreEntitySet="StageGradeSet">
+      <EndProperty Name="Worker">
+        <ScalarProperty Name="Id" ColumnName="Worker_Id" />
+      </EndProperty>
+      <EndProperty Name="StageGrade">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

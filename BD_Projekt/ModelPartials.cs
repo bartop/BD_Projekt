@@ -57,4 +57,12 @@ namespace BD_Projekt
             return Name;
         }
     }
+
+    public partial class Role
+    {
+        public const int Administrator = 0;
+        public const int Asistant = 1;
+        public const int Recruiter = 2;
+        public const int Supervisor = 3;
+    }
 }

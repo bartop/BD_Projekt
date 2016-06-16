@@ -19,7 +19,6 @@ namespace BD_Projekt
         {
             this.StageGrades = new HashSet<StageGrade>();
             this.Jobs = new HashSet<Job>();
-            this.Workers = new HashSet<Worker>();
         }
     
         public int Id { get; set; }
@@ -29,7 +28,5 @@ namespace BD_Projekt
         public virtual ICollection<StageGrade> StageGrades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Job> Jobs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Worker> Workers { get; set; }
     }
 }
