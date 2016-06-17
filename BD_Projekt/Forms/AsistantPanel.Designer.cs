@@ -275,7 +275,7 @@
             this.comboBoxLavel.Name = "comboBoxLavel";
             this.comboBoxLavel.Size = new System.Drawing.Size(52, 21);
             this.comboBoxLavel.TabIndex = 43;
-            this.comboBoxLavel.SelectedIndexChanged += new System.EventHandler(this.comboBoxLavel_SelectedIndexChanged);
+            this.comboBoxLavel.SelectedIndexChanged += new System.EventHandler(this.levelChoose);
             // 
             // label6
             // 
@@ -322,7 +322,8 @@
             this.Name = "AsistantPanel";
             this.ShowIcon = false;
             this.Text = "Panel asystentki - rejestracja";
-            this.Load += new System.EventHandler(this.positionChoose);
+            this.Load += new System.EventHandler(this.positionChoose) + new System.EventHandler(this.nationalityChoose) 
+                + new System.EventHandler(this.educationChoose) + new System.EventHandler(this.levelChoose);           
             this.ResumeLayout(false);
             this.PerformLayout();
 

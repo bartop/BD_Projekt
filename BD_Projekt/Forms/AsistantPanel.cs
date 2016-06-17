@@ -66,6 +66,7 @@ namespace BD_Projekt
                     comboBoxSkills.Enabled = true;
                     comboBoxLavel.Enabled = true;
                     buttonInclude.Enabled = true;
+                    skillChoose(sender,e);
                 }
             }
         }
@@ -176,10 +177,12 @@ namespace BD_Projekt
             {
                 using (var db = new ModelContainer())
                 {
-                    var skills = db.SkillSet.ToList();
-                    foreach (var skill in skills)
+                    var requires= db.RequiresSet.ToList();
+                    foreach (var requ in requires)
                     {
-                        comboBoxSkills.Items.Add(skill.Name);
+                        var job = db.JobSet.Where(n => n.Name == comboBoxPosition.Text).First();
+                        if(requ.Jobs == job) ;
+                        comboBoxSkills.Items.Add(requ.Skills.Name);
                     }
                 }
             }
@@ -207,9 +210,5 @@ namespace BD_Projekt
             }            
         }
 
-        private void comboBoxLavel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
