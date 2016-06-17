@@ -29,13 +29,15 @@
         <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="14.25" PointY="10.75" />
         <AssociationConnector Association="Model.RolesWorkers" />
         <AssociationConnector Association="Model.ApplicationsWorkers" />
-        <AssociationConnector Association="Model.StageWorkers" />
         <EntityTypeShape EntityType="Model.Decision" Width="1.5" PointX="2.75" PointY="6.5" />
         <AssociationConnector Association="Model.DecisionApplication" />
         <AssociationConnector Association="Model.DecisionWorker" />
         <EntityTypeShape EntityType="Model.Approval" Width="1.5" PointX="2.75" PointY="4.125" />
         <AssociationConnector Association="Model.ApprovalWorker" />
         <AssociationConnector Association="Model.ApprovalDecision" />
+        <AssociationConnector Association="Model.StageGradeWorker" />
+        <EntityTypeShape EntityType="Model.ProfessionalExperience" Width="1.5" PointX="13.875" PointY="7.25" />
+        <AssociationConnector Association="Model.RecruitedProfessionalExperience" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

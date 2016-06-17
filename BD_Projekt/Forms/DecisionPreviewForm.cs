@@ -29,7 +29,7 @@ namespace BD_Projekt.Forms
 
                 decisionLabel.Text = decision.ToString();
 
-                recruiterLabel.Text = decision.Worker.Name;
+                recruiterLabel.Text = decision.Worker.Name + " " + decision.Worker.Surname; 
 
                 if (decision.Approval != null)
                 {

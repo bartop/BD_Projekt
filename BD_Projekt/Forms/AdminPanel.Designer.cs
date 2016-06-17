@@ -30,6 +30,7 @@
         {
             this.createNewUserButton = new System.Windows.Forms.Button();
             this.createNewJobButton = new System.Windows.Forms.Button();
+            this.manageStagesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // createNewUserButton
@@ -52,11 +53,22 @@
             this.createNewJobButton.UseVisualStyleBackColor = true;
             this.createNewJobButton.Click += new System.EventHandler(this.createNewJobButtonClick);
             // 
+            // manageStagesButton
+            // 
+            this.manageStagesButton.Location = new System.Drawing.Point(12, 71);
+            this.manageStagesButton.Name = "manageStagesButton";
+            this.manageStagesButton.Size = new System.Drawing.Size(285, 23);
+            this.manageStagesButton.TabIndex = 2;
+            this.manageStagesButton.Text = "Zarządzaj etapami";
+            this.manageStagesButton.UseVisualStyleBackColor = true;
+            this.manageStagesButton.Click += new System.EventHandler(this.manageStagesButton_Click);
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 73);
+            this.ClientSize = new System.Drawing.Size(309, 100);
+            this.Controls.Add(this.manageStagesButton);
             this.Controls.Add(this.createNewJobButton);
             this.Controls.Add(this.createNewUserButton);
             this.Name = "AdminPanel";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.Button createNewUserButton;
         private System.Windows.Forms.Button createNewJobButton;
+        private System.Windows.Forms.Button manageStagesButton;
     }
 }

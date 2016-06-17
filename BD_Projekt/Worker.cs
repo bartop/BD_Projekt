@@ -20,19 +20,23 @@ namespace BD_Projekt
             this.Applications = new HashSet<Application>();
             this.Decision = new HashSet<Decision>();
             this.Approvals = new HashSet<Approval>();
+            this.StageGrade = new HashSet<StageGrade>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Login { get; set; }
         public string PasswordHash { get; set; }
+        public string Surname { get; set; }
+        public string Name { get; set; }
     
         public virtual Role Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
-        public virtual Stage Stage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Decision> Decision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Approval> Approvals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StageGrade> StageGrade { get; set; }
     }
 }

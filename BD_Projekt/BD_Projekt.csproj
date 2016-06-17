@@ -112,6 +112,12 @@
     <Compile Include="Forms\DecisionPreviewForm.Designer.cs">
       <DependentUpon>DecisionPreviewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GradesPreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GradesPreviewForm.Designer.cs">
+      <DependentUpon>GradesPreviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RefreshableForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,12 @@
     </Compile>
     <Compile Include="Forms\SkillsAdministrationPanel.Designer.cs">
       <DependentUpon>SkillsAdministrationPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StagesAdministrationPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StagesAdministrationPanel.Designer.cs">
+      <DependentUpon>StagesAdministrationPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UsersAdministrationPanel.cs">
       <SubType>Form</SubType>
@@ -163,6 +175,9 @@
     </Compile>
     <Compile Include="ModelPartials.cs" />
     <Compile Include="Posesses.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProfessionalExperience.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Recruited.cs">
@@ -250,6 +265,9 @@
     <EmbeddedResource Include="Forms\EditSkillWeightPanel.resx">
       <DependentUpon>EditSkillWeightPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GradesPreviewForm.resx">
+      <DependentUpon>GradesPreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\JobAdministrationPanel.resx">
       <DependentUpon>JobAdministrationPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RecruiterPanel.resx">
       <DependentUpon>RecruiterPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StagesAdministrationPanel.resx">
+      <DependentUpon>StagesAdministrationPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SupervisorPanel.resx">
       <DependentUpon>SupervisorPanel.cs</DependentUpon>

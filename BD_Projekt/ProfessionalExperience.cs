@@ -12,13 +12,15 @@ namespace BD_Projekt
     using System;
     using System.Collections.Generic;
     
-    public partial class StageGrade
+    public partial class ProfessionalExperience
     {
         public int Id { get; set; }
-        public Nullable<byte> Grade { get; set; }
+        public string Job { get; set; }
+        public string Company { get; set; }
+        public System.DateTime From { get; set; }
+        public System.DateTime To { get; set; }
+        public int RecruitedId { get; set; }
     
-        public virtual Stage Stage { get; set; }
-        public virtual Application Applications { get; set; }
-        public virtual Worker Worker { get; set; }
+        public virtual Recruited Recruited { get; set; }
     }
 }

@@ -40,18 +40,18 @@ namespace BD_Projekt.Forms
 
                 jobLabel.Text = application.Job.Name;
 
-                foreach (var stageGrade in application.StageGrades)
+                /*foreach (var stageGrade in application.StageGrades)
                 {
                     gradesList.Items.Add(stageGrade.Stage.Name + ": " + stageGrade.Grade);
+                }*/
+                skillsList.Items.Clear();
+                foreach (var skill in application.Recruited.Posesses)
+                {
+                    skillsList.Items.Add(new ListViewItem(new string[] { skill.Skills.Name, skill.Level.ToString() }));
                 }
 
-                if (application.Decision != null)
-                {
-                    decisionPreview.Enabled = true;
-                } else
-                {
-                    decisionPreview.Enabled = false;
-                }
+                decisionPreview.Enabled = (application.Decision != null);
+                gradesPreviewButton.Enabled = (application.StageGrades != null && application.StageGrades.Count != 0);
             }
         }
 
@@ -62,6 +62,11 @@ namespace BD_Projekt.Forms
                 var application = db.ApplicationSet.Find(applicationId);
                 new DecisionPreviewForm(application.Decision.Id).Show();
             }
+        }
+
+        private void gradesPreviewButton_Click(object sender, EventArgs e)
+        {
+            new GradesPreviewForm(applicationId).Show();
         }
     }
 }

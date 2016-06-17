@@ -38,5 +38,6 @@ namespace BD_Projekt
         public virtual DbSet<Role> RoleSet { get; set; }
         public virtual DbSet<Decision> DecisionSet { get; set; }
         public virtual DbSet<Approval> ApprovalSet { get; set; }
+        public virtual DbSet<ProfessionalExperience> ProfessionalExperienceSet { get; set; }
     }
 }
