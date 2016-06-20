@@ -18,7 +18,11 @@ delete from RecruitedSet where Name = 'Adam';*/
 insert into RequiresSet(Weight,Skills_Id,Jobs_Id)
  values(3, 10,1);*/
 
-select * from RequiresSet;
+ delete from ApplicationSet;
+ delete from ProfessionalExperienceSet;
+ delete from PosessesSet;
+
+select * from PosessesSet;
 
 
 

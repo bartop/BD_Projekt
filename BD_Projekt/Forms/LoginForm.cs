@@ -35,7 +35,7 @@ namespace BD_Projekt.Forms
                                 form = new AdminPanel();
                             }  else if (worker.Roles.Id == Role.Asistant)
                             {
-                                form = new AsistantPanel(name);
+                                form = new AsistantPanel(worker.Name);
                             }
                             else if (worker.Roles.Id == Role.Recruiter)
                             {

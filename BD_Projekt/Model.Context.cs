@@ -15,8 +15,7 @@ namespace BD_Projekt
     
     public partial class ModelContainer : DbContext
     {
-        public ModelContainer()
-            : base("name=ModelContainer")
+        public ModelContainer() : base("name=ModelContainer")
         {
         }
     
