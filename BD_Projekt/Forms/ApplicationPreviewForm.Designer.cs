@@ -50,10 +50,21 @@
             this.leveColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gradesPreviewButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.experienceList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.experienceLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -61,8 +72,10 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.experienceLabel, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.phoneLabel, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.emailLabel, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.educationLabel, 1, 3);
@@ -77,20 +90,21 @@
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 19);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(255, 84);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(546, 95);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // phoneLabel
             // 
             this.phoneLabel.AutoSize = true;
-            this.phoneLabel.Location = new System.Drawing.Point(99, 65);
+            this.phoneLabel.Location = new System.Drawing.Point(131, 65);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Size = new System.Drawing.Size(41, 13);
             this.phoneLabel.TabIndex = 11;
@@ -99,7 +113,7 @@
             // emailLabel
             // 
             this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(99, 52);
+            this.emailLabel.Location = new System.Drawing.Point(131, 52);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(41, 13);
             this.emailLabel.TabIndex = 10;
@@ -108,7 +122,7 @@
             // educationLabel
             // 
             this.educationLabel.AutoSize = true;
-            this.educationLabel.Location = new System.Drawing.Point(99, 39);
+            this.educationLabel.Location = new System.Drawing.Point(131, 39);
             this.educationLabel.Name = "educationLabel";
             this.educationLabel.Size = new System.Drawing.Size(41, 13);
             this.educationLabel.TabIndex = 9;
@@ -117,7 +131,7 @@
             // dateOfBirthLabel
             // 
             this.dateOfBirthLabel.AutoSize = true;
-            this.dateOfBirthLabel.Location = new System.Drawing.Point(99, 26);
+            this.dateOfBirthLabel.Location = new System.Drawing.Point(131, 26);
             this.dateOfBirthLabel.Name = "dateOfBirthLabel";
             this.dateOfBirthLabel.Size = new System.Drawing.Size(35, 13);
             this.dateOfBirthLabel.TabIndex = 8;
@@ -126,7 +140,7 @@
             // surnameLabel
             // 
             this.surnameLabel.AutoSize = true;
-            this.surnameLabel.Location = new System.Drawing.Point(99, 13);
+            this.surnameLabel.Location = new System.Drawing.Point(131, 13);
             this.surnameLabel.Name = "surnameLabel";
             this.surnameLabel.Size = new System.Drawing.Size(35, 13);
             this.surnameLabel.TabIndex = 7;
@@ -135,7 +149,7 @@
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(99, 0);
+            this.nameLabel.Location = new System.Drawing.Point(131, 0);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(0, 13);
             this.nameLabel.TabIndex = 6;
@@ -201,7 +215,7 @@
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(6, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(270, 116);
+            this.groupBox1.Size = new System.Drawing.Size(561, 128);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dane osobowe";
@@ -234,9 +248,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.skillsList);
-            this.groupBox2.Location = new System.Drawing.Point(6, 162);
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(270, 222);
+            this.groupBox2.Size = new System.Drawing.Size(270, 182);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Umiejętności";
@@ -252,7 +266,7 @@
             this.skillsList.FullRowSelect = true;
             this.skillsList.Location = new System.Drawing.Point(6, 19);
             this.skillsList.Name = "skillsList";
-            this.skillsList.Size = new System.Drawing.Size(255, 197);
+            this.skillsList.Size = new System.Drawing.Size(255, 157);
             this.skillsList.TabIndex = 7;
             this.skillsList.UseCompatibleStateImageBehavior = false;
             this.skillsList.View = System.Windows.Forms.View.Details;
@@ -287,20 +301,105 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.gradesPreviewButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.decisionPreview, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(27, 384);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(172, 364);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(231, 32);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.experienceList);
+            this.groupBox3.Location = new System.Drawing.Point(279, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(271, 182);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Doświadczenie";
+            // 
+            // experienceList
+            // 
+            this.experienceList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.experienceList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.experienceList.FullRowSelect = true;
+            this.experienceList.Location = new System.Drawing.Point(6, 19);
+            this.experienceList.Name = "experienceList";
+            this.experienceList.Size = new System.Drawing.Size(256, 157);
+            this.experienceList.TabIndex = 7;
+            this.experienceList.UseCompatibleStateImageBehavior = false;
+            this.experienceList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Od";
+            this.columnHeader1.Width = 49;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Do";
+            this.columnHeader2.Width = 42;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Firma";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Stanowisko";
+            this.columnHeader4.Width = 97;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.groupBox3, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 176);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(553, 188);
+            this.tableLayoutPanel3.TabIndex = 8;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 78);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Lata doświadczenia:";
+            // 
+            // experienceLabel
+            // 
+            this.experienceLabel.AutoSize = true;
+            this.experienceLabel.Location = new System.Drawing.Point(131, 78);
+            this.experienceLabel.Name = "experienceLabel";
+            this.experienceLabel.Size = new System.Drawing.Size(41, 13);
+            this.experienceLabel.TabIndex = 13;
+            this.experienceLabel.Text = "label12";
+            // 
             // ApplicationPreviewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 428);
+            this.ClientSize = new System.Drawing.Size(571, 408);
+            this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.jobLabel);
             this.Controls.Add(this.groupBox1);
             this.Name = "ApplicationPreviewForm";
@@ -311,6 +410,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,5 +441,14 @@
         private System.Windows.Forms.ColumnHeader leveColumn;
         private System.Windows.Forms.Button gradesPreviewButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ListView experienceList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label experienceLabel;
+        private System.Windows.Forms.Label label7;
     }
 }

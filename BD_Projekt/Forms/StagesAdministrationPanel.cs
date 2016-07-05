@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace BD_Projekt.Forms
 {
@@ -30,7 +31,8 @@ namespace BD_Projekt.Forms
 
             deleteButton.Enabled = (stagesList.SelectedItem != null);
             updateButton.Enabled = (stagesList.SelectedItem != null);
-            addButton.Enabled = (stagesList.SelectedItem == null);
+            nameTextBox.Enabled = (stagesList.SelectedItem != null);
+            if (stagesList.SelectedItem == null) nameTextBox.Clear();
 
         }
 
@@ -40,7 +42,8 @@ namespace BD_Projekt.Forms
             {
                 deleteButton.Enabled = (stagesList.SelectedItem != null);
                 updateButton.Enabled = (stagesList.SelectedItem != null);
-                addButton.Enabled = (stagesList.SelectedItem == null);
+                nameTextBox.Enabled = (stagesList.SelectedItem != null);
+                if (stagesList.SelectedItem == null) nameTextBox.Clear();
 
                 if (stagesList.SelectedItem != null)
                 {
@@ -69,11 +72,12 @@ namespace BD_Projekt.Forms
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (nameTextBox.Text.Length > 0)
+            String text = Interaction.InputBox("Podaj nazwę etapu", "Nazwa");
+            if (text.Length > 0)
                using (var db = new ModelContainer())
                {
                     Stage stage = new Stage();
-                    stage.Name = nameTextBox.Text;
+                    stage.Name = text;
                     db.StageSet.Add(stage);
                     db.SaveChanges();
                 }
@@ -105,6 +109,11 @@ namespace BD_Projekt.Forms
             stagesList.SelectedItem = null;
             nameTextBox.Clear();
             LoadData();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

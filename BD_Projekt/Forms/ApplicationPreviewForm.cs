@@ -37,17 +37,22 @@ namespace BD_Projekt.Forms
                 phoneLabel.Text = application.Recruited.PhoneNumber;
                 emailLabel.Text = application.Recruited.Email;
                 educationLabel.Text = application.Recruited.Education;
+                experienceLabel.Text = application.YearsOfExpirience.ToString();
 
                 jobLabel.Text = application.Job.Name;
 
-                /*foreach (var stageGrade in application.StageGrades)
-                {
-                    gradesList.Items.Add(stageGrade.Stage.Name + ": " + stageGrade.Grade);
-                }*/
                 skillsList.Items.Clear();
                 foreach (var skill in application.Recruited.Posesses)
                 {
                     skillsList.Items.Add(new ListViewItem(new string[] { skill.Skills.Name, skill.Level.ToString() }));
+                }
+
+                experienceList.Items.Clear();
+                foreach (var item in application.Recruited.ProfessionalExperience)
+                {
+                    String dateFormat = "dd.MM.yyyy";
+                    var arr = new string[] {item.From.ToString(dateFormat), item.To.ToString(dateFormat), item.Company, item.Job };
+                    experienceList.Items.Add(new ListViewItem(arr));
                 }
 
                 decisionPreview.Enabled = (application.Decision != null);
