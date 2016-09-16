@@ -8,8 +8,6 @@ namespace BD_Projekt.Forms
 {
     public partial class LoginForm : BD_Projekt.Forms.MainForm
     {
-        private Dictionary<string, Type> roleMapper;
-
         public LoginForm()
         {
             InitializeComponent();
@@ -18,7 +16,7 @@ namespace BD_Projekt.Forms
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            using (var db = new ModelContainer())
+            using (var db = new DataModelContainer())
             {
                 var login = loginTextBox.Text;
                 try
@@ -35,15 +33,14 @@ namespace BD_Projekt.Forms
                                 form = new AdminPanel();
                             }  else if (worker.Roles.Id == Role.Asistant)
                             {
-                                form = new AsistantPanel();
+                                form = new AssistantPanel(worker);
                             }
                             else if (worker.Roles.Id == Role.Recruiter)
                             {
-                                form = new RecruiterPanel();
+                                form = new RecruiterForm(worker);
                             }
                             else if (worker.Roles.Id == Role.Supervisor)
                             {
-                                form = new SupervisorPanel(worker);
                             }
 
                             form.Show();

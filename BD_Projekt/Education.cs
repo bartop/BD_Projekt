@@ -12,12 +12,14 @@ namespace BD_Projekt
     using System;
     using System.Collections.Generic;
     
-    public partial class Posesses
+    public partial class Education
     {
         public int Id { get; set; }
-        public byte Level { get; set; }
+        public System.DateTime FromYear { get; set; }
+        public string SchoolName { get; set; }
+        public System.DateTime ToYear { get; set; }
+        public string Name { get; set; }
     
         public virtual Recruited Recruited { get; set; }
-        public virtual Skill Skills { get; set; }
     }
 }

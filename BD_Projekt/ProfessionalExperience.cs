@@ -19,7 +19,6 @@ namespace BD_Projekt
         public string Company { get; set; }
         public System.DateTime From { get; set; }
         public System.DateTime To { get; set; }
-        public int RecruitedId { get; set; }
     
         public virtual Recruited Recruited { get; set; }
     }

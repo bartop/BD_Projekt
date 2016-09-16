@@ -18,7 +18,6 @@ namespace BD_Projekt
         public Skill()
         {
             this.Posesses = new HashSet<Posesses>();
-            this.Documents = new HashSet<Document>();
             this.Requires = new HashSet<Requires>();
         }
     
@@ -27,8 +26,6 @@ namespace BD_Projekt
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Posesses> Posesses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Document> Documents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requires> Requires { get; set; }
     }

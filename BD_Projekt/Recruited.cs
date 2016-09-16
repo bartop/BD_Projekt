@@ -21,12 +21,12 @@ namespace BD_Projekt
             this.Documents = new HashSet<Document>();
             this.Applications = new HashSet<Application>();
             this.ProfessionalExperience = new HashSet<ProfessionalExperience>();
+            this.Education = new HashSet<Education>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public System.DateTime DateOfBirth { get; set; }
-        public string Education { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Nationality { get; set; }
@@ -40,5 +40,7 @@ namespace BD_Projekt
         public virtual ICollection<Application> Applications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProfessionalExperience> ProfessionalExperience { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Education> Education { get; set; }
     }
 }

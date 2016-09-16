@@ -7,12 +7,11 @@
       <Diagram DiagramId="b267c23e0592455ca0dee59859094b10" Name="Diagram1" ZoomLevel="68" >
         <EntityTypeShape EntityType="Model.Recruited" Width="1.5" PointX="11.375" PointY="6.625" />
         <EntityTypeShape EntityType="Model.Skill" Width="1.5" PointX="11.375" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.Document" Width="1.5" PointX="8" PointY="3.625" />
-        <EntityTypeShape EntityType="Model.Posesses" Width="1.5" PointX="11.25" PointY="3.875" />
+        <EntityTypeShape EntityType="Model.Document" Width="1.5" PointX="7.875" PointY="7.5" />
+        <EntityTypeShape EntityType="Model.Posesses" Width="1.5" PointX="11.625" PointY="3.625" />
         <AssociationConnector Association="Model.SkillsPosesses" />
         <AssociationConnector Association="Model.PosessesRecruited" />
         <AssociationConnector Association="Model.DocumentsRecruited" />
-        <AssociationConnector Association="Model.SkillsDocuments" ></AssociationConnector>
         <EntityTypeShape EntityType="Model.Job" Width="1.5" PointX="5.125" PointY="1" />
         <EntityTypeShape EntityType="Model.Requires" Width="1.5" PointX="8.25" PointY="1" />
         <AssociationConnector Association="Model.SkillsRequires" />
@@ -36,8 +35,10 @@
         <AssociationConnector Association="Model.ApprovalWorker" />
         <AssociationConnector Association="Model.ApprovalDecision" />
         <AssociationConnector Association="Model.StageGradeWorker" />
-        <EntityTypeShape EntityType="Model.ProfessionalExperience" Width="1.5" PointX="13.875" PointY="7.25" />
+        <EntityTypeShape EntityType="Model.ProfessionalExperience" Width="1.5" PointX="14.25" PointY="8.375" />
         <AssociationConnector Association="Model.RecruitedProfessionalExperience" />
+        <EntityTypeShape EntityType="Model.CV" Width="1.5" PointX="14.5" PointY="6.5" />
+        <AssociationConnector Association="Model.gives" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

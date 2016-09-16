@@ -18,7 +18,6 @@ namespace BD_Projekt
         public Nullable<byte> Grade { get; set; }
     
         public virtual Stage Stage { get; set; }
-        public virtual Application Applications { get; set; }
-        public virtual Worker Worker { get; set; }
+        public virtual Application Application { get; set; }
     }
 }

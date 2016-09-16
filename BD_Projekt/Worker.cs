@@ -19,8 +19,7 @@ namespace BD_Projekt
         {
             this.Applications = new HashSet<Application>();
             this.Decision = new HashSet<Decision>();
-            this.Approvals = new HashSet<Approval>();
-            this.StageGrade = new HashSet<StageGrade>();
+            this.Approval = new HashSet<Approval>();
         }
     
         public int Id { get; set; }
@@ -35,8 +34,6 @@ namespace BD_Projekt
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Decision> Decision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Approval> Approvals { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StageGrade> StageGrade { get; set; }
+        public virtual ICollection<Approval> Approval { get; set; }
     }
 }

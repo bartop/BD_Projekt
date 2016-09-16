@@ -27,11 +27,6 @@ namespace BD_Projekt
                 representation = "Odrzucony";
             }
 
-            if (Resigned)
-            {
-                representation += ", zrezygnował";
-            }
-
             return representation;
         }
     }

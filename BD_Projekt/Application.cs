@@ -17,17 +17,16 @@ namespace BD_Projekt
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Application()
         {
-            this.StageGrades = new HashSet<StageGrade>();
+            this.StageGrade = new HashSet<StageGrade>();
         }
     
         public int Id { get; set; }
-        public byte YearsOfExpirience { get; set; }
     
         public virtual Recruited Recruited { get; set; }
         public virtual Job Job { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StageGrade> StageGrades { get; set; }
         public virtual Worker Assistant { get; set; }
         public virtual Decision Decision { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StageGrade> StageGrade { get; set; }
     }
 }

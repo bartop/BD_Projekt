@@ -63,6 +63,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -77,46 +78,100 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Approval.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Decision.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Document.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ChangeJobNameForm.cs">
+    <Compile Include="Education.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DecisionPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ChangeJobNameForm.Designer.cs">
+    <Compile Include="Forms\DecisionPanel.Designer.cs">
+      <DependentUpon>DecisionPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Recruiter\ApplicationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recruiter\ApplicationList.Designer.cs">
+      <DependentUpon>ApplicationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assistant\ApplicationAdministrationPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assistant\ApplicationAdministrationPanel.Designer.cs">
+      <DependentUpon>ApplicationAdministrationPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Assistant\AssistantPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Assistant\AssistantPanel.Designer.cs">
+      <DependentUpon>AssistantPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\ChangeJobNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\ChangeJobNameForm.Designer.cs">
       <DependentUpon>ChangeJobNameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditSkillWeightPanel.cs">
+    <Compile Include="Forms\Admin\EditSkillWeightPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditSkillWeightPanel.Designer.cs">
+    <Compile Include="Forms\Admin\EditSkillWeightPanel.Designer.cs">
       <DependentUpon>EditSkillWeightPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ApplicationPreviewForm.cs">
+    <Compile Include="Forms\Assistant\EducationAdministrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ApplicationPreviewForm.Designer.cs">
-      <DependentUpon>ApplicationPreviewForm.cs</DependentUpon>
+    <Compile Include="Forms\Assistant\EducationAdministrationForm.Designer.cs">
+      <DependentUpon>EducationAdministrationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DecisionPreviewForm.cs">
+    <Compile Include="Forms\Assistant\ExpirienceManagmentPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DecisionPreviewForm.Designer.cs">
-      <DependentUpon>DecisionPreviewForm.cs</DependentUpon>
+    <Compile Include="Forms\Assistant\ExpirienceManagmentPanel.Designer.cs">
+      <DependentUpon>ExpirienceManagmentPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GradesPreviewForm.cs">
+    <Compile Include="Forms\Admin\JobStagesAdministration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\GradesPreviewForm.Designer.cs">
-      <DependentUpon>GradesPreviewForm.cs</DependentUpon>
+    <Compile Include="Forms\Admin\JobStagesAdministration.Designer.cs">
+      <DependentUpon>JobStagesAdministration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Recruiter\RecruitedList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recruiter\RecruitedList.Designer.cs">
+      <DependentUpon>RecruitedList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Recruiter\RecruiterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recruiter\RecruiterForm.Designer.cs">
+      <DependentUpon>RecruiterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\RefreshableForm.cs">
       <SubType>Form</SubType>
@@ -124,10 +179,10 @@
     <Compile Include="Forms\RefreshableForm.Designer.cs">
       <DependentUpon>RefreshableForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\JobAdministrationPanel.cs">
+    <Compile Include="Forms\Admin\JobAdministrationPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\JobAdministrationPanel.Designer.cs">
+    <Compile Include="Forms\Admin\JobAdministrationPanel.Designer.cs">
       <DependentUpon>JobAdministrationPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
@@ -136,58 +191,49 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SkillsAdministrationPanel.cs">
+    <Compile Include="Forms\Admin\SkillsAdministrationPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SkillsAdministrationPanel.Designer.cs">
+    <Compile Include="Forms\Admin\SkillsAdministrationPanel.Designer.cs">
       <DependentUpon>SkillsAdministrationPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\StagesAdministrationPanel.cs">
+    <Compile Include="Forms\Admin\StagesAdministrationPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\StagesAdministrationPanel.Designer.cs">
+    <Compile Include="Forms\Admin\StagesAdministrationPanel.Designer.cs">
       <DependentUpon>StagesAdministrationPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UsersAdministrationPanel.cs">
+    <Compile Include="Forms\Recruiter\SkillLevelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\UsersAdministrationPanel.Designer.cs">
-      <DependentUpon>UsersAdministrationPanel.cs</DependentUpon>
+    <Compile Include="Forms\Recruiter\SkillLevelForm.Designer.cs">
+      <DependentUpon>SkillLevelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Recruiter\StageGradePanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recruiter\StageGradePanel.Designer.cs">
+      <DependentUpon>StageGradePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Job.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.Conetext.cs" />
-    <Compile Include="Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Designer.cs">
-      <DependentUpon>Model.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Model.Context.cs" />
     <Compile Include="ModelPartials.cs" />
     <Compile Include="Posesses.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProfessionalExperience.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Recruited.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Requires.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SecurePasswordHasher.cs" />
     <Compile Include="Forms\LoginForm.cs">
@@ -196,80 +242,80 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\RecruiterPanel.cs">
+    <Compile Include="Forms\Assistant\RecruitedAdministrationPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\RecruiterPanel.Designer.cs">
-      <DependentUpon>RecruiterPanel.cs</DependentUpon>
+    <Compile Include="Forms\Assistant\RecruitedAdministrationPanel.Designer.cs">
+      <DependentUpon>RecruitedAdministrationPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SupervisorPanel.cs">
+    <Compile Include="Forms\Assistant\AddFilePanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SupervisorPanel.Designer.cs">
-      <DependentUpon>SupervisorPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AsistantPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AsistantPanel.Designer.cs">
-      <DependentUpon>AsistantPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AddFilePanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AddFilePanel.Designer.cs">
+    <Compile Include="Forms\Assistant\AddFilePanel.Designer.cs">
       <DependentUpon>AddFilePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AdminPanel.cs">
+    <Compile Include="Forms\Admin\AdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AdminPanel.Designer.cs">
+    <Compile Include="Forms\Admin\AdminPanel.Designer.cs">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UserAdministrationPanel.cs">
+    <Compile Include="Forms\Admin\UserAdministrationPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\UserAdministrationPanel.Designer.cs">
+    <Compile Include="Forms\Admin\UserAdministrationPanel.Designer.cs">
       <DependentUpon>UserAdministrationPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\JobRequirementsPanel.cs">
+    <Compile Include="Forms\Admin\JobRequirementsPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\JobRequirementsPanel.Designer.cs">
+    <Compile Include="Forms\Admin\JobRequirementsPanel.Designer.cs">
       <DependentUpon>JobRequirementsPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Skill.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Stage.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StageGrade.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Worker.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\ApplicationPreviewForm.resx">
-      <DependentUpon>ApplicationPreviewForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DecisionPanel.resx">
+      <DependentUpon>DecisionPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChangeJobNameForm.resx">
+    <EmbeddedResource Include="Forms\Recruiter\ApplicationList.resx">
+      <DependentUpon>ApplicationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assistant\ApplicationAdministrationPanel.resx">
+      <DependentUpon>ApplicationAdministrationPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assistant\AssistantPanel.resx">
+      <DependentUpon>AssistantPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\ChangeJobNameForm.resx">
       <DependentUpon>ChangeJobNameForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DecisionPreviewForm.resx">
-      <DependentUpon>DecisionPreviewForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Assistant\EducationAdministrationForm.resx">
+      <DependentUpon>EducationAdministrationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditSkillWeightPanel.resx">
+    <EmbeddedResource Include="Forms\Admin\EditSkillWeightPanel.resx">
       <DependentUpon>EditSkillWeightPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GradesPreviewForm.resx">
-      <DependentUpon>GradesPreviewForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Assistant\ExpirienceManagmentPanel.resx">
+      <DependentUpon>ExpirienceManagmentPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\JobAdministrationPanel.resx">
+    <EmbeddedResource Include="Forms\Admin\JobAdministrationPanel.resx">
       <DependentUpon>JobAdministrationPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\JobStagesAdministration.resx">
+      <DependentUpon>JobStagesAdministration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -277,31 +323,40 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SkillsAdministrationPanel.resx">
+    <EmbeddedResource Include="Forms\Recruiter\RecruitedList.resx">
+      <DependentUpon>RecruitedList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Recruiter\RecruiterForm.resx">
+      <DependentUpon>RecruiterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RefreshableForm.resx">
+      <DependentUpon>RefreshableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\SkillsAdministrationPanel.resx">
       <DependentUpon>SkillsAdministrationPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RecruiterPanel.resx">
-      <DependentUpon>RecruiterPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StagesAdministrationPanel.resx">
+    <EmbeddedResource Include="Forms\Admin\StagesAdministrationPanel.resx">
       <DependentUpon>StagesAdministrationPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SupervisorPanel.resx">
-      <DependentUpon>SupervisorPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Recruiter\SkillLevelForm.resx">
+      <DependentUpon>SkillLevelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AsistantPanel.resx">
-      <DependentUpon>AsistantPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Recruiter\StageGradePanel.resx">
+      <DependentUpon>StageGradePanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddFilePanel.resx">
+    <EmbeddedResource Include="Forms\Assistant\RecruitedAdministrationPanel.resx">
+      <DependentUpon>RecruitedAdministrationPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Assistant\AddFilePanel.resx">
       <DependentUpon>AddFilePanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AdminPanel.resx">
+    <EmbeddedResource Include="Forms\Admin\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UserAdministrationPanel.resx">
+    <EmbeddedResource Include="Forms\Admin\UserAdministrationPanel.resx">
       <DependentUpon>UserAdministrationPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\JobRequirementsPanel.resx">
+    <EmbeddedResource Include="Forms\Admin\JobRequirementsPanel.resx">
       <DependentUpon>JobRequirementsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -313,12 +368,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Model.edmx">
+    <EntityDeploy Include="DataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <None Include="App.Config" />
+    <None Include="DataModel.edmx.diagram">
+      <DependentUpon>DataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -332,21 +388,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="databaseInit.sql" />
-    <Content Include="insertApplication.sql" />
-    <Content Include="Model.Context.tt">
+    <Content Include="DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
+      <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Model.edmx.sql" />
-    <Content Include="Model.tt">
+    <Content Include="DataModel.edmx.sql" />
+    <Content Include="DataModel_good.edmx.sql" />
+    <Content Include="DataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.cs</LastGenOutput>
-      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>DataModel.cs</LastGenOutput>
+      <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

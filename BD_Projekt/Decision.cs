@@ -16,12 +16,10 @@ namespace BD_Projekt
     {
         public int Id { get; set; }
         public string Explanation { get; set; }
-        public bool Empolyed { get; set; }
-        public bool Resigned { get; set; }
         public bool Accepted { get; set; }
     
-        public virtual Application Application { get; set; }
         public virtual Worker Worker { get; set; }
+        public virtual Application Application { get; set; }
         public virtual Approval Approval { get; set; }
     }
 }

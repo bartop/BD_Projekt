@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="58d7e80684c94772b47841eea3a6c0b3" Name="Diagram1" ZoomLevel="71" >
+        <EntityTypeShape EntityType="DataModel.Recruited" Width="1.5" PointX="6.75" PointY="6.875" />
+        <EntityTypeShape EntityType="DataModel.Skill" Width="1.5" PointX="12.75" PointY="7" />
+        <EntityTypeShape EntityType="DataModel.Document" Width="1.5" PointX="3.875" PointY="4" />
+        <EntityTypeShape EntityType="DataModel.Posesses" Width="1.5" PointX="10" PointY="7.5" />
+        <EntityTypeShape EntityType="DataModel.Job" Width="1.5" PointX="9.375" PointY="2" />
+        <EntityTypeShape EntityType="DataModel.Requires" Width="1.5" PointX="12.25" PointY="3.875" />
+        <EntityTypeShape EntityType="DataModel.Application" Width="1.5" PointX="21.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DataModel.Stage" Width="1.5" PointX="14.5" PointY="9.125" />
+        <EntityTypeShape EntityType="DataModel.StageGrade" Width="1.5" PointX="18.875" PointY="9.125" />
+        <EntityTypeShape EntityType="DataModel.Worker" Width="1.5" PointX="24" PointY="8.875" />
+        <EntityTypeShape EntityType="DataModel.Role" Width="1.5" PointX="15.875" PointY="3.75" />
+        <EntityTypeShape EntityType="DataModel.Decision" Width="1.5" PointX="21.25" PointY="10.5" />
+        <EntityTypeShape EntityType="DataModel.Approval" Width="1.5" PointX="15.875" PointY="6.125" />
+        <EntityTypeShape EntityType="DataModel.ProfessionalExperience" Width="2.25" PointX="3.75" PointY="11.25" />
+        <AssociationConnector Association="DataModel.PosessesRecruited" />
+        <AssociationConnector Association="DataModel.DocumentsRecruited" />
+        <AssociationConnector Association="DataModel.RecruitedApplications" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="DataModel.RecruitedProfessionalExperience" />
+        <AssociationConnector Association="DataModel.SkillsPosesses" />
+        <AssociationConnector Association="DataModel.SkillsRequires" />
+        <AssociationConnector Association="DataModel.JobsRequires" />
+        <AssociationConnector Association="DataModel.JobsApplications" />
+        <AssociationConnector Association="DataModel.JobsStage" />
+        <AssociationConnector Association="DataModel.StageStageGrades" />
+        <AssociationConnector Association="DataModel.RolesWorkers" />
+        <AssociationConnector Association="DataModel.ApplicationsWorkers" ManuallyRouted="true" >
+          <ConnectorPoint PointX="23.03125" PointY="6.922587890625" />
+          <ConnectorPoint PointX="23.03125" PointY="9.9561428599056114" />
+          <ConnectorPoint PointX="24" PointY="9.9561428599056114" />
+        </AssociationConnector>
+        <AssociationConnector Association="DataModel.DecisionWorker" />
+        <AssociationConnector Association="DataModel.DecisionApplication" />
+        <AssociationConnector Association="DataModel.ApprovalWorker" ManuallyRouted="true" >
+          <ConnectorPoint PointX="16.463070712890627" PointY="7.9129850260416656" />
+          <ConnectorPoint PointX="16.463070712890627" PointY="8.96875" />
+          <ConnectorPoint PointX="16.866954523111982" PointY="8.96875" />
+          <ConnectorPoint PointX="17.033621189778646" PointY="8.96875" />
+          <ConnectorPoint PointX="19.541666666666668" PointY="8.96875" />
+          <ConnectorPoint PointX="19.708333333333332" PointY="8.96875" />
+          <ConnectorPoint PointX="22.166666666666668" PointY="8.96875" />
+          <ConnectorPoint PointX="22.333333333333332" PointY="8.96875" />
+          <ConnectorPoint PointX="22.947916666666668" PointY="8.96875" />
+          <ConnectorPoint PointX="23.114583333333332" PointY="8.96875" />
+          <ConnectorPoint PointX="24" PointY="8.96875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="DataModel.Education" Width="1.5" PointX="3.375" PointY="8.5" />
+        <AssociationConnector Association="DataModel.RecruitedEducation" />
+        <AssociationConnector Association="DataModel.ApplicationStageGrade" />
+        <AssociationConnector Association="DataModel.DecisionApproval" ManuallyRouted="true" >
+          <ConnectorPoint PointX="21.25" PointY="11.63266651259725" />
+          <ConnectorPoint PointX="16.950287856445314" PointY="11.63266651259725" />
+          <ConnectorPoint PointX="16.950287856445314" PointY="7.9129850260416656" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

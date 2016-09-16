@@ -26,10 +26,10 @@ namespace BD_Projekt.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string='data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=""D:\Dokumenty\Visual Studio 2015\Databases\database.mdf"";integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework'")]
-        public string ModelContainer {
+        [global::System.Configuration.DefaultSettingValueAttribute(@"metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string='data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=""D:\Dokumenty\Visual Studio 2015\Databases\bd5.mdf"";integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework'")]
+        public string DataModelContainer {
             get {
-                return ((string)(this["ModelContainer"]));
+                return ((string)(this["DataModelContainer"]));
             }
         }
     }
