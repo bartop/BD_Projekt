@@ -107,11 +107,17 @@
     <Compile Include="Education.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DecisionPanel.cs">
+    <Compile Include="Forms\Supervisor\AcceptedList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DecisionPanel.Designer.cs">
-      <DependentUpon>DecisionPanel.cs</DependentUpon>
+    <Compile Include="Forms\Supervisor\AcceptedList.Designer.cs">
+      <DependentUpon>AcceptedList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Supervisor\DecidedApplicationsPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Supervisor\DecidedApplicationsPanel.Designer.cs">
+      <DependentUpon>DecidedApplicationsPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Recruiter\ApplicationList.cs">
       <SubType>Form</SubType>
@@ -215,6 +221,24 @@
     <Compile Include="Forms\Recruiter\StageGradePanel.Designer.cs">
       <DependentUpon>StageGradePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Recruiter\DecisionPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Recruiter\DecisionPanel.Designer.cs">
+      <DependentUpon>DecisionPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Supervisor\DetailsPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Supervisor\DetailsPanel.Designer.cs">
+      <DependentUpon>DetailsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Supervisor\SupervisorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Supervisor\SupervisorForm.Designer.cs">
+      <DependentUpon>SupervisorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Job.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -287,8 +311,11 @@
     <Compile Include="Worker.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\DecisionPanel.resx">
-      <DependentUpon>DecisionPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Supervisor\AcceptedList.resx">
+      <DependentUpon>AcceptedList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Supervisor\DecidedApplicationsPanel.resx">
+      <DependentUpon>DecidedApplicationsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Recruiter\ApplicationList.resx">
       <DependentUpon>ApplicationList.cs</DependentUpon>
@@ -358,6 +385,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\JobRequirementsPanel.resx">
       <DependentUpon>JobRequirementsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Recruiter\DecisionPanel.resx">
+      <DependentUpon>DecisionPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Supervisor\DetailsPanel.resx">
+      <DependentUpon>DetailsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Supervisor\SupervisorForm.resx">
+      <DependentUpon>SupervisorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

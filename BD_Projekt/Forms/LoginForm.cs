@@ -21,11 +21,12 @@ namespace BD_Projekt.Forms
                 var login = loginTextBox.Text;
                 try
                 {
-                    var worker = db.WorkerSet.Where(w => w.Login == login).First();
+                    var worker = db.WorkerSet.Where(w => w.Login == login).Single();
 
                     if (worker != null)
                     {
-                        if (SecurePasswordHasher.Verify(passwordTextBox.Text, worker.PasswordHash))
+                        if (SecurePasswordHasher
+                            .Verify(passwordTextBox.Text, worker.PasswordHash))
                         {
                             Form form = null;
                             if (worker.Roles.Id == Role.Administrator)
@@ -41,6 +42,7 @@ namespace BD_Projekt.Forms
                             }
                             else if (worker.Roles.Id == Role.Supervisor)
                             {
+                               form = new SupervisorForm(worker);
                             }
 
                             form.Show();

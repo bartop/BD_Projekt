@@ -12,9 +12,9 @@ namespace BD_Projekt.Forms
 {
     public partial class DecisionPanel : Form
     {
-        Recruited recruited;
-        Worker recruiter;
-        Application application;
+        private Recruited recruited;
+        private Worker recruiter;
+        private Application application;
 
         public DecisionPanel(Recruited recruitedArg,
             Worker recruiterArg,
@@ -31,6 +31,43 @@ namespace BD_Projekt.Forms
             refreshStageGradesList();
             refreshSkillLevelsList();
 
+
+            using (var db = new DataModelContainer())
+            {
+                var job = db.ApplicationSet
+                    .Where(a => a.Id == application.Id)
+                    .Single().Job;
+
+                recruitedTextBox.Text = recruited.Name + " " + recruited.Surname;
+                positionTextBox.Text = job.Name;
+
+                if (db.ApplicationSet
+                    .Where(a => a.Id == application.Id)
+                    .Single()
+                    .Decision != null)
+                {
+                    overwriteWarningLabel.Visible = true;       
+                }
+                var possesedSkills = db.PosessesSet
+                    .Where(p => p.Recruited.Id == recruited.Id)
+                    .Select(p => p.Skills);
+                var requiredSkills = db.RequiresSet
+                    .Where(r => r.Jobs.Id == job.Id)
+                    .Select(r => r.Skills);
+                bool isSubset = !requiredSkills.Except(possesedSkills).Any();
+                if (!isSubset) skillsWarning.Visible = true;
+
+                var gradedStages = db.StageGradeSet
+                    .Where(sg => sg.Application.Id == application.Id)
+                    .Select(sg => sg.Stage);
+                var requiredStages = db.ApplicationSet
+                    .Where(a => a.Id == application.Id)
+                    .Single()
+                    .Job
+                    .Stage;
+                isSubset = !requiredStages.Except(gradedStages).Any();
+                if (!isSubset) stagesWarning.Visible = true;
+            }
         }
 
         private void refreshEducationListView()
@@ -148,16 +185,23 @@ namespace BD_Projekt.Forms
         {
             using (var db = new DataModelContainer())
             {
-                var app = db.ApplicationSet.Where(a => a.Id == application.Id).Single();
+                var app = db.ApplicationSet
+                    .Where(a => a.Id == application.Id)
+                    .Single();
+                var rec = db.WorkerSet
+                    .Where(r => r.Id == recruiter.Id)
+                    .Single();
                 if (app.Decision != null)
                     db.DecisionSet.Remove(app.Decision);
                 Decision dec = new Decision();
                 dec.Accepted = positiveRadioButton.Checked;
                 dec.Application = app;
                 dec.Explanation = explanationTextBox.Text;
+                dec.Worker = rec;
                 db.DecisionSet.Add(dec);
                 db.SaveChanges();
             }
+            Close();
         }
     }
 }

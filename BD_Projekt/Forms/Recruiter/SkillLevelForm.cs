@@ -33,6 +33,14 @@ namespace BD_Projekt.Forms
             using (var db = new DataModelContainer())
             {
                 skillsNames = db.SkillSet.Select(s => s.Name).ToList();
+                List<string> possessedSkills = db.RecruitedSet
+                    .Where(r => r.Id == recruited.Id)
+                    .Single()
+                    .Posesses
+                    .Select(p => p.Skills)
+                    .Select(s => s.Name).ToList();
+
+                skillsNames = new List<string>(skillsNames.Except(possessedSkills));
             }
             skillsComboBox.Items.Clear();
             foreach (var skillName in skillsNames)
@@ -77,6 +85,7 @@ namespace BD_Projekt.Forms
                 db.SaveChanges();
             }
             refreshSkillLevelsList();
+            refreshSkillBox();
         }
 
         private void deleteSkillGradeButtonClick(object sender, EventArgs e)
@@ -93,6 +102,7 @@ namespace BD_Projekt.Forms
                 }
             }
             refreshSkillLevelsList();
+            refreshSkillBox();
         }
     }
 }

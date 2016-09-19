@@ -37,6 +37,13 @@ namespace BD_Projekt.Forms
             {
                 var jo = db.JobSet.Where(j => j.Id == job.Id).Single();
                 stages = jo.Stage.ToList();
+                var gradedStages = db.ApplicationSet
+                    .Where(a => a.Recruited.Id == recruited.Id
+                    && a.Job.Id == job.Id)
+                    .Single()
+                    .StageGrade
+                    .Select(sg => sg.Stage);
+                stages = new List<Stage>(stages.Except(gradedStages));
             }
             stageComboBox.Items.Clear();
             foreach(var stage in stages)
@@ -90,6 +97,7 @@ namespace BD_Projekt.Forms
                 db.SaveChanges();
             }
             refreshStageGradesList();
+            refreshStagesBox();
         }
 
         private void removeStageGradeButtonClicked(object sender, EventArgs e)
@@ -112,6 +120,7 @@ namespace BD_Projekt.Forms
                 }
             }
             refreshStageGradesList();
+            refreshStagesBox();
         }
     }
 }
