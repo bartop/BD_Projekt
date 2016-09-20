@@ -51,6 +51,11 @@ namespace BD_Projekt.Forms
 
         private void addExpirienceButtonClicked(object sender, EventArgs e)
         {
+            if (!validateFormFields())
+            {
+                return;
+            }
+
             var expirience = new ProfessionalExperience();
             expirience.Company = companyNameTextBox.Text;
             expirience.Job = positionNameTextBox.Text;
@@ -79,6 +84,23 @@ namespace BD_Projekt.Forms
                 }
             }
             refreshExpirienceListView();
+        }
+
+        private bool validateFormFields()
+        {
+            if (companyNameTextBox.Text.Count() < 1 || positionNameTextBox.Text.Count() < 1)
+            {
+                MessageBox.Show("Wypełnij wszystkie pola!", "Błąd");
+                return false;
+            }
+
+            if (fromTimePicker.Value.Date > toTimePicker.Value.Date)
+            {
+                MessageBox.Show("Niepoprawnie podane daty!", "Błąd");
+                return false;
+            }
+
+            return true;
         }
     }
 }
