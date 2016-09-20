@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,18 @@ namespace BD_Projekt.Forms
     {
         private Recruited recruited;
 
-        public AddFilePanel(Recruited recruitedArg)
+        public AddFilePanel(Recruited recruitedArg, bool allowEdit = true)
         {
             InitializeComponent();
             recruited = recruitedArg;
             recuitedTextBox.Text = recruited.Name + " " + recruited.Surname;
             refreshDocumentsList();
+
+            if (!allowEdit)
+            {
+                addFileButton.Visible = false;
+                removeFileButton.Visible = false;
+            }
         }
 
         private void refreshDocumentsList()
@@ -49,10 +56,11 @@ namespace BD_Projekt.Forms
             var paths = openFileDialog1.FileNames;
             foreach(var path in paths)
             {
-                var buffer = System.IO.File.ReadAllBytes(path);
+                var buffer = File.ReadAllBytes(path);
                 var doc = new Document();
                 doc.File = buffer;
-                doc.Name = path;
+                doc.Name = Path.GetFileNameWithoutExtension(path);
+                doc.Extension = Path.GetExtension(path);
                 using (var db = new DataModelContainer())
                 {
                     db.RecruitedSet.Attach(recruited);
@@ -81,6 +89,21 @@ namespace BD_Projekt.Forms
                 }
             }
             refreshDocumentsList();
+        }
+
+        private void openFileButtonClicked(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in documentsListView.SelectedItems)
+            {
+                int id = int.Parse(item.SubItems[0].Text);
+                using (var db = new DataModelContainer())
+                {
+                    var doc = db.DocumentSet.Where(d => d.Id == id).Single();
+                    var filePath = Path.GetTempPath() + doc.Name + doc.Extension;
+                    File.WriteAllBytes(filePath, doc.File);
+                    System.Diagnostics.Process.Start(@filePath);
+                }
+            }
         }
     }
 }

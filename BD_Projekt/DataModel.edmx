@@ -125,6 +125,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="File" Type="varbinary(max)" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Extension" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Recruited_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PosessesSet">
@@ -624,9 +625,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="File" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="File" Type="Binary" Nullable="false" FixedLength="false" MaxLength="Max" />
           <NavigationProperty Name="Recruited" Relationship="DataModel.DocumentsRecruited" FromRole="Document" ToRole="Recruited" />
           <Property Name="Name" Type="String" />
+          <Property Name="Extension" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="Posesses">
           <Key>
@@ -884,6 +886,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="File" ColumnName="File" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -49,7 +49,7 @@
             this.refreshListBoxLabel = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.manageDocuments = new System.Windows.Forms.Button();
-            this.closeWindowButton = new System.Windows.Forms.Button();
+            this.showDataButton = new System.Windows.Forms.Button();
             this.manageApplications = new System.Windows.Forms.Button();
             this.manageEducation = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
@@ -221,7 +221,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.manageDocuments, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.closeWindowButton, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.showDataButton, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.manageApplications, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.manageEducation, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.removeButton, 0, 0);
@@ -246,16 +246,16 @@
             this.manageDocuments.UseVisualStyleBackColor = true;
             this.manageDocuments.Click += new System.EventHandler(this.manageDocumentsButtonClicked);
             // 
-            // closeWindowButton
+            // showDataButton
             // 
-            this.closeWindowButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.closeWindowButton.Location = new System.Drawing.Point(235, 58);
-            this.closeWindowButton.Name = "closeWindowButton";
-            this.closeWindowButton.Size = new System.Drawing.Size(227, 23);
-            this.closeWindowButton.TabIndex = 16;
-            this.closeWindowButton.Text = "Zamknij okno";
-            this.closeWindowButton.UseVisualStyleBackColor = true;
-            this.closeWindowButton.Click += new System.EventHandler(this.closeWindowButtonClicked);
+            this.showDataButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.showDataButton.Location = new System.Drawing.Point(235, 58);
+            this.showDataButton.Name = "showDataButton";
+            this.showDataButton.Size = new System.Drawing.Size(227, 23);
+            this.showDataButton.TabIndex = 16;
+            this.showDataButton.Text = "Wyświetl dane osobowe";
+            this.showDataButton.UseVisualStyleBackColor = true;
+            this.showDataButton.Click += new System.EventHandler(this.showDataButtonClicked);
             // 
             // manageApplications
             // 
@@ -357,6 +357,6 @@
         private System.Windows.Forms.Button manageApplications;
         private System.Windows.Forms.Button manageEducation;
         private System.Windows.Forms.Button manageDocuments;
-        private System.Windows.Forms.Button closeWindowButton;
+        private System.Windows.Forms.Button showDataButton;
     }
 }

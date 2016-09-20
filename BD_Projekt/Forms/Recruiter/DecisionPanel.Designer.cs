@@ -454,7 +454,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(658, 390);
+            this.ClientSize = new System.Drawing.Size(605, 888);
             this.Controls.Add(this.stagesWarning);
             this.Controls.Add(this.skillsWarning);
             this.Controls.Add(this.overwriteWarningLabel);

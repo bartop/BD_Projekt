@@ -18,7 +18,7 @@ namespace BD_Projekt.Forms
 
         public DecisionPanel(Recruited recruitedArg,
             Worker recruiterArg,
-            Application applicationArg)
+            Application applicationArg, bool readOnly = false)
         {
             InitializeComponent();
 
@@ -41,13 +41,39 @@ namespace BD_Projekt.Forms
                 recruitedTextBox.Text = recruited.Name + " " + recruited.Surname;
                 positionTextBox.Text = job.Name;
 
-                if (db.ApplicationSet
+
+                var decision = db.ApplicationSet
                     .Where(a => a.Id == application.Id)
                     .Single()
-                    .Decision != null)
+                    .Decision;
+
+                if (decision != null)
                 {
-                    overwriteWarningLabel.Visible = true;       
+                    overwriteWarningLabel.Visible = true;
+
+                    explanationTextBox.Text = decision.Explanation;
+                    if (decision.Accepted)
+                    {
+                        positiveRadioButton.Select();
+                    }
+                    else
+                    {
+                        negativeRadioButton.Select();
+                    }
+                } 
+
+                if (readOnly)
+                {
+                    overwriteWarningLabel.Visible = false;
+                    skillsWarning.Visible = false;
+                    stagesWarning.Visible = false;
+                    positiveRadioButton.Enabled = false;
+                    negativeRadioButton.Enabled = false;
+                    addDecisionButton.Visible = false;
+                    explanationTextBox.ReadOnly = true;
+                    explanationTextBox.BackColor = System.Drawing.SystemColors.Window;
                 }
+
                 var possesedSkills = db.PosessesSet
                     .Where(p => p.Recruited.Id == recruited.Id)
                     .Select(p => p.Skills);
@@ -146,17 +172,20 @@ namespace BD_Projekt.Forms
             skillLevelListView.Items.Clear();
             using (var db = new DataModelContainer())
             {
+                double average = 0;
                 var skillLevels = db.PosessesSet.
                     Where(p => p.Recruited.Id == recruited.Id);
 
                 foreach (var skillLevel in skillLevels)
                 {
+                    average += skillLevel.Level;
                     skillLevelListView.Items.Add(
                         new ListViewItem(
                             new string[] { skillLevel.Skills.Name,
                                 skillLevel.Level.ToString() }));
                 }
-                //TODO: trzeba zrobić tą średnią
+                average /= skillLevels.Count();
+                skillAverageLabel.Text = average.ToString();
             }
         }
 
@@ -191,14 +220,24 @@ namespace BD_Projekt.Forms
                 var rec = db.WorkerSet
                     .Where(r => r.Id == recruiter.Id)
                     .Single();
-                if (app.Decision != null)
-                    db.DecisionSet.Remove(app.Decision);
+
                 Decision dec = new Decision();
+
+                if (app.Decision != null) { 
+                    dec = app.Decision;
+                }
+
                 dec.Accepted = positiveRadioButton.Checked;
                 dec.Application = app;
                 dec.Explanation = explanationTextBox.Text;
                 dec.Worker = rec;
-                db.DecisionSet.Add(dec);
+
+                if (app.Decision == null)
+                {
+                    app.Decision = dec;
+                    db.DecisionSet.Add(dec);
+                }
+
                 db.SaveChanges();
             }
             Close();

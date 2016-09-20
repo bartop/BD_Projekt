@@ -71,17 +71,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DecisionApplication]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DecisionSet] DROP CONSTRAINT [FK_DecisionApplication];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ApplicationStageGrade]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[StageGradeSet] DROP CONSTRAINT [FK_ApplicationStageGrade];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ApprovalDecision]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DecisionSet] DROP CONSTRAINT [FK_ApprovalDecision];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ApprovalWorker]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ApprovalSet] DROP CONSTRAINT [FK_ApprovalWorker];
 GO
 IF OBJECT_ID(N'[dbo].[FK_RecruitedEducation]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EducationSet] DROP CONSTRAINT [FK_RecruitedEducation];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ApplicationStageGrade]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StageGradeSet] DROP CONSTRAINT [FK_ApplicationStageGrade];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DecisionApproval]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ApprovalSet] DROP CONSTRAINT [FK_DecisionApproval];
 GO
 
 -- --------------------------------------------------
@@ -163,8 +163,8 @@ GO
 -- Creating table 'DocumentSet'
 CREATE TABLE [dbo].[DocumentSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [File] varbinary(max)  NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
+    [FilePath] nvarchar(max)  NOT NULL,
+    [Name] nvarchar(max)  NULL,
     [Recruited_Id] int  NOT NULL
 );
 GO
@@ -214,8 +214,8 @@ GO
 CREATE TABLE [dbo].[StageGradeSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Grade] tinyint  NULL,
-    [ApplicationId] int  NOT NULL,
-    [Stage_Id] int  NOT NULL
+    [Stage_Id] int  NOT NULL,
+    [Application_Id] int  NOT NULL
 );
 GO
 
@@ -241,8 +241,6 @@ GO
 CREATE TABLE [dbo].[DecisionSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Explanation] nvarchar(max)  NOT NULL,
-    [Empolyed] bit  NOT NULL,
-    [Resigned] bit  NOT NULL,
     [Accepted] bit  NOT NULL,
     [Worker_Id] int  NOT NULL,
     [Application_Id] int  NOT NULL
@@ -253,8 +251,8 @@ GO
 CREATE TABLE [dbo].[ApprovalSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Approved] bit  NOT NULL,
-    [WorkerId] int  NOT NULL,
-    [Worker_Id] int  NOT NULL
+    [Worker_Id] int  NOT NULL,
+    [Decision_Id] int  NOT NULL
 );
 GO
 
@@ -265,7 +263,6 @@ CREATE TABLE [dbo].[ProfessionalExperienceSet] (
     [Company] nvarchar(max)  NOT NULL,
     [From] datetime  NOT NULL,
     [To] datetime  NOT NULL,
-    [RectruitedId] int  NOT NULL,
     [Recruited_Id] int  NOT NULL
 );
 GO
@@ -398,7 +395,7 @@ ADD CONSTRAINT [FK_PosessesRecruited]
     FOREIGN KEY ([Recruited_Id])
     REFERENCES [dbo].[RecruitedSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PosessesRecruited'
@@ -413,7 +410,7 @@ ADD CONSTRAINT [FK_DocumentsRecruited]
     FOREIGN KEY ([Recruited_Id])
     REFERENCES [dbo].[RecruitedSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_DocumentsRecruited'
@@ -428,7 +425,7 @@ ADD CONSTRAINT [FK_RecruitedApplications]
     FOREIGN KEY ([Recruited_Id])
     REFERENCES [dbo].[RecruitedSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RecruitedApplications'
@@ -443,7 +440,7 @@ ADD CONSTRAINT [FK_RecruitedProfessionalExperience]
     FOREIGN KEY ([Recruited_Id])
     REFERENCES [dbo].[RecruitedSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RecruitedProfessionalExperience'
@@ -458,7 +455,7 @@ ADD CONSTRAINT [FK_SkillsPosesses]
     FOREIGN KEY ([Skills_Id])
     REFERENCES [dbo].[SkillSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SkillsPosesses'
@@ -473,7 +470,7 @@ ADD CONSTRAINT [FK_SkillsRequires]
     FOREIGN KEY ([Skills_Id])
     REFERENCES [dbo].[SkillSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SkillsRequires'
@@ -488,7 +485,7 @@ ADD CONSTRAINT [FK_JobsRequires]
     FOREIGN KEY ([Jobs_Id])
     REFERENCES [dbo].[JobSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_JobsRequires'
@@ -503,7 +500,7 @@ ADD CONSTRAINT [FK_JobsApplications]
     FOREIGN KEY ([Job_Id])
     REFERENCES [dbo].[JobSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_JobsApplications'
@@ -542,7 +539,7 @@ ADD CONSTRAINT [FK_StageStageGrades]
     FOREIGN KEY ([Stage_Id])
     REFERENCES [dbo].[StageSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_StageStageGrades'
@@ -587,7 +584,7 @@ ADD CONSTRAINT [FK_DecisionWorker]
     FOREIGN KEY ([Worker_Id])
     REFERENCES [dbo].[WorkerSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_DecisionWorker'
@@ -602,7 +599,7 @@ ADD CONSTRAINT [FK_DecisionApplication]
     FOREIGN KEY ([Application_Id])
     REFERENCES [dbo].[ApplicationSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_DecisionApplication'
@@ -611,37 +608,13 @@ ON [dbo].[DecisionSet]
     ([Application_Id]);
 GO
 
--- Creating foreign key on [ApplicationId] in table 'StageGradeSet'
-ALTER TABLE [dbo].[StageGradeSet]
-ADD CONSTRAINT [FK_ApplicationStageGrade]
-    FOREIGN KEY ([ApplicationId])
-    REFERENCES [dbo].[ApplicationSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ApplicationStageGrade'
-CREATE INDEX [IX_FK_ApplicationStageGrade]
-ON [dbo].[StageGradeSet]
-    ([ApplicationId]);
-GO
-
--- Creating foreign key on [Id] in table 'DecisionSet'
-ALTER TABLE [dbo].[DecisionSet]
-ADD CONSTRAINT [FK_ApprovalDecision]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[ApprovalSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
 -- Creating foreign key on [Worker_Id] in table 'ApprovalSet'
 ALTER TABLE [dbo].[ApprovalSet]
 ADD CONSTRAINT [FK_ApprovalWorker]
     FOREIGN KEY ([Worker_Id])
     REFERENCES [dbo].[WorkerSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ApprovalWorker'
@@ -656,13 +629,43 @@ ADD CONSTRAINT [FK_RecruitedEducation]
     FOREIGN KEY ([Recruited_Id])
     REFERENCES [dbo].[RecruitedSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RecruitedEducation'
 CREATE INDEX [IX_FK_RecruitedEducation]
 ON [dbo].[EducationSet]
     ([Recruited_Id]);
+GO
+
+-- Creating foreign key on [Application_Id] in table 'StageGradeSet'
+ALTER TABLE [dbo].[StageGradeSet]
+ADD CONSTRAINT [FK_ApplicationStageGrade]
+    FOREIGN KEY ([Application_Id])
+    REFERENCES [dbo].[ApplicationSet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ApplicationStageGrade'
+CREATE INDEX [IX_FK_ApplicationStageGrade]
+ON [dbo].[StageGradeSet]
+    ([Application_Id]);
+GO
+
+-- Creating foreign key on [Decision_Id] in table 'ApprovalSet'
+ALTER TABLE [dbo].[ApprovalSet]
+ADD CONSTRAINT [FK_DecisionApproval]
+    FOREIGN KEY ([Decision_Id])
+    REFERENCES [dbo].[DecisionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DecisionApproval'
+CREATE INDEX [IX_FK_DecisionApproval]
+ON [dbo].[ApprovalSet]
+    ([Decision_Id]);
 GO
 
 -- --------------------------------------------------

@@ -51,16 +51,26 @@ namespace BD_Projekt.Forms
 
         private void addEducationButtonClicked(object sender, EventArgs e)
         {
+            if (!validateFormFields())
+            {
+                return;
+            }
             var education = new Education();
             education.SchoolName = schoolNameTextBox.Text;
             education.Name = educationNameTextBox.Text;
             education.FromYear = fromTimePicker.Value.Date;
             education.ToYear = toTimePicker.Value.Date;
-            using (var db = new DataModelContainer())
+
+            try {
+                using (var db = new DataModelContainer())
+                {
+                    var rec = db.RecruitedSet.Attach(recruited);
+                    rec.Education.Add(education);
+                    db.SaveChanges();
+                }
+            } catch (Exception ex)
             {
-                var rec = db.RecruitedSet.Attach(recruited);
-                rec.Education.Add(education);
-                db.SaveChanges();
+                MessageBox.Show(ex.Message, "Błąd");
             }
             refreshEducationListView();
         }
@@ -79,6 +89,23 @@ namespace BD_Projekt.Forms
                 }
             }
             refreshEducationListView();
+        }
+
+        private bool validateFormFields()
+        {
+            if (schoolNameTextBox.Text.Count() < 1 || educationNameTextBox.Text.Count() < 1)
+            {
+                MessageBox.Show("Wypełnij wszystkie pola!", "Błąd");
+                return false;
+            }
+
+            if (fromTimePicker.Value.Date > toTimePicker.Value.Date)
+            {
+                MessageBox.Show("Niepoprawnie podane daty!", "Błąd");
+                return false;
+            }
+
+            return true;
         }
     }
 }

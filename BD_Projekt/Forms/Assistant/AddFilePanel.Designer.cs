@@ -38,11 +38,12 @@
             this.documentsListView = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.originalName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addFileButton
             // 
-            this.addFileButton.Location = new System.Drawing.Point(12, 219);
+            this.addFileButton.Location = new System.Drawing.Point(12, 253);
             this.addFileButton.Name = "addFileButton";
             this.addFileButton.Size = new System.Drawing.Size(541, 23);
             this.addFileButton.TabIndex = 0;
@@ -56,7 +57,7 @@
             // 
             // removeFileButton
             // 
-            this.removeFileButton.Location = new System.Drawing.Point(12, 248);
+            this.removeFileButton.Location = new System.Drawing.Point(12, 282);
             this.removeFileButton.Name = "removeFileButton";
             this.removeFileButton.Size = new System.Drawing.Size(541, 23);
             this.removeFileButton.TabIndex = 2;
@@ -121,14 +122,25 @@
             // 
             // originalName
             // 
-            this.originalName.Text = "Original path";
+            this.originalName.Text = "Nazwa";
             this.originalName.Width = 463;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 224);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(541, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Otwórz";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.openFileButtonClicked);
             // 
             // AddFilePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 283);
+            this.ClientSize = new System.Drawing.Size(559, 312);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.documentsListView);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
@@ -155,5 +167,6 @@
         private System.Windows.Forms.ListView documentsListView;
         private System.Windows.Forms.ColumnHeader id;
         private System.Windows.Forms.ColumnHeader originalName;
+        private System.Windows.Forms.Button button1;
     }
 }

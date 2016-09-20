@@ -2,11 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/15/2016 22:14:33
--- Generated from EDMX file: D:\Dokumenty\Visual Studio 2015\Projects\BD_Projekt\BD_Projekt\DataModel.edmx
+-- Date Created: 09/20/2016 19:44:36
+-- Generated from EDMX file: C:\Users\Rames\Documents\Visual Studio 2015\Projects\BD_Projekt\BD_Projekt\DataModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
+GO
+USE [database];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -60,9 +62,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DecisionApplication]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DecisionSet] DROP CONSTRAINT [FK_DecisionApplication];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ApprovalDecision]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DecisionSet] DROP CONSTRAINT [FK_ApprovalDecision];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ApprovalWorker]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ApprovalSet] DROP CONSTRAINT [FK_ApprovalWorker];
 GO
@@ -71,6 +70,9 @@ IF OBJECT_ID(N'[dbo].[FK_RecruitedEducation]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ApplicationStageGrade]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[StageGradeSet] DROP CONSTRAINT [FK_ApplicationStageGrade];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DecisionApproval]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ApprovalSet] DROP CONSTRAINT [FK_DecisionApproval];
 GO
 
 -- --------------------------------------------------
@@ -154,6 +156,7 @@ CREATE TABLE [dbo].[DocumentSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [File] varbinary(max)  NOT NULL,
     [Name] nvarchar(max)  NULL,
+    [Extension] nvarchar(max)  NULL,
     [Recruited_Id] int  NOT NULL
 );
 GO

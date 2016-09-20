@@ -1,6 +1,33 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace BD_Projekt
 {
+    [MetadataType(typeof(RecruitedMetaData))]
+    public partial class Recruited
+    {
+    }
+    public partial class RecruitedMetaData
+    {
+        [RegularExpression(@"(\p{Lu}\p{Ll}+[ |\-|']{0,1})+", ErrorMessage = "Podaj poprawne imię!")]
+        public string Name { get; set; }
+
+        [Required]
+        public System.DateTime DateOfBirth { get; set; }
+
+        [RegularExpression("^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})$", 
+            ErrorMessage = "Podaj poprawny adres email!")]
+        public string Email { get; set; }
+
+        [RegularExpression(@"\+{0,1}\d{3,12}",
+            ErrorMessage = "Podaj poprawny numer telefonu! Tylko cyfry, opcjonalnie + na początku.")]
+        public string PhoneNumber { get; set; }
+        public string Nationality { get; set; }
+
+        [RegularExpression(@"(\p{Lu}\p{Ll}+[ |\-|']{0,1})+", ErrorMessage = "Podaj poprawne nazwisko!")]
+        public string Surname { get; set; }
+
+    }
     public partial class Job
     {
         public override bool Equals(object obj)

@@ -24,31 +24,48 @@ namespace BD_Projekt
             InitializeComponent();
             assistant = worker;
             refreshRecruitedList();
-            foreach( var nat in nationality) {
+            foreach (var nat in nationality) {
                 nationalityGui.Items.Add(nat);
             }
-        }           
+        }
 
-        private void confirmClick(object sender, EventArgs e)
+        private void confirmClick(object sender, EventArgs ev)
         {
-            using (var db = new DataModelContainer())
-            {
-                if (chceckBoxes())
+            try {
+                using (var db = new DataModelContainer())
                 {
-                    var recruited = new Recruited();
-                    recruited.Name = name.Text;
-                    recruited.Surname = surname.Text;
-                    recruited.PhoneNumber = phoneNumber.Text;
-                    recruited.Name = name.Text;
-                    recruited.DateOfBirth = birthDate.Value.Date;
-                    recruited.Email = email.Text;
-                    recruited.Nationality = nationalityGui.Text;
-                    db.RecruitedSet.Add(recruited);
-                    db.SaveChanges();
+                    if (chceckBoxes())
+                    {
+                        var recruited = new Recruited();
+                        recruited.Name = name.Text;
+                        recruited.Surname = surname.Text;
+                        recruited.PhoneNumber = phoneNumber.Text;
+                        recruited.Name = name.Text;
+                        recruited.DateOfBirth = birthDate.Value.Date;
+                        recruited.Email = email.Text;
+                        recruited.Nationality = nationalityGui.Text;
+                        db.RecruitedSet.Add(recruited);
+                        db.SaveChanges();
+
+                    }
+                }
+                refreshRecruitedList();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        MessageBox.Show(ve.ErrorMessage, ve.PropertyName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
-            refreshRecruitedList();
-        }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } 
 
         private bool chceckBoxes()
         {
@@ -58,16 +75,7 @@ namespace BD_Projekt
                 MessageBox.Show("Formaularz posiada puste pola", "Error-TextBoxes",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;         
             }
-            else
-            {
-                if (email.Text.IndexOf("@") == -1)
-                {
-                    MessageBox.Show("Błędny adres e-mail!", "Error-TextBoxes", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-                else
-                    return true;
-            }            
+            return true;          
         }
 
         private void refreshRecruitedList()
@@ -187,6 +195,24 @@ namespace BD_Projekt
                 }
             }
 
+        }
+
+        private void showDataButtonClicked(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in recruitedListView.SelectedItems)
+            {
+                Recruited recruited;
+                using (var db = new DataModelContainer())
+                {
+                    int id = int.Parse(item.SubItems[0].Text);
+                    recruited =
+                        db.RecruitedSet.Where(r => r.Id == id).Single();
+                }
+                using (var dialog = new RecruitedPreviewForm(recruited.Id))
+                {
+                    dialog.ShowDialog();
+                }
+            }
         }
     }
 }

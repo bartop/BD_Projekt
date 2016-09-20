@@ -108,7 +108,7 @@ namespace BD_Projekt.Forms
                             .First();
                     recruited = application.Recruited;
                 }
-                using (var dialog = new DetailsPanel(recruited, supervisor, application))
+                using (var dialog = new DecisionPanel(recruited, supervisor, application, true))
                 {
                     dialog.ShowDialog();
                 }

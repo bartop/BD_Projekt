@@ -89,5 +89,23 @@ namespace BD_Projekt.Forms
                 }
             }
         }
+
+        private void showDocumentsButtonClicked(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in recruitedListView.SelectedItems)
+            {
+                Recruited rec;
+                using (var db = new DataModelContainer())
+                {
+                    int id = int.Parse(item.SubItems[0].Text);
+                    rec = db.RecruitedSet
+                        .Where(r => r.Id == id).Single();
+                }
+                using (var dialog = new AddFilePanel(rec, false))
+                {
+                    dialog.ShowDialog();
+                }
+            }
+        }
     }
 }
