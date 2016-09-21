@@ -23,5 +23,10 @@ namespace BD_Projekt.Forms
         {
             new RecruitedList(recruiter).Show();
         }
+
+        private void addRecruitedButton_Click(object sender, EventArgs e)
+        {
+            new RecruitedAdministrationPanel(recruiter).Show();
+        }
     }
 }

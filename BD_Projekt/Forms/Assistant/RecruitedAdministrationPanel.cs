@@ -27,6 +27,7 @@ namespace BD_Projekt
             foreach (var nat in nationality) {
                 nationalityGui.Items.Add(nat);
             }
+            nationalityGui.SelectedIndex = nationality.ToList().LastIndexOf("Polish");
         }
 
         private void confirmClick(object sender, EventArgs ev)
@@ -110,15 +111,20 @@ namespace BD_Projekt
 
         private void removeRecruitedButtonClicked(object sender, EventArgs e)
         {
-            foreach( ListViewItem item in recruitedListView.SelectedItems)
-            {
-                int id = int.Parse( item.SubItems[0].Text );
-                using (var db = new DataModelContainer())
+            try {
+                foreach (ListViewItem item in recruitedListView.SelectedItems)
                 {
-                    db.RecruitedSet.Remove(
-                        db.RecruitedSet.Where(r => r.Id == id).First() );
-                    db.SaveChanges();
+                    int id = int.Parse(item.SubItems[0].Text);
+                    using (var db = new DataModelContainer())
+                    {
+                        db.RecruitedSet.Remove(
+                            db.RecruitedSet.Where(r => r.Id == id).First());
+                        db.SaveChanges();
+                    }
                 }
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Błąd");
             }
             refreshRecruitedList();
         }

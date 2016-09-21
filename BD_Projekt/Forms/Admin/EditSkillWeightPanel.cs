@@ -24,17 +24,22 @@ namespace BD_Projekt.Forms
 
         private void okButtonClick(object sender, EventArgs e)
         {
-            using(var db = new DataModelContainer())
+            try {
+                using (var db = new DataModelContainer())
+                {
+                    var toChange = db.RequiresSet.Where(r => r.Id == requirement.Id &&
+                        r.Weight == requirement.Weight).First();
+                    toChange.Weight = int.Parse(skillWeightTextBox.Text);
+                    db.RequiresSet.Attach(toChange);
+                    var entry = db.Entry(toChange);
+                    entry.Property(r => r.Weight).IsModified = true;
+                    db.SaveChanges();
+                }
+                Close();
+            } catch (Exception ex)
             {
-                var toChange = db.RequiresSet.Where(r => r.Id == requirement.Id &&
-                    r.Weight == requirement.Weight).First();
-                toChange.Weight = int.Parse(skillWeightTextBox.Text);
-                db.RequiresSet.Attach(toChange);
-                var entry = db.Entry(toChange);
-                entry.Property(r => r.Weight).IsModified = true;
-                db.SaveChanges();
+                MessageBox.Show(ex.Message, "Błąd");
             }
-            Close();
         }
 
         private void cancelButtonClick(object sender, EventArgs e)

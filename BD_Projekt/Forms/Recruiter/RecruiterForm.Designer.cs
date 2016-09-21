@@ -29,23 +29,35 @@
         private void InitializeComponent()
         {
             this.recruitedListOpenButton = new System.Windows.Forms.Button();
+            this.addRecruitedButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // recruitedListOpenButton
             // 
-            this.recruitedListOpenButton.Location = new System.Drawing.Point(12, 12);
+            this.recruitedListOpenButton.Location = new System.Drawing.Point(12, 44);
             this.recruitedListOpenButton.Name = "recruitedListOpenButton";
             this.recruitedListOpenButton.Size = new System.Drawing.Size(260, 26);
             this.recruitedListOpenButton.TabIndex = 0;
-            this.recruitedListOpenButton.Text = "Wyświetl listę rekrutowanych";
+            this.recruitedListOpenButton.Text = "Oceń rekrutowanych";
             this.recruitedListOpenButton.UseVisualStyleBackColor = true;
             this.recruitedListOpenButton.Click += new System.EventHandler(this.openRecruitedListButtonClicked);
+            // 
+            // addRecruitedButton
+            // 
+            this.addRecruitedButton.Location = new System.Drawing.Point(12, 12);
+            this.addRecruitedButton.Name = "addRecruitedButton";
+            this.addRecruitedButton.Size = new System.Drawing.Size(260, 26);
+            this.addRecruitedButton.TabIndex = 1;
+            this.addRecruitedButton.Text = "Dodaj rekrutowanych";
+            this.addRecruitedButton.UseVisualStyleBackColor = true;
+            this.addRecruitedButton.Click += new System.EventHandler(this.addRecruitedButton_Click);
             // 
             // RecruiterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 50);
+            this.ClientSize = new System.Drawing.Size(280, 83);
+            this.Controls.Add(this.addRecruitedButton);
             this.Controls.Add(this.recruitedListOpenButton);
             this.Name = "RecruiterForm";
             this.Text = "Panel rekrutera";
@@ -56,5 +68,6 @@
         #endregion
 
         private System.Windows.Forms.Button recruitedListOpenButton;
+        private System.Windows.Forms.Button addRecruitedButton;
     }
 }

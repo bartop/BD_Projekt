@@ -38,6 +38,7 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.addApplicationButton = new System.Windows.Forms.Button();
             this.removeApplicationButton = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // recruitedTextBox
@@ -169,5 +170,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button addApplicationButton;
         private System.Windows.Forms.Button removeApplicationButton;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

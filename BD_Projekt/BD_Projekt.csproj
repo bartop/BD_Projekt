@@ -113,12 +113,6 @@
     <Compile Include="Forms\Assistant\RecruitedPreviewForm.Designer.cs">
       <DependentUpon>RecruitedPreviewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Supervisor\AcceptedList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Supervisor\AcceptedList.Designer.cs">
-      <DependentUpon>AcceptedList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Supervisor\DecidedApplicationsPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,9 +313,6 @@
     </Compile>
     <EmbeddedResource Include="Forms\Assistant\RecruitedPreviewForm.resx">
       <DependentUpon>RecruitedPreviewForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Supervisor\AcceptedList.resx">
-      <DependentUpon>AcceptedList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Supervisor\DecidedApplicationsPanel.resx">
       <DependentUpon>DecidedApplicationsPanel.cs</DependentUpon>

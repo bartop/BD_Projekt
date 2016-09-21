@@ -101,7 +101,7 @@ namespace BD_Projekt.Forms
                     rec = db.RecruitedSet
                         .Where(r => r.Id == id).Single();
                 }
-                using (var dialog = new AddFilePanel(rec, false))
+                using (var dialog = new RecruitedPreviewForm(rec.Id))
                 {
                     dialog.ShowDialog();
                 }

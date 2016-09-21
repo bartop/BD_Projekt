@@ -23,16 +23,28 @@ namespace BD_Projekt.Forms
 
         private void okButtonClick(object sender, EventArgs e)
         {
-            using(var db = new DataModelContainer())
+            try {
+                if (String.IsNullOrWhiteSpace(jobNameTextbox.Text))
+                {
+                    MessageBox.Show("Wprowadź poprawną nazwę stanowiska", "Błąd");
+                }
+                else
+                {
+                    using (var db = new DataModelContainer())
+                    {
+                        var toChange = db.JobSet.AsEnumerable().Where(j => job.Equals(j)).First();
+                        toChange.Name = jobNameTextbox.Text;
+                        db.JobSet.Attach(toChange);
+                        var entry = db.Entry(toChange);
+                        entry.Property(j => j.Name).IsModified = true;
+                        db.SaveChanges();
+                    }
+                    Close();
+                }
+            } catch (Exception ex)
             {
-                var toChange = db.JobSet.AsEnumerable().Where(j => job.Equals(j)).First();
-                toChange.Name = jobNameTextbox.Text;
-                db.JobSet.Attach(toChange);
-                var entry = db.Entry(toChange);
-                entry.Property(j => j.Name).IsModified = true;
-                db.SaveChanges();
+                MessageBox.Show(ex.Message, "Błąd");
             }
-            Close();
         }
 
         private void cancelButtonClick(object sender, EventArgs e)

@@ -54,22 +54,30 @@
             this.manageEducation = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.manageExperience = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.helpProvider1.SetHelpKeyword(this.label2, "Imię");
             this.label2.Location = new System.Drawing.Point(12, 10);
             this.label2.Name = "label2";
+            this.helpProvider1.SetShowHelp(this.label2, true);
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Imię";
             // 
             // name
             // 
+            this.name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.helpProvider1.SetHelpKeyword(this.name, "imie");
+            this.helpProvider1.SetHelpNavigator(this.name, System.Windows.Forms.HelpNavigator.Index);
             this.name.Location = new System.Drawing.Point(80, 7);
             this.name.Name = "name";
+            this.helpProvider1.SetShowHelp(this.name, true);
             this.name.Size = new System.Drawing.Size(121, 20);
             this.name.TabIndex = 3;
             // 
@@ -84,8 +92,11 @@
             // 
             // surname
             // 
+            this.helpProvider1.SetHelpKeyword(this.surname, "nazwisko");
+            this.helpProvider1.SetHelpNavigator(this.surname, System.Windows.Forms.HelpNavigator.Index);
             this.surname.Location = new System.Drawing.Point(80, 33);
             this.surname.Name = "surname";
+            this.helpProvider1.SetShowHelp(this.surname, true);
             this.surname.Size = new System.Drawing.Size(121, 20);
             this.surname.TabIndex = 7;
             // 
@@ -127,8 +138,12 @@
             // 
             // email
             // 
+            this.helpProvider1.SetHelpKeyword(this.email, "email");
+            this.helpProvider1.SetHelpNavigator(this.email, System.Windows.Forms.HelpNavigator.Index);
+            this.helpProvider1.SetHelpString(this.email, "");
             this.email.Location = new System.Drawing.Point(356, 59);
             this.email.Name = "email";
+            this.helpProvider1.SetShowHelp(this.email, true);
             this.email.Size = new System.Drawing.Size(121, 20);
             this.email.TabIndex = 29;
             // 
@@ -160,10 +175,12 @@
             // 
             // birthDate
             // 
+            this.birthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.birthDate.Location = new System.Drawing.Point(357, 33);
             this.birthDate.Name = "birthDate";
             this.birthDate.Size = new System.Drawing.Size(120, 20);
             this.birthDate.TabIndex = 40;
+            this.birthDate.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
             // recruitedListView
             // 
@@ -301,6 +318,10 @@
             this.manageExperience.UseVisualStyleBackColor = true;
             this.manageExperience.Click += new System.EventHandler(this.manageExpirienceButtonClicked);
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = "C:\\Users\\Rames\\Documents\\BD CHM\\help.chm";
+            // 
             // RecruitedAdministrationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,6 +344,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.name);
             this.Controls.Add(this.label2);
+            this.HelpButton = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RecruitedAdministrationPanel";
             this.Text = "Panel asystentki - rejestracja";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -358,5 +382,6 @@
         private System.Windows.Forms.Button manageEducation;
         private System.Windows.Forms.Button manageDocuments;
         private System.Windows.Forms.Button showDataButton;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

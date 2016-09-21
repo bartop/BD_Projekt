@@ -83,21 +83,32 @@ namespace BD_Projekt.Forms
 
         private void addStageGradeButtonClicked(object sender, EventArgs e)
         {
-            var stageGrade = new StageGrade();
-            stageGrade.Grade = byte.Parse(gradeComboBox.Text);
-            using(var db = new DataModelContainer())
+            if (!validateFormFields())
             {
-                Stage stage = db.StageSet.Where(s => s.Name == stageComboBox.Text).Single();
-                Application app = db.ApplicationSet
-                    .Where(a => a.Recruited.Id == recruited.Id &&
-                    a.Job.Id == job.Id).Single();
-                stageGrade.Stage = stage;
-                stageGrade.Application = app;
-                db.StageGradeSet.Add(stageGrade);
-                db.SaveChanges();
+                return;
             }
-            refreshStageGradesList();
-            refreshStagesBox();
+
+            try
+            {
+                var stageGrade = new StageGrade();
+                stageGrade.Grade = byte.Parse(gradeComboBox.Text);
+                using (var db = new DataModelContainer())
+                {
+                    Stage stage = db.StageSet.Where(s => s.Name == stageComboBox.Text).Single();
+                    Application app = db.ApplicationSet
+                        .Where(a => a.Recruited.Id == recruited.Id &&
+                        a.Job.Id == job.Id).Single();
+                    stageGrade.Stage = stage;
+                    stageGrade.Application = app;
+                    db.StageGradeSet.Add(stageGrade);
+                    db.SaveChanges();
+                }
+                refreshStageGradesList();
+                refreshStagesBox();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Błąd");
+            }
         }
 
         private void removeStageGradeButtonClicked(object sender, EventArgs e)
@@ -121,6 +132,17 @@ namespace BD_Projekt.Forms
             }
             refreshStageGradesList();
             refreshStagesBox();
+        }
+
+        private bool validateFormFields()
+        {
+            if (gradeComboBox.SelectedIndex < 0 || stageComboBox.SelectedIndex < 0)
+            {
+                MessageBox.Show("Wypełnij wszystkie pola!", "Błąd");
+                return false;
+            }
+
+            return true;
         }
     }
 }

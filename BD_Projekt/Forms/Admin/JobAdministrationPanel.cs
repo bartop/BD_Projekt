@@ -103,15 +103,27 @@ namespace BD_Projekt.Forms
 
         private void addJobButtonClick(object sender, EventArgs e)
         {
-            using(var db = new DataModelContainer())
+            try {
+                if (String.IsNullOrWhiteSpace(jobNameTextBox.Text))
+                {
+                    MessageBox.Show("Wprowadź poprawną nazwę stanowiska!", "Błąd");
+                }
+                else
+                {
+                    using (var db = new DataModelContainer())
+                    {
+                        var job = new Job();
+                        job.Name = jobNameTextBox.Text;
+                        db.JobSet.Add(job);
+                        db.SaveChanges();
+                    }
+                    refreshJobsList();
+                    jobNameTextBox.Text = "";
+                }
+            } catch (Exception ex)
             {
-                var job = new Job();
-                job.Name = jobNameTextBox.Text;
-                db.JobSet.Add(job);
-                db.SaveChanges();
+                MessageBox.Show(ex.Message, "Błąd");
             }
-            refreshJobsList();
-            jobNameTextBox.Text = "";
         }
 
         private void refreshLabelLinkCliked(object sender, LinkLabelLinkClickedEventArgs e)

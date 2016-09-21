@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupervisorForm));
             this.openDecidedPanelButton = new System.Windows.Forms.Button();
-            this.openAcceptedButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openDecidedPanelButton
@@ -40,17 +39,9 @@
             this.openDecidedPanelButton.UseVisualStyleBackColor = true;
             this.openDecidedPanelButton.Click += new System.EventHandler(this.openDecidedPanelButtonClicked);
             // 
-            // openAcceptedButton
-            // 
-            resources.ApplyResources(this.openAcceptedButton, "openAcceptedButton");
-            this.openAcceptedButton.Name = "openAcceptedButton";
-            this.openAcceptedButton.UseVisualStyleBackColor = true;
-            this.openAcceptedButton.Click += new System.EventHandler(this.openAcceptedButtonClicked);
-            // 
             // SupervisorForm
             // 
             resources.ApplyResources(this, "$this");
-            this.Controls.Add(this.openAcceptedButton);
             this.Controls.Add(this.openDecidedPanelButton);
             this.Name = "SupervisorForm";
             this.ResumeLayout(false);
@@ -60,6 +51,5 @@
         #endregion
 
         private System.Windows.Forms.Button openDecidedPanelButton;
-        private System.Windows.Forms.Button openAcceptedButton;
     }
 }

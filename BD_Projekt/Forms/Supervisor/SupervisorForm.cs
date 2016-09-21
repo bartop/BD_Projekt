@@ -25,13 +25,5 @@ namespace BD_Projekt.Forms
                 dialog.ShowDialog();
             }
         }
-
-        private void openAcceptedButtonClicked(object sender, EventArgs e)
-        {
-            using (var dialog = new AcceptedList())
-            {
-                dialog.ShowDialog();
-            }
-        }
     }
 }

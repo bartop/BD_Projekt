@@ -141,30 +141,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;openDecidedPanelButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="openAcceptedButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 41</value>
-  </data>
-  <data name="openAcceptedButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 23</value>
-  </data>
-  <data name="openAcceptedButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="openAcceptedButton.Text" xml:space="preserve">
-    <value>Zaakceptowane oceny podań</value>
-  </data>
-  <data name="&gt;&gt;openAcceptedButton.Name" xml:space="preserve">
-    <value>openAcceptedButton</value>
-  </data>
-  <data name="&gt;&gt;openAcceptedButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;openAcceptedButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;openAcceptedButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -174,7 +150,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>284, 72</value>
+    <value>284, 43</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Panel kierownika</value>

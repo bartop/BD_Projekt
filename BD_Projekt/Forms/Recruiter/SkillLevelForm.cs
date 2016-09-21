@@ -49,6 +49,8 @@ namespace BD_Projekt.Forms
             }
         }
 
+        
+
         private void refreshSkillLevelsList()
         {
             skillLevelListView.Items.Clear();
@@ -72,20 +74,30 @@ namespace BD_Projekt.Forms
 
         private void addSkillGradeButtonClicked(object sender, EventArgs e)
         {
-            var skillGrade = new Posesses();
-            skillGrade.Level = byte.Parse(levelComboBox.Text);
-            using (var db = new DataModelContainer())
+            if (!validateFormFields())
             {
-                var rec = db.RecruitedSet.Where(r => r.Id == recruited.Id).Single();
-                var skill = db.SkillSet
-                    .Where(s => s.Name == skillsComboBox.Text).Single();
-                skillGrade.Recruited = rec;
-                skillGrade.Skills = skill;
-                db.PosessesSet.Add(skillGrade);
-                db.SaveChanges();
+                return;
             }
-            refreshSkillLevelsList();
-            refreshSkillBox();
+
+            try {
+                var skillGrade = new Posesses();
+                skillGrade.Level = byte.Parse(levelComboBox.Text);
+                using (var db = new DataModelContainer())
+                {
+                    var rec = db.RecruitedSet.Where(r => r.Id == recruited.Id).Single();
+                    var skill = db.SkillSet
+                        .Where(s => s.Name == skillsComboBox.Text).Single();
+                    skillGrade.Recruited = rec;
+                    skillGrade.Skills = skill;
+                    db.PosessesSet.Add(skillGrade);
+                    db.SaveChanges();
+                }
+                refreshSkillLevelsList();
+                refreshSkillBox();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Błąd");
+            }
         }
 
         private void deleteSkillGradeButtonClick(object sender, EventArgs e)
@@ -103,6 +115,17 @@ namespace BD_Projekt.Forms
             }
             refreshSkillLevelsList();
             refreshSkillBox();
+        }
+
+        private bool validateFormFields()
+        {
+            if (skillsComboBox.SelectedIndex < 0 || levelComboBox.SelectedIndex < 0)
+            {
+                MessageBox.Show("Wypełnij wszystkie pola!", "Błąd");
+                return false;
+            }
+
+            return true;
         }
     }
 }
