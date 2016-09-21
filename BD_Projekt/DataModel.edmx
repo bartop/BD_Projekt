@@ -466,7 +466,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="DecisionApproval">
-    <End Role="Decision" Type="DataModel.Store.DecisionSet" Multiplicity="1" />
+    <End Role="Decision" Type="DataModel.Store.DecisionSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Approval" Type="DataModel.Store.ApprovalSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Decision">
@@ -757,7 +759,7 @@
           <End Type="DataModel.Recruited" Role="Recruited" Multiplicity="1" >
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="DataModel.Application" Role="Application" Multiplicity="*" />
+          <End Type="DataModel.Application" Role="Application" Multiplicity="*" ></End>
         </Association>
         <Association Name="RecruitedProfessionalExperience">
           <End Type="DataModel.Recruited" Role="Recruited" Multiplicity="1" >
@@ -850,8 +852,11 @@
           </End>
         </Association>
         <Association Name="DecisionApproval">
-          <End Type="DataModel.Decision" Role="Decision" Multiplicity="1" />
-          <End Type="DataModel.Approval" Role="Approval" Multiplicity="0..1" />
+          <End Type="DataModel.Decision" Role="Decision" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.Approval" Role="Approval" Multiplicity="0..1" >
+          </End>
         </Association>
       </Schema>
     </edmx:ConceptualModels>

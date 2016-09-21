@@ -111,6 +111,11 @@ namespace BD_Projekt
 
         private void removeRecruitedButtonClicked(object sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Tej operacji nie można cofnąć! Czy na pewno chcesz trwale usunąć wszystkie zaznaczonych rekrutowanych?", "Uwaga", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
             try {
                 foreach (ListViewItem item in recruitedListView.SelectedItems)
                 {

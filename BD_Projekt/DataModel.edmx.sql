@@ -2,16 +2,26 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/20/2016 19:44:36
+-- Date Created: 09/21/2016 20:35:40
 -- Generated from EDMX file: C:\Users\Rames\Documents\Visual Studio 2015\Projects\BD_Projekt\BD_Projekt\DataModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [database];
-GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
+
+DECLARE @sql NVARCHAR(MAX) = N'';
+
+SELECT @sql += N'
+ALTER TABLE ' + QUOTENAME(OBJECT_SCHEMA_NAME(parent_object_id))
+    + '.' + QUOTENAME(OBJECT_NAME(parent_object_id)) + 
+    ' DROP CONSTRAINT ' + QUOTENAME(name) + ';'
+FROM sys.foreign_keys;
+
+PRINT @sql;
+EXEC sp_executesql @sql;
+
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
@@ -651,7 +661,7 @@ ADD CONSTRAINT [FK_DecisionApproval]
     FOREIGN KEY ([Decision_Id])
     REFERENCES [dbo].[DecisionSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_DecisionApproval'
