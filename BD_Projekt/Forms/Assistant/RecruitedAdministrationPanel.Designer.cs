@@ -41,10 +41,6 @@
             this.phoneNumber = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.birthDate = new System.Windows.Forms.DateTimePicker();
-            this.recruitedListView = new System.Windows.Forms.ListView();
-            this.nr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.nameAndSurname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.emailColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
             this.refreshListBoxLabel = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -55,7 +51,13 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.manageExperience = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.recruitedListView = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.recruitedListView)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -182,36 +184,6 @@
             this.birthDate.TabIndex = 40;
             this.birthDate.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
-            // recruitedListView
-            // 
-            this.recruitedListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nr,
-            this.nameAndSurname,
-            this.emailColumn});
-            this.recruitedListView.FullRowSelect = true;
-            this.recruitedListView.GridLines = true;
-            this.recruitedListView.Location = new System.Drawing.Point(15, 163);
-            this.recruitedListView.Name = "recruitedListView";
-            this.recruitedListView.Size = new System.Drawing.Size(465, 284);
-            this.recruitedListView.TabIndex = 41;
-            this.recruitedListView.UseCompatibleStateImageBehavior = false;
-            this.recruitedListView.View = System.Windows.Forms.View.Details;
-            // 
-            // nr
-            // 
-            this.nr.Text = "Numer";
-            this.nr.Width = 45;
-            // 
-            // nameAndSurname
-            // 
-            this.nameAndSurname.Text = "Imię i nazwisko";
-            this.nameAndSurname.Width = 231;
-            // 
-            // emailColumn
-            // 
-            this.emailColumn.Text = "Adres email";
-            this.emailColumn.Width = 181;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -322,15 +294,61 @@
             // 
             this.helpProvider1.HelpNamespace = "C:\\Users\\Rames\\Documents\\BD CHM\\help.chm";
             // 
+            // recruitedListView
+            // 
+            this.recruitedListView.AllColumns.Add(this.olvColumn1);
+            this.recruitedListView.AllColumns.Add(this.olvColumn2);
+            this.recruitedListView.AllColumns.Add(this.olvColumn3);
+            this.recruitedListView.AllColumns.Add(this.olvColumn4);
+            this.recruitedListView.CellEditUseWholeCell = false;
+            this.recruitedListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn2,
+            this.olvColumn3,
+            this.olvColumn4});
+            this.recruitedListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.recruitedListView.FullRowSelect = true;
+            this.recruitedListView.Location = new System.Drawing.Point(15, 163);
+            this.recruitedListView.Name = "recruitedListView";
+            this.recruitedListView.ShowGroups = false;
+            this.recruitedListView.Size = new System.Drawing.Size(465, 284);
+            this.recruitedListView.TabIndex = 45;
+            this.recruitedListView.UseCompatibleStateImageBehavior = false;
+            this.recruitedListView.UseFilterIndicator = true;
+            this.recruitedListView.UseFiltering = true;
+            this.recruitedListView.UseTranslucentSelection = true;
+            this.recruitedListView.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "Id";
+            this.olvColumn1.Text = "Numer";
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "Name";
+            this.olvColumn2.Text = "Imię";
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "Surname";
+            this.olvColumn3.Text = "Nazwisko";
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "Email";
+            this.olvColumn4.Text = "Email";
+            this.olvColumn4.Width = 260;
+            // 
             // RecruitedAdministrationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 549);
+            this.Controls.Add(this.recruitedListView);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.refreshListBoxLabel);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.recruitedListView);
             this.Controls.Add(this.birthDate);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.phoneNumber);
@@ -350,6 +368,7 @@
             this.Name = "RecruitedAdministrationPanel";
             this.Text = "Panel asystentki - rejestracja";
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.recruitedListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,10 +388,6 @@
         private System.Windows.Forms.TextBox phoneNumber;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DateTimePicker birthDate;
-        private System.Windows.Forms.ListView recruitedListView;
-        private System.Windows.Forms.ColumnHeader nr;
-        private System.Windows.Forms.ColumnHeader nameAndSurname;
-        private System.Windows.Forms.ColumnHeader emailColumn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel refreshListBoxLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -383,5 +398,10 @@
         private System.Windows.Forms.Button manageDocuments;
         private System.Windows.Forms.Button showDataButton;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private BrightIdeasSoftware.ObjectListView recruitedListView;
+        private BrightIdeasSoftware.OLVColumn olvColumn4;
     }
 }

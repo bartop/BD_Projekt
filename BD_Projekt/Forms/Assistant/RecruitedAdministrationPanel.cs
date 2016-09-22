@@ -85,8 +85,9 @@ namespace BD_Projekt
             using (var db = new DataModelContainer())
             {
                 recruitedList = db.RecruitedSet.ToList();
+                recruitedListView.SetObjects(recruitedList);
 
-                recruitedListView.Items.Clear();
+               /* recruitedListView.Items.Clear();
                 foreach (var recruited in recruitedList)
                 {
                     var viewItem = new ListViewItem(
@@ -95,7 +96,7 @@ namespace BD_Projekt
                             recruited.Name + " " + recruited.Surname,
                             recruited.Email });
                     recruitedListView.Items.Add(viewItem);
-                }
+                } */
             }
         }
 
