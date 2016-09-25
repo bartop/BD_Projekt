@@ -26,19 +26,9 @@ namespace BD_Projekt.Forms
             using (var db = new DataModelContainer())
             {
                 recruitedList = db.RecruitedSet.ToList();
-
-                recruitedListView.Items.Clear();
-                foreach (var recruited in recruitedList)
-                {
-                    var viewItem = new ListViewItem(
-                        new string[] {
-                            recruited.Id.ToString(),
-                            recruited.Name,
-                            recruited.Surname,
-                            recruited.Email });
-                    recruitedListView.Items.Add(viewItem);
-                }
+                recruitedListView.SetObjects(recruitedList);
             }
+              
         }
 
         private void refreshListLinkCliked(object sender, EventArgs e)

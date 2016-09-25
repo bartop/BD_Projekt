@@ -76,12 +76,12 @@
             this.name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.helpProvider1.SetHelpKeyword(this.name, "imie");
-            this.helpProvider1.SetHelpNavigator(this.name, System.Windows.Forms.HelpNavigator.Index);
+            this.helpProvider1.SetHelpNavigator(this.name, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.name.Location = new System.Drawing.Point(80, 7);
             this.name.Name = "name";
             this.helpProvider1.SetShowHelp(this.name, true);
             this.name.Size = new System.Drawing.Size(121, 20);
-            this.name.TabIndex = 3;
+            this.name.TabIndex = 1;
             // 
             // label4
             // 
@@ -95,12 +95,12 @@
             // surname
             // 
             this.helpProvider1.SetHelpKeyword(this.surname, "nazwisko");
-            this.helpProvider1.SetHelpNavigator(this.surname, System.Windows.Forms.HelpNavigator.Index);
+            this.helpProvider1.SetHelpNavigator(this.surname, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.surname.Location = new System.Drawing.Point(80, 33);
             this.surname.Name = "surname";
             this.helpProvider1.SetShowHelp(this.surname, true);
             this.surname.Size = new System.Drawing.Size(121, 20);
-            this.surname.TabIndex = 7;
+            this.surname.TabIndex = 2;
             // 
             // label10
             // 
@@ -115,10 +115,13 @@
             // 
             this.nationalityGui.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.nationalityGui.FormattingEnabled = true;
+            this.helpProvider1.SetHelpKeyword(this.nationalityGui, "obywatelstwo");
+            this.helpProvider1.SetHelpNavigator(this.nationalityGui, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.nationalityGui.Location = new System.Drawing.Point(356, 6);
             this.nationalityGui.Name = "nationalityGui";
+            this.helpProvider1.SetShowHelp(this.nationalityGui, true);
             this.nationalityGui.Size = new System.Drawing.Size(121, 21);
-            this.nationalityGui.TabIndex = 19;
+            this.nationalityGui.TabIndex = 4;
             // 
             // label14
             // 
@@ -141,13 +144,13 @@
             // email
             // 
             this.helpProvider1.SetHelpKeyword(this.email, "email");
-            this.helpProvider1.SetHelpNavigator(this.email, System.Windows.Forms.HelpNavigator.Index);
+            this.helpProvider1.SetHelpNavigator(this.email, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.helpProvider1.SetHelpString(this.email, "");
             this.email.Location = new System.Drawing.Point(356, 59);
             this.email.Name = "email";
             this.helpProvider1.SetShowHelp(this.email, true);
             this.email.Size = new System.Drawing.Size(121, 20);
-            this.email.TabIndex = 29;
+            this.email.TabIndex = 6;
             // 
             // label16
             // 
@@ -160,17 +163,23 @@
             // 
             // phoneNumber
             // 
+            this.helpProvider1.SetHelpKeyword(this.phoneNumber, "telefon");
+            this.helpProvider1.SetHelpNavigator(this.phoneNumber, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.phoneNumber.Location = new System.Drawing.Point(80, 59);
             this.phoneNumber.Name = "phoneNumber";
+            this.helpProvider1.SetShowHelp(this.phoneNumber, true);
             this.phoneNumber.Size = new System.Drawing.Size(121, 20);
-            this.phoneNumber.TabIndex = 31;
+            this.phoneNumber.TabIndex = 3;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(15, 85);
+            this.helpProvider1.SetHelpKeyword(this.button5, "dodawanie danych rekrutowanego");
+            this.helpProvider1.SetHelpNavigator(this.button5, System.Windows.Forms.HelpNavigator.KeywordIndex);
+            this.button5.Location = new System.Drawing.Point(12, 85);
             this.button5.Name = "button5";
+            this.helpProvider1.SetShowHelp(this.button5, true);
             this.button5.Size = new System.Drawing.Size(465, 25);
-            this.button5.TabIndex = 36;
+            this.button5.TabIndex = 7;
             this.button5.Text = "Potwierdź informacje i dodaj do bazy";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.confirmClick);
@@ -178,10 +187,13 @@
             // birthDate
             // 
             this.birthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.helpProvider1.SetHelpKeyword(this.birthDate, "data urodzenia");
+            this.helpProvider1.SetHelpNavigator(this.birthDate, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.birthDate.Location = new System.Drawing.Point(357, 33);
             this.birthDate.Name = "birthDate";
+            this.helpProvider1.SetShowHelp(this.birthDate, true);
             this.birthDate.Size = new System.Drawing.Size(120, 20);
-            this.birthDate.TabIndex = 40;
+            this.birthDate.TabIndex = 5;
             this.birthDate.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
             // label3
@@ -227,8 +239,11 @@
             // manageDocuments
             // 
             this.manageDocuments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider1.SetHelpKeyword(this.manageDocuments, "zarzadzaj dokumentami");
+            this.helpProvider1.SetHelpNavigator(this.manageDocuments, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.manageDocuments.Location = new System.Drawing.Point(3, 58);
             this.manageDocuments.Name = "manageDocuments";
+            this.helpProvider1.SetShowHelp(this.manageDocuments, true);
             this.manageDocuments.Size = new System.Drawing.Size(226, 23);
             this.manageDocuments.TabIndex = 17;
             this.manageDocuments.Text = "Zarządzaj dokumentami";
@@ -238,8 +253,11 @@
             // showDataButton
             // 
             this.showDataButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider1.SetHelpKeyword(this.showDataButton, "wyswietl dane osobowe");
+            this.helpProvider1.SetHelpNavigator(this.showDataButton, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.showDataButton.Location = new System.Drawing.Point(235, 58);
             this.showDataButton.Name = "showDataButton";
+            this.helpProvider1.SetShowHelp(this.showDataButton, true);
             this.showDataButton.Size = new System.Drawing.Size(227, 23);
             this.showDataButton.TabIndex = 16;
             this.showDataButton.Text = "Wyświetl dane osobowe";
@@ -249,8 +267,11 @@
             // manageApplications
             // 
             this.manageApplications.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider1.SetHelpKeyword(this.manageApplications, "zarzadzaj aplikacjami");
+            this.helpProvider1.SetHelpNavigator(this.manageApplications, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.manageApplications.Location = new System.Drawing.Point(235, 30);
             this.manageApplications.Name = "manageApplications";
+            this.helpProvider1.SetShowHelp(this.manageApplications, true);
             this.manageApplications.Size = new System.Drawing.Size(227, 22);
             this.manageApplications.TabIndex = 15;
             this.manageApplications.Text = "Zarządzaj aplikacjami";
@@ -260,8 +281,11 @@
             // manageEducation
             // 
             this.manageEducation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider1.SetHelpKeyword(this.manageEducation, "zarzadzaj edukacja");
+            this.helpProvider1.SetHelpNavigator(this.manageEducation, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.manageEducation.Location = new System.Drawing.Point(3, 30);
             this.manageEducation.Name = "manageEducation";
+            this.helpProvider1.SetShowHelp(this.manageEducation, true);
             this.manageEducation.Size = new System.Drawing.Size(226, 22);
             this.manageEducation.TabIndex = 14;
             this.manageEducation.Text = "Zarządzaj edukacją";
@@ -271,8 +295,11 @@
             // removeButton
             // 
             this.removeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider1.SetHelpKeyword(this.removeButton, "usun rekrutowanego");
+            this.helpProvider1.SetHelpNavigator(this.removeButton, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.removeButton.Location = new System.Drawing.Point(3, 3);
             this.removeButton.Name = "removeButton";
+            this.helpProvider1.SetShowHelp(this.removeButton, true);
             this.removeButton.Size = new System.Drawing.Size(226, 21);
             this.removeButton.TabIndex = 11;
             this.removeButton.Text = "Usuń rekrutowanego";
@@ -282,8 +309,11 @@
             // manageExperience
             // 
             this.manageExperience.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider1.SetHelpKeyword(this.manageExperience, "zarzadzaj doswiadczeniem");
+            this.helpProvider1.SetHelpNavigator(this.manageExperience, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.manageExperience.Location = new System.Drawing.Point(235, 3);
             this.manageExperience.Name = "manageExperience";
+            this.helpProvider1.SetShowHelp(this.manageExperience, true);
             this.manageExperience.Size = new System.Drawing.Size(227, 21);
             this.manageExperience.TabIndex = 12;
             this.manageExperience.Text = "Zarządzaj doświadczeniem";
@@ -292,7 +322,8 @@
             // 
             // helpProvider1
             // 
-            this.helpProvider1.HelpNamespace = "C:\\Users\\Rames\\Documents\\BD CHM\\help.chm";
+            this.helpProvider1.HelpNamespace = "C:\\Users\\Rames\\Documents\\Visual Studio 2015\\Projects\\BD_Projekt\\Help Files\\help.c" +
+    "hm";
             // 
             // recruitedListView
             // 
@@ -308,11 +339,14 @@
             this.olvColumn4});
             this.recruitedListView.Cursor = System.Windows.Forms.Cursors.Default;
             this.recruitedListView.FullRowSelect = true;
-            this.recruitedListView.Location = new System.Drawing.Point(15, 163);
+            this.helpProvider1.SetHelpKeyword(this.recruitedListView, "zarzadzanie rekrutowanymi");
+            this.helpProvider1.SetHelpNavigator(this.recruitedListView, System.Windows.Forms.HelpNavigator.KeywordIndex);
+            this.recruitedListView.Location = new System.Drawing.Point(12, 163);
             this.recruitedListView.Name = "recruitedListView";
             this.recruitedListView.ShowGroups = false;
+            this.helpProvider1.SetShowHelp(this.recruitedListView, true);
             this.recruitedListView.Size = new System.Drawing.Size(465, 284);
-            this.recruitedListView.TabIndex = 45;
+            this.recruitedListView.TabIndex = 47;
             this.recruitedListView.UseCompatibleStateImageBehavior = false;
             this.recruitedListView.UseFilterIndicator = true;
             this.recruitedListView.UseFiltering = true;
@@ -328,11 +362,13 @@
             // 
             this.olvColumn2.AspectName = "Name";
             this.olvColumn2.Text = "Imię";
+            this.olvColumn2.Width = 123;
             // 
             // olvColumn3
             // 
             this.olvColumn3.AspectName = "Surname";
             this.olvColumn3.Text = "Nazwisko";
+            this.olvColumn3.Width = 179;
             // 
             // olvColumn4
             // 
@@ -398,10 +434,10 @@
         private System.Windows.Forms.Button manageDocuments;
         private System.Windows.Forms.Button showDataButton;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private BrightIdeasSoftware.ObjectListView recruitedListView;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn3;
-        private BrightIdeasSoftware.ObjectListView recruitedListView;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
     }
 }

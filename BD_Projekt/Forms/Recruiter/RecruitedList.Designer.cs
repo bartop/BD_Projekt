@@ -28,54 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.recruitedListView = new System.Windows.Forms.ListView();
-            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.surname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.refreshListLink = new System.Windows.Forms.LinkLabel();
             this.manageApplicationsButton = new System.Windows.Forms.Button();
             this.manageSkillsButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.closeWindowButton = new System.Windows.Forms.Button();
+            this.recruitedListView = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            ((System.ComponentModel.ISupportInitialize)(this.recruitedListView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // recruitedListView
-            // 
-            this.recruitedListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.name,
-            this.surname,
-            this.email});
-            this.recruitedListView.FullRowSelect = true;
-            this.recruitedListView.GridLines = true;
-            this.recruitedListView.Location = new System.Drawing.Point(12, 25);
-            this.recruitedListView.Name = "recruitedListView";
-            this.recruitedListView.Size = new System.Drawing.Size(513, 457);
-            this.recruitedListView.TabIndex = 0;
-            this.recruitedListView.UseCompatibleStateImageBehavior = false;
-            this.recruitedListView.View = System.Windows.Forms.View.Details;
-            // 
-            // id
-            // 
-            this.id.Text = "Nr";
-            this.id.Width = 34;
-            // 
-            // name
-            // 
-            this.name.Text = "Imię";
-            this.name.Width = 124;
-            // 
-            // surname
-            // 
-            this.surname.Text = "Nazwisko";
-            this.surname.Width = 212;
-            // 
-            // email
-            // 
-            this.email.Text = "Email";
-            this.email.Width = 136;
             // 
             // label1
             // 
@@ -137,37 +102,85 @@
             this.closeWindowButton.UseVisualStyleBackColor = true;
             this.closeWindowButton.Click += new System.EventHandler(this.closeWindowButtonClicked);
             // 
+            // recruitedListView
+            // 
+            this.recruitedListView.AllColumns.Add(this.olvColumn1);
+            this.recruitedListView.AllColumns.Add(this.olvColumn2);
+            this.recruitedListView.AllColumns.Add(this.olvColumn3);
+            this.recruitedListView.AllColumns.Add(this.olvColumn4);
+            this.recruitedListView.CellEditUseWholeCell = false;
+            this.recruitedListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn2,
+            this.olvColumn3,
+            this.olvColumn4});
+            this.recruitedListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.recruitedListView.FullRowSelect = true;
+            this.recruitedListView.Location = new System.Drawing.Point(15, 25);
+            this.recruitedListView.Name = "recruitedListView";
+            this.recruitedListView.ShowGroups = false;
+            this.recruitedListView.Size = new System.Drawing.Size(510, 457);
+            this.recruitedListView.TabIndex = 46;
+            this.recruitedListView.UseCompatibleStateImageBehavior = false;
+            this.recruitedListView.UseFilterIndicator = true;
+            this.recruitedListView.UseFiltering = true;
+            this.recruitedListView.UseTranslucentSelection = true;
+            this.recruitedListView.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "Id";
+            this.olvColumn1.Text = "Numer";
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "Name";
+            this.olvColumn2.Text = "Imię";
+            this.olvColumn2.Width = 123;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "Surname";
+            this.olvColumn3.Text = "Nazwisko";
+            this.olvColumn3.Width = 179;
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "Email";
+            this.olvColumn4.Text = "Email";
+            this.olvColumn4.Width = 260;
+            // 
             // RecruitedList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 556);
+            this.Controls.Add(this.recruitedListView);
             this.Controls.Add(this.closeWindowButton);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.manageSkillsButton);
             this.Controls.Add(this.manageApplicationsButton);
             this.Controls.Add(this.refreshListLink);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.recruitedListView);
             this.Name = "RecruitedList";
             this.Text = "Lista rekrutowanych";
+            ((System.ComponentModel.ISupportInitialize)(this.recruitedListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView recruitedListView;
-        private System.Windows.Forms.ColumnHeader id;
-        private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader surname;
-        private System.Windows.Forms.ColumnHeader email;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel refreshListLink;
         private System.Windows.Forms.Button manageApplicationsButton;
         private System.Windows.Forms.Button manageSkillsButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button closeWindowButton;
+        private BrightIdeasSoftware.ObjectListView recruitedListView;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private BrightIdeasSoftware.OLVColumn olvColumn4;
     }
 }

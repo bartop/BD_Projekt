@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -19,11 +20,7 @@ namespace BD_Projekt.Forms
             using (var db = new DataModelContainer())
             {
                 var users = db.WorkerSet.ToList();
-                foreach (var user in users)
-                {
-                    var listItem = new ListViewItem(new string[] { user.Id.ToString(), user.Login, user.Name, user.Surname, user.Roles.Name });
-                    usersListView.Items.Add(listItem);
-                }
+                usersListView.SetObjects(users);
             }
         }
 
@@ -35,6 +32,7 @@ namespace BD_Projekt.Forms
                 foreach(var role in roles){
                     roleChooser.Items.Add(role.Name);
                 }
+                roleChooser.SelectedIndex = 0;
             }
         }
 
@@ -43,32 +41,53 @@ namespace BD_Projekt.Forms
             Close();
         }
 
-        private void createNewUserButtonClick(object sender, EventArgs e)
+        private void createNewUserButtonClick(object sender, EventArgs eventArgs)
         {
-            using (var db = new DataModelContainer())
-            {
-                var login = loginTextBox.Text;
-                // TODO: wtf is this Bartek?
-                var passwordHash = SecurePasswordHasher.Hash(passwordTextBox.Text);
-                if (passwordHash != SecurePasswordHasher.Hash(repeatPasswordTextBox.Text))
+            try {
+                using (var db = new DataModelContainer())
                 {
+                    var login = loginTextBox.Text;
+                    var passwordHash = SecurePasswordHasher.Hash(passwordTextBox.Text);
+                    if (SecurePasswordHasher.Verify(repeatPasswordTextBox.Text, passwordHash))
+                    {
+                        var worker = new Worker();
+                        worker.Login = login;
+                        worker.PasswordHash = passwordHash;
+                        worker.Name = nameTextBox.Text;
+                        worker.Surname = surnameTextBox.Text;
+                        worker.Roles = db.RoleSet.Where(role => role.Name == roleChooser.Text).First();
+                        db.WorkerSet.Add(worker);
+                        db.SaveChanges();
 
+                        loginTextBox.Clear();
+                        nameTextBox.Clear();
+                        surnameTextBox.Clear();
+                        passwordTextBox.Clear();
+                        repeatPasswordTextBox.Clear();
+                        refreshUserList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Niepoprawnie powtórzone hasło!", "Błąd");
+
+                    }
                 }
-                var worker = new Worker();
-                worker.Login = login;
-                worker.PasswordHash = passwordHash;
-                worker.Name = nameTextBox.Text;
-                worker.Surname = surnameTextBox.Text;
-                worker.Roles = db.RoleSet.Where(role => role.Name == roleChooser.Text).First();
-                db.WorkerSet.Add(worker);
-                db.SaveChanges();
+
             }
-            loginTextBox.Clear();
-            nameTextBox.Clear();
-            surnameTextBox.Clear();
-            passwordTextBox.Clear();
-            repeatPasswordTextBox.Clear();
-            refreshUserList();
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        MessageBox.Show(ve.ErrorMessage, ve.PropertyName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Błąd");
+            }
         }
 
         private void removeUserButtonClick(object sender, EventArgs e)
@@ -87,7 +106,7 @@ namespace BD_Projekt.Forms
                     }
                     catch (Exception exception)
                     {
-                        MessageBox.Show(exception.Message);
+                        MessageBox.Show(exception.Message, "Błąd");
                     }
                 }
             }

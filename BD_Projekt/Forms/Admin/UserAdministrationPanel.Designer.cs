@@ -37,30 +37,35 @@
             this.roleChooser = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.createNewUserButton = new System.Windows.Forms.Button();
-            this.usersListView = new System.Windows.Forms.ListView();
-            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.login = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.role = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.refreshLabel = new System.Windows.Forms.LinkLabel();
             this.removeUserButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.surname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label6 = new System.Windows.Forms.Label();
             this.surnameTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.usersListView = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usersListView)).BeginInit();
             this.SuspendLayout();
             // 
             // loginTextBox
             // 
             this.loginTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpProvider1.SetHelpKeyword(this.loginTextBox, "login");
+            this.helpProvider1.SetHelpNavigator(this.loginTextBox, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.loginTextBox.Location = new System.Drawing.Point(123, 12);
             this.loginTextBox.Name = "loginTextBox";
+            this.helpProvider1.SetShowHelp(this.loginTextBox, true);
             this.loginTextBox.Size = new System.Drawing.Size(324, 20);
             this.loginTextBox.TabIndex = 0;
             // 
@@ -77,10 +82,14 @@
             // 
             this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpProvider1.SetHelpKeyword(this.passwordTextBox, "haslo");
+            this.helpProvider1.SetHelpNavigator(this.passwordTextBox, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.passwordTextBox.Location = new System.Drawing.Point(123, 90);
             this.passwordTextBox.Name = "passwordTextBox";
+            this.helpProvider1.SetShowHelp(this.passwordTextBox, true);
             this.passwordTextBox.Size = new System.Drawing.Size(324, 20);
-            this.passwordTextBox.TabIndex = 4;
+            this.passwordTextBox.TabIndex = 3;
+            this.passwordTextBox.UseSystemPasswordChar = true;
             // 
             // label3
             // 
@@ -95,10 +104,14 @@
             // 
             this.repeatPasswordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpProvider1.SetHelpKeyword(this.repeatPasswordTextBox, "powtorz haslo");
+            this.helpProvider1.SetHelpNavigator(this.repeatPasswordTextBox, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.repeatPasswordTextBox.Location = new System.Drawing.Point(123, 116);
             this.repeatPasswordTextBox.Name = "repeatPasswordTextBox";
+            this.helpProvider1.SetShowHelp(this.repeatPasswordTextBox, true);
             this.repeatPasswordTextBox.Size = new System.Drawing.Size(324, 20);
-            this.repeatPasswordTextBox.TabIndex = 6;
+            this.repeatPasswordTextBox.TabIndex = 4;
+            this.repeatPasswordTextBox.UseSystemPasswordChar = true;
             // 
             // label4
             // 
@@ -115,10 +128,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.roleChooser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roleChooser.FormattingEnabled = true;
+            this.helpProvider1.SetHelpKeyword(this.roleChooser, "grupa");
+            this.helpProvider1.SetHelpNavigator(this.roleChooser, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.roleChooser.Location = new System.Drawing.Point(123, 142);
             this.roleChooser.Name = "roleChooser";
+            this.helpProvider1.SetShowHelp(this.roleChooser, true);
             this.roleChooser.Size = new System.Drawing.Size(324, 21);
-            this.roleChooser.TabIndex = 8;
+            this.roleChooser.TabIndex = 5;
             // 
             // label5
             // 
@@ -133,47 +149,16 @@
             // 
             this.createNewUserButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpProvider1.SetHelpKeyword(this.createNewUserButton, "dodaj uzytkownika");
+            this.helpProvider1.SetHelpNavigator(this.createNewUserButton, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.createNewUserButton.Location = new System.Drawing.Point(12, 169);
             this.createNewUserButton.Name = "createNewUserButton";
+            this.helpProvider1.SetShowHelp(this.createNewUserButton, true);
             this.createNewUserButton.Size = new System.Drawing.Size(436, 23);
-            this.createNewUserButton.TabIndex = 14;
+            this.createNewUserButton.TabIndex = 6;
             this.createNewUserButton.Text = "Potwierdź i utwórz użytkownika";
             this.createNewUserButton.UseVisualStyleBackColor = true;
             this.createNewUserButton.Click += new System.EventHandler(this.createNewUserButtonClick);
-            // 
-            // usersListView
-            // 
-            this.usersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.usersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.login,
-            this.name,
-            this.surname,
-            this.role});
-            this.usersListView.FullRowSelect = true;
-            this.usersListView.Location = new System.Drawing.Point(12, 243);
-            this.usersListView.Name = "usersListView";
-            this.usersListView.Size = new System.Drawing.Size(435, 140);
-            this.usersListView.TabIndex = 15;
-            this.usersListView.UseCompatibleStateImageBehavior = false;
-            this.usersListView.View = System.Windows.Forms.View.Details;
-            // 
-            // id
-            // 
-            this.id.Text = "Nr";
-            this.id.Width = 50;
-            // 
-            // login
-            // 
-            this.login.Text = "Login";
-            this.login.Width = 94;
-            // 
-            // role
-            // 
-            this.role.Text = "Rola";
-            this.role.Width = 90;
             // 
             // label2
             // 
@@ -199,8 +184,11 @@
             // removeUserButton
             // 
             this.removeUserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpProvider1.SetHelpKeyword(this.removeUserButton, "lista uzytkownikow");
+            this.helpProvider1.SetHelpNavigator(this.removeUserButton, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.removeUserButton.Location = new System.Drawing.Point(83, 3);
             this.removeUserButton.Name = "removeUserButton";
+            this.helpProvider1.SetShowHelp(this.removeUserButton, true);
             this.removeUserButton.Size = new System.Drawing.Size(130, 23);
             this.removeUserButton.TabIndex = 18;
             this.removeUserButton.Text = "Usuń użytkownika";
@@ -217,15 +205,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.closeButtonClick);
             // 
-            // name
-            // 
-            this.name.Text = "Imię";
-            // 
-            // surname
-            // 
-            this.surname.Text = "Nazwisko";
-            this.surname.Width = 116;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -239,10 +218,13 @@
             // 
             this.surnameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpProvider1.SetHelpKeyword(this.surnameTextBox, "nazwisko uzytkownika");
+            this.helpProvider1.SetHelpNavigator(this.surnameTextBox, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.surnameTextBox.Location = new System.Drawing.Point(123, 64);
             this.surnameTextBox.Name = "surnameTextBox";
+            this.helpProvider1.SetShowHelp(this.surnameTextBox, true);
             this.surnameTextBox.Size = new System.Drawing.Size(324, 20);
-            this.surnameTextBox.TabIndex = 22;
+            this.surnameTextBox.TabIndex = 2;
             // 
             // label7
             // 
@@ -257,10 +239,13 @@
             // 
             this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpProvider1.SetHelpKeyword(this.nameTextBox, "imie uzytkownika");
+            this.helpProvider1.SetHelpNavigator(this.nameTextBox, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.nameTextBox.Location = new System.Drawing.Point(123, 38);
             this.nameTextBox.Name = "nameTextBox";
+            this.helpProvider1.SetShowHelp(this.nameTextBox, true);
             this.nameTextBox.Size = new System.Drawing.Size(324, 20);
-            this.nameTextBox.TabIndex = 20;
+            this.nameTextBox.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -278,11 +263,77 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(433, 32);
             this.tableLayoutPanel1.TabIndex = 24;
             // 
+            // usersListView
+            // 
+            this.usersListView.AllColumns.Add(this.olvColumn1);
+            this.usersListView.AllColumns.Add(this.olvColumn5);
+            this.usersListView.AllColumns.Add(this.olvColumn2);
+            this.usersListView.AllColumns.Add(this.olvColumn3);
+            this.usersListView.AllColumns.Add(this.olvColumn4);
+            this.usersListView.CellEditUseWholeCell = false;
+            this.usersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn5,
+            this.olvColumn2,
+            this.olvColumn3,
+            this.olvColumn4});
+            this.usersListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.usersListView.FullRowSelect = true;
+            this.helpProvider1.SetHelpKeyword(this.usersListView, "lista uzytkownikow");
+            this.helpProvider1.SetHelpNavigator(this.usersListView, System.Windows.Forms.HelpNavigator.KeywordIndex);
+            this.usersListView.Location = new System.Drawing.Point(15, 243);
+            this.usersListView.Name = "usersListView";
+            this.usersListView.ShowGroups = false;
+            this.helpProvider1.SetShowHelp(this.usersListView, true);
+            this.usersListView.Size = new System.Drawing.Size(433, 140);
+            this.usersListView.TabIndex = 46;
+            this.usersListView.UseCompatibleStateImageBehavior = false;
+            this.usersListView.UseFilterIndicator = true;
+            this.usersListView.UseFiltering = true;
+            this.usersListView.UseTranslucentSelection = true;
+            this.usersListView.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "Id";
+            this.olvColumn1.Text = "Numer";
+            this.olvColumn1.Width = 45;
+            // 
+            // olvColumn5
+            // 
+            this.olvColumn5.AspectName = "Login";
+            this.olvColumn5.Text = "Login";
+            this.olvColumn5.Width = 69;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "Name";
+            this.olvColumn2.Text = "Imię";
+            this.olvColumn2.Width = 90;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "Surname";
+            this.olvColumn3.Text = "Nazwisko";
+            this.olvColumn3.Width = 111;
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "Roles.Name";
+            this.olvColumn4.Text = "Email";
+            this.olvColumn4.Width = 260;
+            // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = "C:\\Users\\Rames\\Documents\\Visual Studio 2015\\Projects\\BD_Projekt\\Help Files\\help.c" +
+    "hm";
+            // 
             // UserAdministrationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(459, 426);
+            this.Controls.Add(this.usersListView);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.surnameTextBox);
@@ -290,7 +341,6 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.refreshLabel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.usersListView);
             this.Controls.Add(this.createNewUserButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.roleChooser);
@@ -300,10 +350,14 @@
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.loginTextBox);
+            this.HelpButton = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UserAdministrationPanel";
             this.Text = "Zarządzanie użytkownikami";
             this.Load += new System.EventHandler(this.formLoad);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.usersListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,20 +374,21 @@
         private System.Windows.Forms.ComboBox roleChooser;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button createNewUserButton;
-        private System.Windows.Forms.ListView usersListView;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel refreshLabel;
-        private System.Windows.Forms.ColumnHeader id;
-        private System.Windows.Forms.ColumnHeader login;
-        private System.Windows.Forms.ColumnHeader role;
         private System.Windows.Forms.Button removeUserButton;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader surname;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox surnameTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private BrightIdeasSoftware.ObjectListView usersListView;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvColumn5;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private BrightIdeasSoftware.OLVColumn olvColumn4;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

@@ -12,7 +12,7 @@ namespace BD_Projekt
         [RegularExpression(@"(\p{Lu}\p{Ll}+[ |\-|']{0,1})+", ErrorMessage = "Podaj poprawne imię!")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Podaj poprawne imię!")]
         public System.DateTime DateOfBirth { get; set; }
 
         [RegularExpression("^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})$", 
@@ -23,6 +23,23 @@ namespace BD_Projekt
             ErrorMessage = "Podaj poprawny numer telefonu! Tylko cyfry, opcjonalnie + na początku.")]
         public string PhoneNumber { get; set; }
         public string Nationality { get; set; }
+
+        [RegularExpression(@"(\p{Lu}\p{Ll}+[ |\-|']{0,1})+", ErrorMessage = "Podaj poprawne nazwisko!")]
+        public string Surname { get; set; }
+
+    }
+
+    [MetadataType(typeof(WorkerMetaData))]
+    public partial class Worker
+    {
+    }
+    public partial class WorkerMetaData
+    {
+        [Required(ErrorMessage = "Login jest wymagany!"), StringLength(64, MinimumLength = 1, ErrorMessage = "Zła długość loginu!")]
+        public string Login { get; set; }
+
+        [RegularExpression(@"(\p{Lu}\p{Ll}+[ |\-|']{0,1})+", ErrorMessage = "Podaj poprawne imię!")]
+        public string Name { get; set; }
 
         [RegularExpression(@"(\p{Lu}\p{Ll}+[ |\-|']{0,1})+", ErrorMessage = "Podaj poprawne nazwisko!")]
         public string Surname { get; set; }

@@ -13,7 +13,17 @@ namespace BD_Projekt
         protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
             var result = new DbEntityValidationResult(entityEntry, new List<DbValidationError>());
-            if(entityEntry.Entity is Skill)
+            if (entityEntry.Entity is Worker)
+            {
+                var worker = entityEntry.Entity as Worker;
+                int copies = WorkerSet.Where(p => p.Login == worker.Login).Count();
+                if ((entityEntry.State == EntityState.Added) && copies > 0)
+                {
+                    result.ValidationErrors.Add(new
+                        DbValidationError("Login", "Login " + worker.Login + " już zajety!"));
+                }
+            }
+            else if (entityEntry.Entity is Skill)
             {
                 var skill = entityEntry.Entity as Skill;
                 int copies = SkillSet.Where(p => p.Name == skill.Name).Count();
