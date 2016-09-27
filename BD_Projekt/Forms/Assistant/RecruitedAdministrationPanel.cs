@@ -73,7 +73,7 @@ namespace BD_Projekt
             if(name.Text == String.Empty || email.Text == String.Empty || phoneNumber.Text == String.Empty || 
                 surname.Text == String.Empty || nationalityGui.Text == String.Empty )
             {
-                MessageBox.Show("Formaularz posiada puste pola", "Error-TextBoxes",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Formularz posiada puste pola", "Błąd",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;         
             }
             return true;          
@@ -112,7 +112,7 @@ namespace BD_Projekt
 
         private void removeRecruitedButtonClicked(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Tej operacji nie można cofnąć! Czy na pewno chcesz trwale usunąć wszystkie zaznaczonych rekrutowanych?", "Uwaga", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Tej operacji nie można cofnąć! Czy na pewno chcesz trwale usunąć wszystkich zaznaczonych rekrutowanych?", "Uwaga", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
             {
                 return;

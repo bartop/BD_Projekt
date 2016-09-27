@@ -28,33 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.decidedListView = new System.Windows.Forms.ListView();
             this.refreshLink = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.surname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.jobName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.decision = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.approveButton = new System.Windows.Forms.Button();
             this.disapproveButton = new System.Windows.Forms.Button();
             this.detailsButton = new System.Windows.Forms.Button();
+            this.decidedListView = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            ((System.ComponentModel.ISupportInitialize)(this.decidedListView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // decidedListView
-            // 
-            this.decidedListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.name,
-            this.surname,
-            this.jobName,
-            this.decision});
-            this.decidedListView.FullRowSelect = true;
-            this.decidedListView.GridLines = true;
-            this.decidedListView.Location = new System.Drawing.Point(12, 25);
-            this.decidedListView.Name = "decidedListView";
-            this.decidedListView.Size = new System.Drawing.Size(513, 283);
-            this.decidedListView.TabIndex = 0;
-            this.decidedListView.UseCompatibleStateImageBehavior = false;
-            this.decidedListView.View = System.Windows.Forms.View.Details;
             // 
             // refreshLink
             // 
@@ -75,26 +62,6 @@
             this.label1.Size = new System.Drawing.Size(150, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Podania z ocenami rekruterów";
-            // 
-            // name
-            // 
-            this.name.Text = "Imię";
-            this.name.Width = 75;
-            // 
-            // surname
-            // 
-            this.surname.Text = "Nazwisko";
-            this.surname.Width = 108;
-            // 
-            // jobName
-            // 
-            this.jobName.Text = "Nazwa stanowiska";
-            this.jobName.Width = 220;
-            // 
-            // decision
-            // 
-            this.decision.Text = "Ocena rekrutera";
-            this.decision.Width = 103;
             // 
             // approveButton
             // 
@@ -126,35 +93,100 @@
             this.detailsButton.UseVisualStyleBackColor = true;
             this.detailsButton.Click += new System.EventHandler(this.datailsButtonClicked);
             // 
+            // decidedListView
+            // 
+            this.decidedListView.AllColumns.Add(this.olvColumn1);
+            this.decidedListView.AllColumns.Add(this.olvColumn2);
+            this.decidedListView.AllColumns.Add(this.olvColumn3);
+            this.decidedListView.AllColumns.Add(this.olvColumn4);
+            this.decidedListView.AllColumns.Add(this.olvColumn5);
+            this.decidedListView.AllColumns.Add(this.olvColumn6);
+            this.decidedListView.CellEditUseWholeCell = false;
+            this.decidedListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn2,
+            this.olvColumn3,
+            this.olvColumn4,
+            this.olvColumn5,
+            this.olvColumn6});
+            this.decidedListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.decidedListView.FullRowSelect = true;
+            this.decidedListView.Location = new System.Drawing.Point(15, 25);
+            this.decidedListView.Name = "decidedListView";
+            this.decidedListView.ShowGroups = false;
+            this.decidedListView.Size = new System.Drawing.Size(510, 284);
+            this.decidedListView.TabIndex = 48;
+            this.decidedListView.UseCompatibleStateImageBehavior = false;
+            this.decidedListView.UseFilterIndicator = true;
+            this.decidedListView.UseFiltering = true;
+            this.decidedListView.UseTranslucentSelection = true;
+            this.decidedListView.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "Id";
+            this.olvColumn1.Text = "Numer";
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "Recruited.Name";
+            this.olvColumn2.Text = "Imię";
+            this.olvColumn2.Width = 81;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "Recruited.Surname";
+            this.olvColumn3.Text = "Nazwisko";
+            this.olvColumn3.Width = 102;
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "Job.Name";
+            this.olvColumn4.Text = "Stanowisko";
+            this.olvColumn4.Width = 107;
+            // 
+            // olvColumn5
+            // 
+            this.olvColumn5.AspectName = "Decision";
+            this.olvColumn5.Text = "Decyzja";
+            // 
+            // olvColumn6
+            // 
+            this.olvColumn6.AspectName = "Decision.Approval";
+            this.olvColumn6.Text = "Akceptacja";
+            this.olvColumn6.Width = 81;
+            // 
             // DecidedApplicationsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 378);
+            this.Controls.Add(this.decidedListView);
             this.Controls.Add(this.detailsButton);
             this.Controls.Add(this.disapproveButton);
             this.Controls.Add(this.approveButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.refreshLink);
-            this.Controls.Add(this.decidedListView);
             this.Name = "DecidedApplicationsPanel";
             this.Text = "Zaakceptuj oceny podań";
+            ((System.ComponentModel.ISupportInitialize)(this.decidedListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView decidedListView;
         private System.Windows.Forms.LinkLabel refreshLink;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader surname;
-        private System.Windows.Forms.ColumnHeader jobName;
-        private System.Windows.Forms.ColumnHeader decision;
         private System.Windows.Forms.Button approveButton;
         private System.Windows.Forms.Button disapproveButton;
         private System.Windows.Forms.Button detailsButton;
+        private BrightIdeasSoftware.ObjectListView decidedListView;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private BrightIdeasSoftware.OLVColumn olvColumn4;
+        private BrightIdeasSoftware.OLVColumn olvColumn5;
+        private BrightIdeasSoftware.OLVColumn olvColumn6;
     }
 }

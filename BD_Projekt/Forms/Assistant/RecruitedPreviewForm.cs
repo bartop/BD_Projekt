@@ -38,10 +38,10 @@ namespace BD_Projekt.Forms
                     dateOfBirthLabel.Text = recruited.DateOfBirth.ToString();
                     phoneLabel.Text = recruited.PhoneNumber;
                     emailLabel.Text = recruited.Email;
-                    skillsList.Items.Clear();
-                    foreach (var skill in recruited.Posesses)
+                    applicationsList.Items.Clear();
+                    foreach (var application in recruited.Applications)
                     {
-                        skillsList.Items.Add(new ListViewItem(new string[] { skill.Skills.Name, skill.Level.ToString() }));
+                        applicationsList.Items.Add(new ListViewItem(new string[] { application.Job.Name}));
                     }
                 }
             }

@@ -69,9 +69,12 @@
             this.skillLevelListView = new System.Windows.Forms.ListView();
             this.skillName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.overwriteWarningLabel = new System.Windows.Forms.Label();
             this.skillsWarning = new System.Windows.Forms.Label();
             this.stagesWarning = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.workerLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -210,7 +213,7 @@
             // skillAverageLabel
             // 
             this.skillAverageLabel.AutoSize = true;
-            this.skillAverageLabel.Location = new System.Drawing.Point(64, 774);
+            this.skillAverageLabel.Location = new System.Drawing.Point(64, 752);
             this.skillAverageLabel.Name = "skillAverageLabel";
             this.skillAverageLabel.Size = new System.Drawing.Size(0, 13);
             this.skillAverageLabel.TabIndex = 19;
@@ -282,7 +285,7 @@
             // 
             // addDecisionButton
             // 
-            this.addDecisionButton.Location = new System.Drawing.Point(6, 856);
+            this.addDecisionButton.Location = new System.Drawing.Point(4, 883);
             this.addDecisionButton.Name = "addDecisionButton";
             this.addDecisionButton.Size = new System.Drawing.Size(589, 23);
             this.addDecisionButton.TabIndex = 27;
@@ -397,7 +400,8 @@
             // 
             this.skillLevelListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.skillName,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.skillLevelListView.FullRowSelect = true;
             this.skillLevelListView.GridLines = true;
             this.skillLevelListView.Location = new System.Drawing.Point(12, 616);
@@ -415,6 +419,10 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Ocena";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Waga";
             // 
             // overwriteWarningLabel
             // 
@@ -449,12 +457,32 @@
             this.stagesWarning.Text = "Uwaga! Nie wszystkie etapy rekrutacji są ocenione";
             this.stagesWarning.Visible = false;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 853);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(110, 13);
+            this.label11.TabIndex = 35;
+            this.label11.Text = "Ocena wydana przez:";
+            // 
+            // workerLabel
+            // 
+            this.workerLabel.AutoSize = true;
+            this.workerLabel.Location = new System.Drawing.Point(128, 853);
+            this.workerLabel.Name = "workerLabel";
+            this.workerLabel.Size = new System.Drawing.Size(112, 13);
+            this.workerLabel.TabIndex = 36;
+            this.workerLabel.Text = "(jeszcze nie oceniono)";
+            // 
             // DecisionPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(605, 888);
+            this.ClientSize = new System.Drawing.Size(605, 927);
+            this.Controls.Add(this.workerLabel);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.stagesWarning);
             this.Controls.Add(this.skillsWarning);
             this.Controls.Add(this.overwriteWarningLabel);
@@ -485,6 +513,7 @@
             this.Controls.Add(this.recruitedTextBox);
             this.Name = "DecisionPanel";
             this.Text = "Podsumowanie";
+            this.Load += new System.EventHandler(this.DecisionPanel_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -538,5 +567,8 @@
         private System.Windows.Forms.Label overwriteWarningLabel;
         private System.Windows.Forms.Label skillsWarning;
         private System.Windows.Forms.Label stagesWarning;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label workerLabel;
     }
 }

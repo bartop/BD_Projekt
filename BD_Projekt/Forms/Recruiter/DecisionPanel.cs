@@ -26,73 +26,81 @@ namespace BD_Projekt.Forms
             recruiter = recruiterArg;
             application = applicationArg;
 
-            refreshEducationListView();
-            refreshExpirienceListView();
-            refreshStageGradesList();
-            refreshSkillLevelsList();
+            try {
+
+                refreshEducationListView();
+                refreshExpirienceListView();
+                refreshStageGradesList();
+                refreshSkillLevelsList();
 
 
-            using (var db = new DataModelContainer())
-            {
-                var job = db.ApplicationSet
-                    .Where(a => a.Id == application.Id)
-                    .Single().Job;
-
-                recruitedTextBox.Text = recruited.Name + " " + recruited.Surname;
-                positionTextBox.Text = job.Name;
-
-
-                var decision = db.ApplicationSet
-                    .Where(a => a.Id == application.Id)
-                    .Single()
-                    .Decision;
-
-                if (decision != null)
+                using (var db = new DataModelContainer())
                 {
-                    overwriteWarningLabel.Visible = true;
+                    var job = db.ApplicationSet
+                        .Where(a => a.Id == application.Id)
+                        .Single().Job;
 
-                    explanationTextBox.Text = decision.Explanation;
-                    if (decision.Accepted)
-                    {
-                        positiveRadioButton.Select();
-                    }
-                    else
-                    {
-                        negativeRadioButton.Select();
-                    }
-                } 
+                    recruitedTextBox.Text = recruited.Name + " " + recruited.Surname;
+                    positionTextBox.Text = job.Name;
 
-                if (readOnly)
-                {
-                    overwriteWarningLabel.Visible = false;
-                    skillsWarning.Visible = false;
-                    stagesWarning.Visible = false;
-                    positiveRadioButton.Enabled = false;
-                    negativeRadioButton.Enabled = false;
-                    addDecisionButton.Visible = false;
-                    explanationTextBox.ReadOnly = true;
-                    explanationTextBox.BackColor = System.Drawing.SystemColors.Window;
+
+                    var decision = db.ApplicationSet
+                        .Where(a => a.Id == application.Id)
+                        .Single()
+                        .Decision;
+
+                    if (decision != null)
+                    {
+                        overwriteWarningLabel.Visible = true;
+
+                        explanationTextBox.Text = decision.Explanation;
+                        if (decision.Accepted)
+                        {
+                            positiveRadioButton.Select();
+                        }
+                        else
+                        {
+                            negativeRadioButton.Select();
+                        }
+
+                        workerLabel.Text = decision.Worker.Name + " " + decision.Worker.Surname;
+                    }
+
+                    if (readOnly)
+                    {
+                        overwriteWarningLabel.Visible = false;
+                        skillsWarning.Visible = false;
+                        stagesWarning.Visible = false;
+                        positiveRadioButton.Enabled = false;
+                        negativeRadioButton.Enabled = false;
+                        addDecisionButton.Visible = false;
+                        explanationTextBox.ReadOnly = true;
+                        explanationTextBox.BackColor = System.Drawing.SystemColors.Window;
+                    }
+
+                    var possesedSkills = db.PosessesSet
+                        .Where(p => p.Recruited.Id == recruited.Id)
+                        .Select(p => p.Skills);
+                    var requiredSkills = db.RequiresSet
+                        .Where(r => r.Jobs.Id == job.Id)
+                        .Select(r => r.Skills);
+                    bool isSubset = !requiredSkills.Except(possesedSkills).Any();
+                    if (!isSubset) skillsWarning.Visible = true;
+
+                    var gradedStages = db.StageGradeSet
+                        .Where(sg => sg.Application.Id == application.Id)
+                        .Select(sg => sg.Stage);
+                    var requiredStages = db.ApplicationSet
+                        .Where(a => a.Id == application.Id)
+                        .Single()
+                        .Job
+                        .Stage;
+                    isSubset = !requiredStages.Except(gradedStages).Any();
+                    if (!isSubset) stagesWarning.Visible = true;
                 }
-
-                var possesedSkills = db.PosessesSet
-                    .Where(p => p.Recruited.Id == recruited.Id)
-                    .Select(p => p.Skills);
-                var requiredSkills = db.RequiresSet
-                    .Where(r => r.Jobs.Id == job.Id)
-                    .Select(r => r.Skills);
-                bool isSubset = !requiredSkills.Except(possesedSkills).Any();
-                if (!isSubset) skillsWarning.Visible = true;
-
-                var gradedStages = db.StageGradeSet
-                    .Where(sg => sg.Application.Id == application.Id)
-                    .Select(sg => sg.Stage);
-                var requiredStages = db.ApplicationSet
-                    .Where(a => a.Id == application.Id)
-                    .Single()
-                    .Job
-                    .Stage;
-                isSubset = !requiredStages.Except(gradedStages).Any();
-                if (!isSubset) stagesWarning.Visible = true;
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Błąd");
             }
         }
 
@@ -173,18 +181,25 @@ namespace BD_Projekt.Forms
             using (var db = new DataModelContainer())
             {
                 double average = 0;
+                double divider = 0;
                 var skillLevels = db.PosessesSet.
                     Where(p => p.Recruited.Id == recruited.Id);
 
+                application = db.ApplicationSet.Find(application.Id);
+                var skillWeights = application.Job.Requires;
+
                 foreach (var skillLevel in skillLevels)
                 {
-                    average += skillLevel.Level;
-                    skillLevelListView.Items.Add(
-                        new ListViewItem(
-                            new string[] { skillLevel.Skills.Name,
-                                skillLevel.Level.ToString() }));
+                    var weight = skillWeights.Where(r => r.Skills.Id == skillLevel.Skills.Id).FirstOrDefault().Weight;
+                    average += skillLevel.Level * weight;
+                    divider += weight;
+
+                        skillLevelListView.Items.Add(
+                            new ListViewItem(
+                                new string[] { skillLevel.Skills.Name,
+                                skillLevel.Level.ToString(), weight.ToString() }));
                 }
-                average /= skillLevels.Count();
+                average /= divider;
                 skillAverageLabel.Text = average.ToString();
             }
         }
@@ -242,5 +257,12 @@ namespace BD_Projekt.Forms
             }
             Close();
         }
+
+        private void DecisionPanel_Load(object sender, EventArgs e)
+        {
+            int h = Screen.PrimaryScreen.WorkingArea.Height;
+            this.Height = h;
+        }
+
     }
 }

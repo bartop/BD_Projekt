@@ -325,8 +325,7 @@
             // 
             // helpProvider1
             // 
-            this.helpProvider1.HelpNamespace = "C:\\Users\\Rames\\Documents\\Visual Studio 2015\\Projects\\BD_Projekt\\Help Files\\help.c" +
-    "hm";
+            this.helpProvider1.HelpNamespace = "Help Files\\help.chm";
             // 
             // UserAdministrationPanel
             // 

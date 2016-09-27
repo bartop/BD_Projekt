@@ -43,11 +43,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.skillsList = new System.Windows.Forms.ListView();
-            this.skillColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.leveColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.documentsPreviewButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.jobColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.applicationsList = new System.Windows.Forms.ListView();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -56,7 +55,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
@@ -194,7 +193,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(6, 12);
@@ -206,46 +205,20 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.skillsList);
+            this.groupBox2.Controls.Add(this.applicationsList);
             this.groupBox2.Location = new System.Drawing.Point(6, 134);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(272, 246);
+            this.groupBox2.Size = new System.Drawing.Size(272, 114);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Umiejętności";
-            // 
-            // skillsList
-            // 
-            this.skillsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.skillsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.skillColumn,
-            this.leveColumn});
-            this.skillsList.FullRowSelect = true;
-            this.skillsList.Location = new System.Drawing.Point(6, 19);
-            this.skillsList.Name = "skillsList";
-            this.skillsList.Size = new System.Drawing.Size(257, 221);
-            this.skillsList.TabIndex = 7;
-            this.skillsList.UseCompatibleStateImageBehavior = false;
-            this.skillsList.View = System.Windows.Forms.View.Details;
-            // 
-            // skillColumn
-            // 
-            this.skillColumn.Text = "Umiejętność";
-            this.skillColumn.Width = 164;
-            // 
-            // leveColumn
-            // 
-            this.leveColumn.Text = "Stopień";
-            this.leveColumn.Width = 87;
+            this.groupBox2.Text = "Aplikacje";
             // 
             // documentsPreviewButton
             // 
-            this.documentsPreviewButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.documentsPreviewButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.documentsPreviewButton.Location = new System.Drawing.Point(3, 6);
             this.documentsPreviewButton.Name = "documentsPreviewButton";
@@ -261,22 +234,42 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.documentsPreviewButton, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 380);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 248);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(255, 32);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
-            // ApplicationPreviewForm
+            // jobColumn
+            // 
+            this.jobColumn.Text = "Stanowisko";
+            this.jobColumn.Width = 253;
+            // 
+            // applicationsList
+            // 
+            this.applicationsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.applicationsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.jobColumn});
+            this.applicationsList.FullRowSelect = true;
+            this.applicationsList.Location = new System.Drawing.Point(6, 19);
+            this.applicationsList.Name = "applicationsList";
+            this.applicationsList.Size = new System.Drawing.Size(257, 89);
+            this.applicationsList.TabIndex = 7;
+            this.applicationsList.UseCompatibleStateImageBehavior = false;
+            this.applicationsList.View = System.Windows.Forms.View.Details;
+            // 
+            // RecruitedPreviewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 424);
+            this.ClientSize = new System.Drawing.Size(282, 292);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ApplicationPreviewForm";
+            this.Name = "RecruitedPreviewForm";
             this.Text = "Podgląd rekrutowanego";
             this.Load += new System.EventHandler(this.ApplicationPreviewForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -305,10 +298,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListView skillsList;
-        private System.Windows.Forms.ColumnHeader skillColumn;
-        private System.Windows.Forms.ColumnHeader leveColumn;
         private System.Windows.Forms.Button documentsPreviewButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.ListView applicationsList;
+        private System.Windows.Forms.ColumnHeader jobColumn;
     }
 }

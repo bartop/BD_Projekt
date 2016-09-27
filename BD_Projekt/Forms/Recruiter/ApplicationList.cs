@@ -65,13 +65,20 @@ namespace BD_Projekt.Forms
             foreach (ListViewItem item in applicationsListView.SelectedItems)
             {
                 Application application;
+                bool readOnly = false;
                 using (var db = new DataModelContainer())
                 {
                     var jobName = item.Text;
                     application = db.ApplicationSet.Where(a => a.Job.Name == jobName
                     && a.Recruited.Id == recruited.Id).Single();
+                    if (application.Decision != null && application.Decision.Approval != null && application.Decision.Approval.Approved)
+                    {
+                        //Jeśli kierownik zaackeptował decyzję, to nie można jej zmienić
+                        readOnly = true;
+                    }
                 }
-                using(var dialog = new DecisionPanel(recruited, recruiter, application))
+
+                using(var dialog = new DecisionPanel(recruited, recruiter, application, readOnly))
                 {
                     dialog.ShowDialog();
                 }

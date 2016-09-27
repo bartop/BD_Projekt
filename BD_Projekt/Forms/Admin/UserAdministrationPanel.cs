@@ -92,6 +92,12 @@ namespace BD_Projekt.Forms
 
         private void removeUserButtonClick(object sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Tej operacji nie można cofnąć! Czy na pewno chcesz trwale usunąć wszystkich zaznaczonych użytkowników?", "Uwaga", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+
             using (var db = new DataModelContainer())
             {
                 foreach(ListViewItem listItem in usersListView.SelectedItems)

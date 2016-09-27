@@ -27,8 +27,8 @@ namespace BD_Projekt.Forms
             using (var db = new DataModelContainer())
             {
                 var applications = db.DecisionSet.Select(d => d.Application);
-                decidedListView.Items.Clear();
-                foreach(var application in applications)
+                decidedListView.SetObjects(applications);
+               /* foreach(var application in applications)
                 {
                     ListViewItem item = new ListViewItem(new string[]
                     {
@@ -45,29 +45,25 @@ namespace BD_Projekt.Forms
                             item.ForeColor = Color.Red;
                     }
                     decidedListView.Items.Add(item);
-                }
+                }*/
             }
         }
 
         private void addApproval(bool approved)
         {
-            foreach (ListViewItem item in decidedListView.SelectedItems) {
+            foreach (var item in decidedListView.SelectedObjects) {
                 Approval app = new Approval();
                 app.Approved = approved;
                 using (var db = new DataModelContainer())
                 {
-                    string recruitedName = item.SubItems[0].Text;
-                    string recruitedSurname = item.SubItems[1].Text;
-                    string jobName = item.SubItems[2].Text;
+                    int id = ((Application)item).Id;
 
                     app.Worker = db.WorkerSet
                         .Where(w => w.Id == supervisor.Id)
                         .Single();
                     app.Decision = db.ApplicationSet
-                        .Where(a => a.Job.Name == jobName
-                        && a.Recruited.Name == recruitedName
-                        && a.Recruited.Surname == recruitedSurname)
-                        .First().Decision;
+                        .Find(id)
+                        .Decision;
 
                     if (app.Decision.Approval != null)
                         db.ApprovalSet.Remove(app.Decision.Approval);
@@ -91,21 +87,14 @@ namespace BD_Projekt.Forms
 
         private void datailsButtonClicked(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in decidedListView.SelectedItems)
+            foreach (var item in decidedListView.SelectedObjects)
             {
                 Application application;
                 Recruited recruited;
                 using (var db = new DataModelContainer())
                 {
-                    string recruitedName = item.SubItems[0].Text;
-                    string recruitedSurname = item.SubItems[1].Text;
-                    string jobName = item.SubItems[2].Text;
-
                     application = db.ApplicationSet
-                            .Where(a => a.Job.Name == jobName
-                            && a.Recruited.Name == recruitedName
-                            && a.Recruited.Surname == recruitedSurname)
-                            .First();
+                            .Find(((Application)item).Id);
                     recruited = application.Recruited;
                 }
                 using (var dialog = new DecisionPanel(recruited, supervisor, application, true))
