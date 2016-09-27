@@ -130,7 +130,14 @@ namespace BD_Projekt
                 }
             } catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Błąd");
+                string msg = ex.Message;
+
+                while (ex.InnerException != null)
+                {
+                    ex = ex.InnerException;
+                    msg += "\n\r\n\r" + ex.Message;
+                }
+                    MessageBox.Show(ex.Message, "Błąd");
             }
             refreshRecruitedList();
         }

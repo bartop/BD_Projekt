@@ -73,8 +73,9 @@
             this.overwriteWarningLabel = new System.Windows.Forms.Label();
             this.skillsWarning = new System.Windows.Forms.Label();
             this.stagesWarning = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.gradeGivenLabel = new System.Windows.Forms.Label();
             this.workerLabel = new System.Windows.Forms.Label();
+            this.showDataButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             this.recruitedTextBox.Enabled = false;
             this.recruitedTextBox.Location = new System.Drawing.Point(88, 12);
             this.recruitedTextBox.Name = "recruitedTextBox";
-            this.recruitedTextBox.Size = new System.Drawing.Size(510, 20);
+            this.recruitedTextBox.Size = new System.Drawing.Size(400, 20);
             this.recruitedTextBox.TabIndex = 0;
             // 
             // label1
@@ -138,7 +139,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 41);
+            this.label4.Location = new System.Drawing.Point(12, 41);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 10;
@@ -457,32 +458,43 @@
             this.stagesWarning.Text = "Uwaga! Nie wszystkie etapy rekrutacji są ocenione";
             this.stagesWarning.Visible = false;
             // 
-            // label11
+            // gradeGivenLabel
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 853);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 13);
-            this.label11.TabIndex = 35;
-            this.label11.Text = "Ocena wydana przez:";
+            this.gradeGivenLabel.AutoSize = true;
+            this.gradeGivenLabel.Location = new System.Drawing.Point(12, 853);
+            this.gradeGivenLabel.Name = "gradeGivenLabel";
+            this.gradeGivenLabel.Size = new System.Drawing.Size(110, 13);
+            this.gradeGivenLabel.TabIndex = 35;
+            this.gradeGivenLabel.Text = "Ocena wydana przez:";
+            this.gradeGivenLabel.Visible = false;
             // 
             // workerLabel
             // 
             this.workerLabel.AutoSize = true;
             this.workerLabel.Location = new System.Drawing.Point(128, 853);
             this.workerLabel.Name = "workerLabel";
-            this.workerLabel.Size = new System.Drawing.Size(112, 13);
+            this.workerLabel.Size = new System.Drawing.Size(0, 13);
             this.workerLabel.TabIndex = 36;
-            this.workerLabel.Text = "(jeszcze nie oceniono)";
+            // 
+            // showDataButton
+            // 
+            this.showDataButton.Location = new System.Drawing.Point(499, 9);
+            this.showDataButton.Name = "showDataButton";
+            this.showDataButton.Size = new System.Drawing.Size(99, 23);
+            this.showDataButton.TabIndex = 37;
+            this.showDataButton.Text = "Dane osobowe";
+            this.showDataButton.UseVisualStyleBackColor = true;
+            this.showDataButton.Click += new System.EventHandler(this.showDataButton_Click);
             // 
             // DecisionPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(605, 927);
+            this.ClientSize = new System.Drawing.Size(617, 918);
+            this.Controls.Add(this.showDataButton);
             this.Controls.Add(this.workerLabel);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.gradeGivenLabel);
             this.Controls.Add(this.stagesWarning);
             this.Controls.Add(this.skillsWarning);
             this.Controls.Add(this.overwriteWarningLabel);
@@ -568,7 +580,8 @@
         private System.Windows.Forms.Label skillsWarning;
         private System.Windows.Forms.Label stagesWarning;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label gradeGivenLabel;
         private System.Windows.Forms.Label workerLabel;
+        private System.Windows.Forms.Button showDataButton;
     }
 }

@@ -28,24 +28,6 @@ namespace BD_Projekt.Forms
             {
                 var applications = db.DecisionSet.Select(d => d.Application);
                 decidedListView.SetObjects(applications);
-               /* foreach(var application in applications)
-                {
-                    ListViewItem item = new ListViewItem(new string[]
-                    {
-                        application.Recruited.Name,
-                        application.Recruited.Surname,
-                        application.Job.Name,
-                        application.Decision.ToString()
-                    });
-                    if(application.Decision.Approval != null)
-                    {
-                        if (application.Decision.Approval.Approved == true)
-                            item.ForeColor = Color.Green;
-                        else
-                            item.ForeColor = Color.Red;
-                    }
-                    decidedListView.Items.Add(item);
-                }*/
             }
         }
 

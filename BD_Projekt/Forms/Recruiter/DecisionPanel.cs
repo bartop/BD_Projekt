@@ -64,6 +64,7 @@ namespace BD_Projekt.Forms
                         }
 
                         workerLabel.Text = decision.Worker.Name + " " + decision.Worker.Surname;
+                        gradeGivenLabel.Visible = true;
                     }
 
                     if (readOnly)
@@ -264,5 +265,12 @@ namespace BD_Projekt.Forms
             this.Height = h;
         }
 
+        private void showDataButton_Click(object sender, EventArgs e)
+        {
+            using (var form = new RecruitedPreviewForm(recruited.Id))
+            {
+                form.ShowDialog();
+            }
+        }
     }
 }
